@@ -300,7 +300,7 @@
         const ctx = canvas.getContext('2d');
         
         // Игровые переменные
-        let money = 100;
+        let money = 150;
         let lives = 20;
         let wave = 0;
         let enemies = [];
@@ -450,14 +450,14 @@
                 // Установка параметров в зависимости от типа
                 switch(type) {
                     case 'pistol':
-                        this.radius = 200; // 10st = 20px
+                        this.radius = 100; // 10st = 20px
                         this.damage = 1;
                         this.fireRate = 60; // 1 выстрел в секунду (60 FPS)
                         this.color = 'blue';
                         this.shape = 'circle';
                         this.upgradeCost = 150;
                         this.upgradeDamage = 2;
-                        this.upgradeRadius = 240; // +2st = 4px
+                        this.upgradeRadius = 140; // +2st = 4px
                         this.upgradeFireRate = 60;
                         break;
                     case 'swordsman':

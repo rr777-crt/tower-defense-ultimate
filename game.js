@@ -1,1 +1,1765 @@
+// Получаем элементы canvas и контекст
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 
+// Игровые переменные
+let money = 200;
+let lives = 20;
+let wave = 0;
+let enemies = [];
+let towers = [];
+let bullets = [];
+let selectedTowerType = null;
+let selectedTower = null;
+let gameActive = true;
+let enemySpawnTimer = 0;
+let enemiesToSpawn = 0;
+let showRadius = true;
+let waveActive = false;
+let redCount = 0;
+let purpleCount = 0;
+let goldenCount = 0;
+let pinkCount = 0;
+let greenCount = 0;
+let whiteCount = 0;
+let bossCount = 0;
+let blueCount = 0;
+let sonicCount = 0;
+let voidCount = 0;
+let rangeIndicator = null;
+let bossAura = null;
+let difficulty = "normal";
+let mapType = "hills";
+let farmCount = 0;
+let atomicCount = 0;
+let omegaCount = 0;
+
+// Функция для получения точных координат мыши относительно canvas
+function getMousePos(canvas, evt) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    return {
+        x: (evt.clientX - rect.left) * scaleX,
+        y: (evt.clientY - rect.top) * scaleY
+    };
+}
+
+let enemyKnowledge = {
+    'red': { health: 0, speed: 0, discovered: false },
+    'purple': { health: 0, speed: 0, discovered: false },
+    'golden': { health: 0, speed: 0, discovered: false },
+    'pink': { health: 0, speed: 0, discovered: false },
+    'green': { health: 0, speed: 0, discovered: false },
+    'white': { health: 0, speed: 0, discovered: false },
+    'boss': { health: 0, speed: 0, discovered: false, special: "" },
+    'blue': { health: 0, speed: 0, discovered: false, special: "" },
+    'sonic': { health: 0, speed: 0, discovered: false, special: "" },
+    'void': { health: 0, speed: 0, discovered: false, special: "" }
+};
+
+// Константы
+const ENEMY_BASE_SPEED = 1;
+const ENEMY_SIZE = 10;
+const TOWER_SIZE = 15;
+const BULLET_SIZE = 5;
+const ST_TO_PX = 10; // 1st = 10px
+
+// Путь для врагов (желтая тропинка)
+let PATH = [];
+
+// Функция установки пути в зависимости от карты
+function setPath() {
+    if (mapType === "hills") {
+        PATH = [
+            {x: -20, y: 250},
+            {x: 150, y: 250},
+            {x: 150, y: 150},
+            {x: 400, y: 150},
+            {x: 400, y: 350},
+            {x: 650, y: 350},
+            {x: 650, y: 250},
+            {x: 820, y: 250}
+        ];
+    } else if (mapType === "flat") {
+        PATH = [
+            {x: -20, y: 250},
+            {x: 820, y: 250}
+        ];
+    }
+}
+
+// Класс врага
+class Enemy {
+    constructor(type, health, speed, size, color) {
+        this.type = type;
+        this.health = health;
+        this.maxHealth = health;
+        this.baseSpeed = speed;
+        this.speed = speed;
+        this.size = size;
+        this.color = color;
+        this.x = PATH[0].x;
+        this.y = PATH[0].y;
+        this.pathIndex = 0;
+        this.slowPercent = 0;
+        this.speedChangeTimer = 0;
+        this.auraRadius = 0;
+        this.healTimer = 0;
+        this.deleteTimer = 0;
+        
+        // Применяем модификаторы сложности
+        if (difficulty === "hard") {
+            this.health *= 2;
+            this.maxHealth = this.health;
+            this.baseSpeed *= 1.05;
+            this.speed = this.baseSpeed;
+        }
+        
+        // Устанавливаем особые свойства врагов
+        if (type === 'boss') {
+            this.auraRadius = 4 * ST_TO_PX; // 4st = 40px (как у мечника)
+        } else if (type === 'blue') {
+            this.healTimer = 600; // 10 секунд при 60 FPS
+        } else if (type === 'void') {
+            this.deleteTimer = 3600; // 60 секунд при 60 FPS
+        }
+        
+        // Записываем информацию о враге, если он еще не был обнаружен
+        if (!enemyKnowledge[type].discovered) {
+            enemyKnowledge[type].health = health;
+            enemyKnowledge[type].speed = speed;
+            
+            if (type === 'boss') {
+                enemyKnowledge[type].special = "Уменьшает урон башен в радиусе";
+            } else if (type === 'blue') {
+                enemyKnowledge[type].special = "Лечит других врагов";
+            } else if (type === 'sonic') {
+                enemyKnowledge[type].special = "Очень быстрый";
+            } else if (type === 'void') {
+                enemyKnowledge[type].special = "Удаляет башни раз в минуту";
+            }
+            
+            enemyKnowledge[type].discovered = true;
+            updateEnemyIndex();
+        }
+    }
+    
+    update() {
+        // Для белого врага - меняем скорость каждую секунду
+        if (this.type === 'white') {
+            this.speedChangeTimer++;
+            if (this.speedChangeTimer >= 60) {
+                this.speedChangeTimer = 0;
+                // Меняем скорость случайным образом от скорости зеленого до золотого
+                const greenSpeed = ENEMY_BASE_SPEED / 3.15675434;
+                const goldenSpeed = ENEMY_BASE_SPEED * 2;
+                this.speed = greenSpeed + Math.random() * (goldenSpeed - greenSpeed);
+            }
+        }
+        
+        // Для голубого врага - лечение каждые 10 секунд
+        if (this.type === 'blue') {
+            this.healTimer--;
+            if (this.healTimer <= 0) {
+                this.healTimer = 600; // Сброс таймера
+                
+                // Лечим всех врагов на 50% от их максимального здоровья
+                for (const enemy of enemies) {
+                    if (enemy !== this) {
+                        enemy.health = Math.min(enemy.maxHealth, enemy.health + enemy.maxHealth * 0.5);
+                    }
+                }
+            }
+        }
+        
+        // Для пустотного врага - удаление башни каждые 60 секунд
+        if (this.type === 'void') {
+            this.deleteTimer--;
+            if (this.deleteTimer <= 0) {
+                this.deleteTimer = 3600; // Сброс таймера
+                
+                // Удаляем случайную башню (кроме ОМЕГИ)
+                const nonOmegaTowers = towers.filter(tower => tower.type !== 'omega');
+                if (nonOmegaTowers.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * nonOmegaTowers.length);
+                    const towerToRemove = nonOmegaTowers[randomIndex];
+                    
+                    // Обновляем счетчики лимитированных башен
+                    if (towerToRemove.type === 'farm') farmCount--;
+                    if (towerToRemove.type === 'atomic') atomicCount--;
+                    if (towerToRemove.type === 'omega') omegaCount--;
+                    
+                    towers.splice(towers.indexOf(towerToRemove), 1);
+                }
+            }
+        }
+        
+        // Применяем замедление, если есть
+        this.speed = this.baseSpeed * (1 - this.slowPercent / 100);
+        
+        // Движение по пути
+        const targetX = PATH[this.pathIndex].x;
+        const targetY = PATH[this.pathIndex].y;
+        
+        const dx = targetX - this.x;
+        const dy = targetY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < this.speed) {
+            this.x = targetX;
+            this.y = targetY;
+            this.pathIndex++;
+            
+            // Если враг дошел до конца пути
+            if (this.pathIndex >= PATH.length) {
+                lives--;
+                updateStats();
+                
+                // Проверка на проигрыш
+                if (lives <= 0) {
+                    gameOver();
+                }
+                
+                return false;
+            }
+        } else {
+            this.x += (dx / distance) * this.speed;
+            this.y += (dy / distance) * this.speed;
+        }
+        
+        return true;
+    }
+    
+    draw() {
+        // Рисуем врага
+        ctx.fillStyle = this.color;
+        
+        if (this.type === 'red' || this.type === 'purple' || this.type === 'pink' || 
+            this.type === 'green' || this.type === 'white' || this.type === 'blue') {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        } else if (this.type === 'golden') {
+            // Золотой враг с эффектом сияния
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            
+            // Градиент для золотого врага
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0, 
+                this.x, this.y, this.size
+            );
+            gradient.addColorStop(0, '#FFD700');
+            gradient.addColorStop(1, '#DAA520');
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Эффект сияния
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size + 3, 0, Math.PI * 2);
+            ctx.stroke();
+        } else if (this.type === 'boss') {
+            // Босс - черный шар с красной аурой
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Аура босса
+            ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.auraRadius, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Обновляем индикатор ауры
+            if (bossAura) {
+                bossAura.style.left = this.x + 'px';
+                bossAura.style.top = this.y + 'px';
+                bossAura.style.width = this.auraRadius * 2 + 'px';
+                bossAura.style.height = this.auraRadius * 2 + 'px';
+            }
+        } else if (this.type === 'sonic') {
+            // Соник шар (желтый + синий)
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            
+            // Градиент для соник шара
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0, 
+                this.x, this.y, this.size
+            );
+            gradient.addColorStop(0, '#FFFF00');
+            gradient.addColorStop(1, '#0000FF');
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Эффект скорости
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size + 3, 0, Math.PI * 2);
+            ctx.stroke();
+        } else if (this.type === 'void') {
+            // Пустотный шар (фиолетовый + черный)
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            
+            // Градиент для пустотного шара
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0, 
+                this.x, this.y, this.size
+            );
+            gradient.addColorStop(0, '#8A2BE2');
+            gradient.addColorStop(1, '#000000');
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Эффект пустоты
+            ctx.strokeStyle = 'rgba(75, 0, 130, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size + 3, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        
+        // Рисуем полоску здоровья
+        const healthWidth = (this.health / this.maxHealth) * (this.size * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(this.x - this.size, this.y - this.size - 8, this.size * 2, 4);
+        ctx.fillStyle = this.type === 'golden' ? '#00ff00' : 'red';
+        ctx.fillRect(this.x - this.size, this.y - this.size - 8, healthWidth, 4);
+        
+        // Для замедленных врагов добавляем эффект льда
+        if (this.slowPercent > 0) {
+            ctx.strokeStyle = 'rgba(100, 200, 255, 0.7)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size + 2, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+    }
+    
+    takeDamage(damage) {
+        // Для босса - уменьшаем урон от башен в его ауре
+        if (this.type === 'boss') {
+            let actualDamage = damage;
+            
+            // Проверяем, находится ли атакующая башня в ауре босса
+            for (const tower of towers) {
+                const dx = tower.x - this.x;
+                const dy = tower.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < this.auraRadius) {
+                    actualDamage = damage * 0.5; // Уменьшаем урон вдвое
+                    break;
+                }
+            }
+            
+            this.health -= actualDamage;
+        } else {
+            this.health -= damage;
+        }
+        
+        if (this.health <= 0) {
+            let reward = 0;
+            
+            switch(this.type) {
+                case 'red': reward = 10; break;
+                case 'purple': reward = 25; break;
+                case 'golden': reward = 50; break;
+                case 'pink': reward = 30; break;
+                case 'green': reward = 75; break;
+                case 'white': reward = 100; break;
+                case 'boss': reward = 500 + wave * 10; break;
+                case 'blue': reward = 150; break;
+                case 'sonic': reward = 200; break;
+                case 'void': reward = 1000; break;
+            }
+            
+            money += reward;
+            updateStats();
+            
+            // Удаляем ауру босса, если это босс
+            if (this.type === 'boss' && bossAura) {
+                document.body.removeChild(bossAura);
+                bossAura = null;
+            }
+            
+            return true;
+        }
+        return false;
+    }
+    
+    slowDown(percent) {
+        this.slowPercent = Math.max(this.slowPercent, percent);
+    }
+}
+
+// Класс башни
+class Tower {
+    constructor(x, y, type) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
+        this.upgraded = false;
+        this.targeting = 'first'; // 'first' или 'random'
+        this.incomeTimer = 0;
+        
+        // Установка параметров в зависимости от типа
+        switch(type) {
+            case 'pistol':
+                this.radius = 10 * ST_TO_PX; // 10st = 100px
+                this.damage = 1;
+                this.fireRate = 60; // 1 выстрел в секунду (60 FPS)
+                this.color = 'blue';
+                this.shape = 'circle';
+                this.upgradeCost = 150;
+                this.upgradeDamage = 2;
+                this.upgradeRadius = 12 * ST_TO_PX; // 12st = 120px
+                this.upgradeFireRate = 60;
+                break;
+            case 'swordsman':
+                this.radius = 4 * ST_TO_PX; // 4st = 40px
+                this.damage = 1;
+                this.fireRate = 30; // 2 выстрела в секунду
+                this.color = 'red';
+                this.shape = 'diamond';
+                this.upgradeCost = 300;
+                this.upgradeDamage = 2;
+                this.upgradeRadius = 4 * ST_TO_PX;
+                this.upgradeFireRate = 30;
+                break;
+            case 'sniper':
+                this.radius = 100 * ST_TO_PX; // 100st = 1000px
+                this.damage = 10;
+                this.fireRate = 300; // 1 выстрел в 5 секунд
+                this.color = 'purple';
+                this.shape = 'square';
+                this.upgradeCost = 1000;
+                this.upgradeDamage = 25;
+                this.upgradeRadius = 100 * ST_TO_PX;
+                this.upgradeFireRate = 150; // 1 выстрел в 2.5 секунды
+                break;
+            case 'freezer':
+                this.radius = 25 * ST_TO_PX; // 25st = 250px
+                this.damage = 1;
+                this.fireRate = 300; // 1 выстрел в 5 секунд
+                this.slowPercent = 10;
+                this.color = 'lightblue';
+                this.shape = 'circle';
+                this.upgradeCost = 1250;
+                this.upgradeDamage = 1;
+                this.upgradeRadius = 25 * ST_TO_PX;
+                this.upgradeFireRate = 300;
+                this.upgradeSlowPercent = 35;
+                break;
+            case 'knight':
+                this.innerRadius = 5 * ST_TO_PX; // 5st = 50px
+                this.outerRadius = 28 * ST_TO_PX; // 28st = 280px
+                this.innerDamage = 5;
+                this.outerDamage = 5;
+                this.innerFireRate = 36; // 0.6сек = 36 кадров
+                this.outerFireRate = 114; // 1.9сек = 114 кадров
+                this.color = 'gray';
+                this.innerColor = 'red';
+                this.shape = 'pentagon';
+                this.upgradeCost = 2500;
+                this.upgradeInnerRadius = 8 * ST_TO_PX; // 8st = 80px
+                this.upgradeOuterRadius = 30 * ST_TO_PX; // 30st = 300px
+                this.upgradeInnerDamage = 5;
+                this.upgradeOuterDamage = 10;
+                this.upgradeInnerFireRate = 20; // 0.33сек = 20 кадров
+                this.upgradeOuterFireRate = 90; // 1.5сек = 90 кадров
+                break;
+            case 'farm':
+                this.radius = 0;
+                this.damage = 0;
+                this.income = 1;
+                this.incomeRate = 60; // 1 монета в секунду
+                this.color = 'brown';
+                this.shape = 'circle';
+                this.upgradeCost = 900;
+                this.upgradeIncome = 3;
+                break;
+            case 'chance':
+                this.radius = 17 * ST_TO_PX; // 17st = 170px
+                this.minDamage = 7;
+                this.maxDamage = 17;
+                this.fireRate = 42; // 0.7сек = 42 кадра
+                this.color = 'pink';
+                this.shape = 'hexagon';
+                this.upgradeCost = 7777;
+                this.upgradeMinDamage = 17;
+                this.upgradeMaxDamage = 37;
+                this.upgradeFireRate = 46; // 0.77сек = 46 кадров
+                break;
+            case 'atomic':
+                this.radius = 100 * ST_TO_PX; // 100st = 1000px
+                this.damage = 200;
+                this.fireRate = 3600; // 60сек = 3600 кадров
+                this.color = 'darkgreen';
+                this.shape = 'octagon';
+                this.upgradeCost = 30000;
+                this.upgradeDamage = 250;
+                this.upgradeFireRate = 3000; // 50сек = 3000 кадров
+                break;
+            case 'omega':
+                this.innerRadius = 9 * ST_TO_PX; // 9st = 90px
+                this.outerRadius = 30 * ST_TO_PX; // 30st = 300px
+                this.innerDamage = 10;
+                this.outerDamage = 25;
+                this.innerFireRate = 30; // 0.5сек = 30 кадров
+                this.outerFireRate = 180; // 3сек = 180 кадров
+                this.color = 'rainbow';
+                this.innerColor = 'cyan';
+                this.shape = 'square';
+                this.upgradeCost = 40000;
+                this.upgradeInnerRadius = 15 * ST_TO_PX; // 15st = 150px
+                this.upgradeOuterRadius = 30 * ST_TO_PX; // 30st = 300px
+                this.upgradeInnerDamage = 15;
+                this.upgradeOuterDamage = 20;
+                this.upgradeInnerFireRate = 24; // 0.4сек = 24 кадра
+                this.upgradeOuterFireRate = 60; // 1сек = 60 кадров
+                break;
+        }
+        
+        this.cooldown = 0;
+        this.outerCooldown = 0;
+        this.size = TOWER_SIZE;
+    }
+    
+    upgrade() {
+        if (this.upgraded) return false;
+        
+        switch(this.type) {
+            case 'pistol':
+                this.damage = this.upgradeDamage;
+                this.radius = this.upgradeRadius;
+                break;
+            case 'swordsman':
+                this.damage = this.upgradeDamage;
+                break;
+            case 'sniper':
+                this.damage = this.upgradeDamage;
+                this.fireRate = this.upgradeFireRate;
+                break;
+            case 'freezer':
+                this.slowPercent = this.upgradeSlowPercent;
+                break;
+            case 'knight':
+                this.innerRadius = this.upgradeInnerRadius;
+                this.outerRadius = this.upgradeOuterRadius;
+                this.innerDamage = this.upgradeInnerDamage;
+                this.outerDamage = this.upgradeOuterDamage;
+                this.innerFireRate = this.upgradeInnerFireRate;
+                this.outerFireRate = this.upgradeOuterFireRate;
+                break;
+            case 'farm':
+                this.income = this.upgradeIncome;
+                break;
+            case 'chance':
+                this.minDamage = this.upgradeMinDamage;
+                this.maxDamage = this.upgradeMaxDamage;
+                this.fireRate = this.upgradeFireRate;
+                break;
+            case 'atomic':
+                this.damage = this.upgradeDamage;
+                this.fireRate = this.upgradeFireRate;
+                break;
+            case 'omega':
+                this.innerRadius = this.upgradeInnerRadius;
+                this.outerRadius = this.upgradeOuterRadius;
+                this.innerDamage = this.upgradeInnerDamage;
+                this.outerDamage = this.upgradeOuterDamage;
+                this.innerFireRate = this.upgradeInnerFireRate;
+                this.outerFireRate = this.upgradeOuterFireRate;
+                break;
+        }
+        
+        this.upgraded = true;
+        return true;
+    }
+    
+    update() {
+        // Для фермы - генерируем доход
+        if (this.type === 'farm') {
+            this.incomeTimer++;
+            if (this.incomeTimer >= this.incomeRate) {
+                this.incomeTimer = 0;
+                money += this.income;
+                updateStats();
+            }
+            return;
+        }
+        
+        // Для атомной башни - особый тип атаки
+        if (this.type === 'atomic' && this.cooldown <= 0) {
+            // Атомная башня наносит урон всем врагам на карте
+            for (const enemy of enemies) {
+                enemy.takeDamage(this.damage);
+            }
+            this.cooldown = this.fireRate;
+            return;
+        }
+        
+        // Находим врагов в радиусе
+        let enemiesInRange = [];
+        
+        for (const enemy of enemies) {
+            const dx = enemy.x - this.x;
+            const dy = enemy.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (this.type === 'knight' || this.type === 'omega') {
+                if (distance < this.outerRadius) {
+                    enemiesInRange.push(enemy);
+                }
+            } else {
+                if (distance < this.radius) {
+                    enemiesInRange.push(enemy);
+                }
+            }
+        }
+        
+        if (enemiesInRange.length > 0) {
+            // Выбираем цель в зависимости от стратегии
+            let target;
+            if (this.targeting === 'first') {
+                // Первая цель (ближайшая к концу пути)
+                target = enemiesInRange[0];
+                for (const enemy of enemiesInRange) {
+                    if (enemy.pathIndex > target.pathIndex) {
+                        target = enemy;
+                    }
+                }
+            } else {
+                // Случайная цель
+                target = enemiesInRange[Math.floor(Math.random() * enemiesInRange.length)];
+            }
+            
+            // Стрельба по врагу
+            if ((this.type === 'knight' || this.type === 'omega') && target) {
+                const dx = target.x - this.x;
+                const dy = target.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Внутренняя атака
+                if (distance < this.innerRadius && this.cooldown <= 0) {
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: this.innerDamage,
+                        speed: 8,
+                        size: BULLET_SIZE,
+                        color: this.innerColor,
+                        instant: false
+                    });
+                    this.cooldown = this.innerFireRate;
+                }
+                
+                // Внешняя атака
+                if (distance >= this.innerRadius && this.outerCooldown <= 0) {
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: this.outerDamage,
+                        speed: 5,
+                        size: BULLET_SIZE,
+                        color: this.color,
+                        instant: false
+                    });
+                    this.outerCooldown = this.outerFireRate;
+                }
+            } else if (this.cooldown <= 0 && target) {
+                if (this.type === 'freezer') {
+                    // Холодильник замедляет врагов
+                    for (const enemy of enemiesInRange) {
+                        enemy.slowDown(this.slowPercent);
+                    }
+                    
+                    // И наносит урон цели
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: this.damage,
+                        speed: 5,
+                        size: BULLET_SIZE,
+                        color: 'lightblue',
+                        instant: false
+                    });
+                } else if (this.type === 'chance') {
+                    // Башня шанса - случайный урон в диапазоне
+                    const randomDamage = this.minDamage + Math.random() * (this.maxDamage - this.minDamage);
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: randomDamage,
+                        speed: 6,
+                        size: BULLET_SIZE,
+                        color: 'magenta',
+                        instant: false
+                    });
+                } else if (this.type === 'sniper') {
+                    // Снайпер - мгновенные пули
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: this.damage,
+                        speed: 1000, // Очень высокая скорость для мгновенного попадания
+                        size: BULLET_SIZE,
+                        color: 'yellow',
+                        instant: true
+                    });
+                } else {
+                    // Обычная башня
+                    bullets.push({
+                        x: this.x,
+                        y: this.y,
+                        target: target,
+                        damage: this.damage,
+                        speed: 5,
+                        size: BULLET_SIZE,
+                        color: this.type === 'pistol' ? 'cyan' : 
+                               this.type === 'swordsman' ? 'orange' : 'yellow',
+                        instant: false
+                    });
+                }
+                this.cooldown = this.fireRate;
+            }
+        }
+        
+        if (this.cooldown > 0) {
+            this.cooldown--;
+        }
+        
+        if (this.outerCooldown > 0) {
+            this.outerCooldown--;
+        }
+    }
+    
+    draw() {
+        // Рисуем башню
+        if (this.type === 'omega') {
+            // ОМЕГА башня с градиентом
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0,
+                this.x, this.y, this.size
+            );
+            gradient.addColorStop(0, 'red');
+            gradient.addColorStop(0.2, 'orange');
+            gradient.addColorStop(0.4, 'yellow');
+            gradient.addColorStop(0.6, 'green');
+            gradient.addColorStop(0.8, 'blue');
+            gradient.addColorStop(1, 'violet');
+            
+            ctx.fillStyle = gradient;
+        } else {
+            ctx.fillStyle = this.color;
+        }
+        
+        if (this.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        } else if (this.shape === 'diamond') {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(45 * Math.PI / 180);
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
+        } else if (this.shape === 'square') {
+            ctx.fillRect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+        } else if (this.shape === 'pentagon') {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                const angle = (i * 2 * Math.PI / 5) - Math.PI / 2;
+                const x = Math.cos(angle) * this.size;
+                const y = Math.sin(angle) * this.size;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+            
+            // Внутренняя часть
+            ctx.fillStyle = this.innerColor;
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size/2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        } else if (this.shape === 'hexagon') {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * 2 * Math.PI / 6) - Math.PI / 2;
+                const x = Math.cos(angle) * this.size;
+                const y = Math.sin(angle) * this.size;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        } else if (this.shape === 'octagon') {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * 2 * Math.PI / 8) - Math.PI / 2;
+                const x = Math.cos(angle) * this.size;
+                const y = Math.sin(angle) * this.size;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+        
+        // Для фермы показываем значок монеты
+        if (this.type === 'farm') {
+            ctx.fillStyle = 'gold';
+            ctx.font = '12px Arial';
+            ctx.fillText('$', this.x - 4, this.y + 4);
+        }
+        
+        // Рисуем радиус (только при выборе и если включено отображение)
+        if ((selectedTower === this || selectedTowerType === this.type) && showRadius) {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.setLineDash([5, 5]);
+            
+            if (this.type === 'knight' || this.type === 'omega') {
+                // Рисуем два радиуса для рыцаря и ОМЕГИ
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.innerRadius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.outerRadius, 0, Math.PI * 2);
+                ctx.stroke();
+            } else if (this.type !== 'farm') {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            ctx.setLineDash([]);
+            
+            // Показываем уровень улучшения
+            if (this.upgraded) {
+                ctx.fillStyle = 'gold';
+                ctx.font = '10px Arial';
+                ctx.fillText('Ул.', this.x - 7, this.y + 4);
+            }
+        }
+    }
+    
+    getSellPrice() {
+        const price = parseInt(document.querySelector(`.tower-item[data-type="${this.type}"]`).getAttribute('data-price'));
+        let sellPrice = Math.floor(price * 0.5);
+        
+        if (this.upgraded) {
+            switch(this.type) {
+                case 'pistol': sellPrice += Math.floor(150 * 0.5); break;
+                case 'swordsman': sellPrice += Math.floor(300 * 0.5); break;
+                case 'sniper': sellPrice += Math.floor(1000 * 0.5); break;
+                case 'freezer': sellPrice += Math.floor(1250 * 0.5); break;
+                case 'knight': sellPrice += Math.floor(2500 * 0.5); break;
+                case 'farm': sellPrice += Math.floor(900 * 0.5); break;
+                case 'chance': sellPrice += Math.floor(7777 * 0.5); break;
+                case 'atomic': sellPrice += Math.floor(30000 * 0.5); break;
+                case 'omega': sellPrice += Math.floor(40000 * 0.5); break;
+            }
+        }
+        
+        return sellPrice;
+    }
+}
+
+// Функция обновления статистики
+function updateStats() {
+    document.getElementById('money').textContent = money;
+    document.getElementById('lives').textContent = lives;
+    document.getElementById('wave').textContent = wave;
+}
+
+// Функция обновления индекса врагов
+function updateEnemyIndex() {
+    for (const type in enemyKnowledge) {
+        if (enemyKnowledge[type].discovered) {
+            const enemyElement = document.getElementById(`${type}-enemy`);
+            if (enemyElement) {
+                const statsElement = enemyElement.querySelector('.enemy-stats');
+                
+                let specialHtml = '';
+                if (type === 'boss' || type === 'blue' || type === 'sonic' || type === 'void') {
+                    specialHtml = `<div>Особенность: ${enemyKnowledge[type].special}</div>`;
+                }
+                
+                statsElement.innerHTML = `
+                    <div>Здоровье: ${enemyKnowledge[type].health}</div>
+                    <div>Скорость: ${enemyKnowledge[type].speed.toFixed(2)}</div>
+                    ${specialHtml}
+                `;
+            }
+        }
+    }
+}
+
+// Функция начала волны
+function startWave() {
+    if (!gameActive || waveActive) return;
+    
+    wave++;
+    waveActive = true;
+    
+    // Определяем количество и тип врагов в зависимости от волны
+    redCount = 2 + wave * 2; // +2 красных с каждой волной
+    purpleCount = 0;
+    goldenCount = 0;
+    pinkCount = 0;
+    greenCount = 0;
+    whiteCount = 0;
+    bossCount = 0;
+    blueCount = 0;
+    sonicCount = 0;
+    voidCount = 0;
+    
+    // Добавляем фиолетовых врагов после 5 волны
+    if (wave >= 5) {
+        purpleCount = Math.floor((wave - 5) / 2) + 1;
+    }
+    
+    // Добавляем золотых врагов после 25 волны
+    if (wave >= 25) {
+        goldenCount = Math.floor((wave - 25) / 2) + 1;
+    }
+    
+    // Добавляем розовых врагов после 35 волны
+    if (wave >= 35) {
+        pinkCount = Math.floor((wave - 35) / 3) + 1;
+    }
+    
+    // Добавляем зеленых врагов после 40 волны
+    if (wave >= 40) {
+        greenCount = Math.floor((wave - 40) / 3) + 1;
+    }
+    
+    // Добавляем белых врагов после 70 волны
+    if (wave >= 70) {
+        whiteCount = Math.floor((wave - 70) / 5) + 1;
+    }
+    
+    // Добавляем босса каждые 50 волн
+    if (wave % 50 === 0) {
+        bossCount = 1;
+    }
+    
+    // Добавляем голубых врагов после 55 волны
+    if (wave >= 55) {
+        blueCount = Math.floor((wave - 55) / 25) + 1;
+    }
+    
+    // Добавляем соник врагов после 90 волны
+    if (wave >= 90) {
+        sonicCount = Math.floor((wave - 90) / 3) + 1;
+    }
+    
+    // Добавляем пустотных врагов после 125 волны
+    if (wave >= 125) {
+        voidCount = Math.floor((wave - 125) / 25) + 1;
+    }
+    
+    enemiesToSpawn = redCount + purpleCount + goldenCount + pinkCount + greenCount + whiteCount + 
+                    bossCount + blueCount + sonicCount + voidCount;
+    enemySpawnTimer = 30; // Задержка перед первым врагом
+    
+    updateStats();
+}
+
+// Функция спавна врагов
+function spawnEnemy() {
+    if (enemiesToSpawn > 0 && enemySpawnTimer <= 0) {
+        let enemy;
+        
+        if (voidCount > 0) {
+            enemy = new Enemy('void', 1000, ENEMY_BASE_SPEED / 3, ENEMY_SIZE * 1.5, 'purple');
+            voidCount--;
+        } else if (sonicCount > 0) {
+            enemy = new Enemy('sonic', 10, ENEMY_BASE_SPEED * 10, ENEMY_SIZE, 'cyan');
+            sonicCount--;
+        } else if (blueCount > 0) {
+            enemy = new Enemy('blue', 200, ENEMY_BASE_SPEED / 5, ENEMY_SIZE * 1.2, 'blue');
+            blueCount--;
+        } else if (bossCount > 0) {
+            enemy = new Enemy('boss', 250 + (Math.floor(wave / 50) * 250), ENEMY_BASE_SPEED, ENEMY_SIZE * 2, 'black');
+            bossCount--;
+            
+            // Создаем индикатор ауры босса
+            bossAura = document.createElement('div');
+            bossAura.className = 'boss-aura';
+            bossAura.style.width = enemy.auraRadius * 2 + 'px';
+            bossAura.style.height = enemy.auraRadius * 2 + 'px';
+            document.body.appendChild(bossAura);
+        } else if (whiteCount > 0) {
+            enemy = new Enemy('white', 120, ENEMY_BASE_SPEED, ENEMY_SIZE, 'white');
+            whiteCount--;
+        } else if (greenCount > 0) {
+            enemy = new Enemy('green', 100, ENEMY_BASE_SPEED / 3.15675434, ENEMY_SIZE, 'green');
+            greenCount--;
+        } else if (pinkCount > 0) {
+            enemy = new Enemy('pink', 11, ENEMY_BASE_SPEED * 5, ENEMY_SIZE, 'pink');
+            pinkCount--;
+        } else if (goldenCount > 0) {
+            enemy = new Enemy('golden', 35, ENEMY_BASE_SPEED * 2, ENEMY_SIZE, 'gold');
+            goldenCount--;
+        } else if (purpleCount > 0) {
+            enemy = new Enemy('purple', 15, ENEMY_BASE_SPEED * 0.5, ENEMY_SIZE, 'purple');
+            purpleCount--;
+        } else {
+            enemy = new Enemy('red', 3 + Math.floor(wave / 3), ENEMY_BASE_SPEED, ENEMY_SIZE, 'red');
+            redCount--;
+        }
+        
+        enemies.push(enemy);
+        enemiesToSpawn--;
+        enemySpawnTimer = 30; // Задержка между врагами
+    }
+    
+    if (enemySpawnTimer > 0) {
+        enemySpawnTimer--;
+    }
+    
+    // Если все враги созданы и все убиты - начинаем следующую волну
+    if (enemiesToSpawn === 0 && enemies.length === 0) {
+        waveActive = false;
+        // Автоматически начинаем следующую волну
+        setTimeout(startWave, 2000);
+    }
+}
+
+// Функция обновления пуль
+function updateBullets() {
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        const bullet = bullets[i];
+        
+        // Если цель уже уничтожена, удаляем пулю
+        if (!enemies.includes(bullet.target)) {
+            bullets.splice(i, 1);
+            continue;
+        }
+        
+        // Для мгновенных пуль (снайпер) - сразу наносим урон
+        if (bullet.instant) {
+            if (bullet.target.takeDamage(bullet.damage)) {
+                enemies.splice(enemies.indexOf(bullet.target), 1);
+            }
+            bullets.splice(i, 1);
+            continue;
+        }
+        
+        // Движение пули к цели
+        const dx = bullet.target.x - bullet.x;
+        const dy = bullet.target.y - bullet.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < bullet.speed) {
+            // Попадание по врагу
+            if (bullet.target.takeDamage(bullet.damage)) {
+                enemies.splice(enemies.indexOf(bullet.target), 1);
+            }
+            bullets.splice(i, 1);
+        } else {
+            bullet.x += (dx / distance) * bullet.speed;
+            bullet.y += (dy / distance) * bullet.speed;
+        }
+    }
+}
+
+// Функция завершения игры
+function gameOver() {
+    gameActive = false;
+    document.getElementById('restartGame').style.display = 'block';
+    document.getElementById('gameOverlay').style.display = 'block';
+}
+
+// Рисуем путь (желтая тропинка)
+function drawPath() {
+    ctx.strokeStyle = '#f1c40f'; // Желтый цвет
+    ctx.lineWidth = 30;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(PATH[0].x, PATH[0].y);
+    
+    for (let i = 1; i < PATH.length; i++) {
+        ctx.lineTo(PATH[i].x, PATH[i].y);
+    }
+    
+    ctx.stroke();
+    
+    // Добавляем текстуру тропинки
+    ctx.strokeStyle = '#d35400';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 15]);
+    ctx.beginPath();
+    ctx.moveTo(PATH[0].x, PATH[0].y);
+    
+    for (let i = 1; i < PATH.length; i++) {
+        ctx.lineTo(PATH[i].x, PATH[i].y);
+    }
+    
+    ctx.stroke();
+    ctx.setLineDash([]);
+}
+
+// Показать меню улучшения
+function showUpgradeMenu(tower, x, y) {
+    const menu = document.getElementById('upgradeMenu');
+    const upgradeInfo = document.getElementById('upgradeInfo');
+    const upgradeBtn = document.getElementById('upgradeBtn');
+    const sellBtn = document.getElementById('sellBtn');
+    const targetingOptions = document.getElementById('targetingOptions');
+    
+    // Устанавливаем текущую стратегию выбора цели
+    document.querySelector(`input[name="targeting"][value="${tower.targeting}"]`).checked = true;
+    
+    // Обработчик изменения стратегии
+    targetingOptions.querySelectorAll('input[name="targeting"]').forEach(input => {
+        input.onchange = () => {
+            tower.targeting = input.value;
+        };
+    });
+    
+    if (tower.upgraded) {
+        upgradeInfo.innerHTML = '<p>Башня уже улучшена до максимального уровня</p>';
+        upgradeBtn.disabled = true;
+    } else {
+        let upgradeText = '';
+        
+        switch(tower.type) {
+            case 'pistol':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.damage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeDamage}</li>
+                        <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                    </ul>
+                `;
+                break;
+            case 'swordsman':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.damage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeDamage}</li>
+                        <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.upgradeFireRate} выстр/seк</li>
+                    </ul>
+                `;
+                break;
+            case 'sniper':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.damage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeDamage}</li>
+                        <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                    </ul>
+                `;
+                break;
+            case 'freezer':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.damage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Замедление: ${tower.slowPercent}%</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeDamage}</li>
+                        <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                        <li>Замедление: ${tower.upgradeSlowPercent}%</li>
+                    </ul>
+                `;
+                break;
+            case 'knight':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Внутр. урон: ${tower.innerDamage}</li>
+                        <li>Внутр. радиус: ${tower.innerRadius/ST_TO_PX}st</li>
+                        <li>Внутр. скорость: ${60/tower.innerFireRate} выстр/сек</li>
+                        <li>Внеш. урон: ${tower.outerDamage}</li>
+                        <li>Внеш. радиус: ${tower.outerRadius/ST_TO_PX}st</li>
+                        <li>Внеш. скорость: ${60/tower.outerFireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Внутр. урон: ${tower.upgradeInnerDamage}</li>
+                        <li>Внутр. радиус: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
+                        <li>Внутр. скорость: ${60/tower.upgradeInnerFireRate} выстр/сек</li>
+                        <li>Внеш. урон: ${tower.upgradeOuterDamage}</li>
+                        <li>Внеш. радиус: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
+                        <li>Внеш. скорость: ${60/tower.upgradeOuterFireRate} выстр/сек</li>
+                    </ul>
+                `;
+                break;
+            case 'farm':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Доход: ${tower.income} монета/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Доход: ${tower.upgradeIncome} монеты/сек</li>
+                    </ul>
+                `;
+                break;
+            case 'chance':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.minDamage}-${tower.maxDamage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeMinDamage}-${tower.upgradeMaxDamage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                    </ul>
+                `;
+                break;
+            case 'atomic':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Урон: ${tower.damage}</li>
+                        <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
+                        <li>Скорость: ${tower.fireRate/60} сек/выстрел</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Урон: ${tower.upgradeDamage}</li>
+                        <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                        <li>Скорость: ${tower.upgradeFireRate/60} сек/выстрел</li>
+                    </ul>
+                `;
+                break;
+            case 'omega':
+                upgradeText = `
+                    <p>Текущие характеристики:</p>
+                    <ul>
+                        <li>Внутр. урон: ${tower.innerDamage}</li>
+                        <li>Внутр. радиус: ${tower.innerRadius/ST_TO_PX}st</li>
+                        <li>Внутр. скорость: ${60/tower.innerFireRate} выстр/сек</li>
+                        <li>Внеш. урон: ${tower.outerDamage}</li>
+                        <li>Внеш. радиус: ${tower.outerRadius/ST_TO_PX}st</li>
+                        <li>Внеш. скорость: ${60/tower.outerFireRate} выстр/сек</li>
+                    </ul>
+                    <p>После улучшения:</p>
+                    <ul>
+                        <li>Внутр. урон: ${tower.upgradeInnerDamage}</li>
+                        <li>Внутр. радиус: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
+                        <li>Внутр. скорость: ${60/tower.upgradeInnerFireRate} выстр/сек</li>
+                        <li>Внеш. урон: ${tower.upgradeOuterDamage}</li>
+                        <li>Внеш. радиус: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
+                        <li>Внеш. скорость: ${60/tower.upgradeOuterFireRate} выстр/сек</li>
+                    </ul>
+                `;
+                break;
+        }
+        
+        upgradeInfo.innerHTML = upgradeText + `<p>Стоимость: ${tower.upgradeCost} монет</p>`;
+        
+        upgradeBtn.disabled = money < tower.upgradeCost;
+        upgradeBtn.onclick = function() {
+            if (money >= tower.upgradeCost) {
+                money -= tower.upgradeCost;
+                tower.upgrade();
+                updateStats();
+                menu.style.display = 'none';
+            }
+        };
+    }
+    
+    // Настройка кнопки продажи
+    const sellPrice = tower.getSellPrice();
+    sellBtn.textContent = `Продать (${sellPrice} монет)`;
+    sellBtn.onclick = function() {
+        money += sellPrice;
+        
+        // Обновляем счетчики лимитированных башен
+        if (tower.type === 'farm') farmCount--;
+        if (tower.type === 'atomic') atomicCount--;
+        if (tower.type === 'omega') omegaCount--;
+        
+        towers.splice(towers.indexOf(tower), 1);
+        updateStats();
+        menu.style.display = 'none';
+        
+        // Удаляем индикатор радиуса, если он отображается
+        if (rangeIndicator) {
+            document.body.removeChild(rangeIndicator);
+            rangeIndicator = null;
+        }
+    };
+    
+    // Показываем опции выбора цели только для боевых башен
+    if (tower.type === 'farm') {
+        targetingOptions.style.display = 'none';
+    } else {
+        targetingOptions.style.display = 'block';
+    }
+    
+    // Позиционируем меню рядом с башни
+    const rect = menu.getBoundingClientRect();
+    let left = x + 20;
+    let top = y - 150;
+    
+    // Проверяем, чтобы меню не выходило за пределы экрана
+    if (left + rect.width > window.innerWidth) {
+        left = x - rect.width - 20;
+    }
+    
+    if (top + rect.height > window.innerHeight) {
+        top = window.innerHeight - rect.height - 20;
+    }
+    
+    if (top < 20) {
+        top = 20;
+    }
+    
+    menu.style.left = left + 'px';
+    menu.style.top = top + 'px';
+    menu.style.display = 'block';
+}
+
+// Создать индикатор радиуса
+function createRangeIndicator(radius) {
+    if (rangeIndicator) {
+        document.body.removeChild(rangeIndicator);
+    }
+    
+    rangeIndicator = document.createElement('div');
+    rangeIndicator.className = 'range-indicator';
+    rangeIndicator.style.width = radius * 2 + 'px';
+    rangeIndicator.style.height = radius * 2 + 'px';
+    document.body.appendChild(rangeIndicator);
+    
+    return rangeIndicator;
+}
+
+// Основной игровой цикл
+function gameLoop() {
+    if (!gameActive) return;
+    
+    // Очистка canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Рисуем путь
+    drawPath();
+    
+    // Спавн врагов
+    spawnEnemy();
+    
+    // Обновление врагов
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        if (!enemies[i].update()) {
+            enemies.splice(i, 1);
+        }
+    }
+    
+    // Обновление башен
+    for (const tower of towers) {
+        tower.update();
+        tower.draw();
+    }
+    
+    // Обновление пуль
+    updateBullets();
+    
+    // Рисуем пули
+    for (const bullet of bullets) {
+        ctx.fillStyle = bullet.color;
+        ctx.beginPath();
+        ctx.arc(bullet.x, bullet.y, bullet.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    // Рисуем врагов
+    for (const enemy of enemies) {
+        enemy.draw();
+    }
+    
+    // Автозапуск первой волны
+    if (wave === 0 && !waveActive) {
+        startWave();
+    }
+    
+    requestAnimationFrame(gameLoop);
+}
+
+// Проверка, находится ли точка на пути
+function isOnPath(x, y) {
+    for (let i = 0; i < PATH.length - 1; i++) {
+        const p1 = PATH[i];
+        const p2 = PATH[i + 1];
+        
+        // Проверяем, находится ли точка рядом с отрезком пути
+        const dist = pointToLineDistance(x, y, p1.x, p1.y, p2.x, p2.y);
+        if (dist < 25) { // Ширина пути + запас
+            return true;
+        }
+    }
+    return false;
+}
+
+// Вычисление расстояния от точки до отрезка
+function pointToLineDistance(px, py, x1, y1, x2, y2) {
+    const A = px - x1;
+    const B = py - y1;
+    const C = x2 - x1;
+    const D = y2 - y1;
+    
+    const dot = A * C + B * D;
+    const len_sq = C * C + D * D;
+    let param = -1;
+    
+    if (len_sq !== 0) {
+        param = dot / len_sq;
+    }
+    
+    let xx, yy;
+    
+    if (param < 0) {
+        xx = x1;
+        yy = y1;
+    } else if (param > 1) {
+        xx = x2;
+        yy = y2;
+    } else {
+        xx = x1 + param * C;
+        yy = y1 + param * D;
+    }
+    
+    const dx = px - xx;
+    const dy = py - yy;
+    
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+// Обработчик клика по canvas
+canvas.addEventListener('click', (e) => {
+    if (!gameActive) return;
+    
+    // Используем новую функцию для получения точных координат
+    const mousePos = getMousePos(canvas, e);
+    const x = mousePos.x;
+    const y = mousePos.y;
+    
+    // Скрываем меню улучшений при клике вне башни
+    let clickedOnTower = false;
+    
+    // Проверяем, кликнули ли по существующей башне
+    for (const tower of towers) {
+        const dx = tower.x - x;
+        const dy = tower.y - y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < tower.size) {
+            clickedOnTower = true;
+            selectedTower = tower;
+            selectedTowerType = null;
+            
+            // Показываем меню улучшения
+            showUpgradeMenu(tower, e.clientX, e.clientY);
+            
+            // Снимаем выделение с кнопок магазина
+            document.querySelectorAll('.tower-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Удаляем индикатор радиуса
+            if (rangeIndicator) {
+                document.body.removeChild(rangeIndicator);
+                rangeIndicator = null;
+            }
+            
+            break;
+        }
+    }
+    
+    // Если кликнули не по башне, скрываем меню улучшений
+    if (!clickedOnTower) {
+        document.getElementById('upgradeMenu').style.display = 'none';
+        
+        // Если выбрана башня для покупки
+        if (selectedTowerType) {
+            const price = parseInt(document.querySelector(`.tower-item[data-type="${selectedTowerType}"]`).getAttribute('data-price'));
+            
+            if (money >= price) {
+                // Проверяем лимиты для специальных башен
+                if (selectedTowerType === 'farm' && farmCount >= 5) {
+                    alert('Достигнут лимит ферм (5)!');
+                    return;
+                }
+                
+                if (selectedTowerType === 'atomic' && atomicCount >= 2) {
+                    alert('Достигнут лимит атомных башен (2)!');
+                    return;
+                }
+                
+                if (selectedTowerType === 'omega' && omegaCount >= 2) {
+                    alert('Достигнут лимит ОМЕГА башен (2)!');
+                    return;
+                }
+                
+                // Проверяем, нет ли здесь уже башни
+                let canPlace = true;
+                for (const tower of towers) {
+                    const dx = tower.x - x;
+                    const dy = tower.y - y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < TOWER_SIZE * 2) {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                
+                // Проверяем, не на пути ли башня и достаточно ли далеко от пути
+                const onPath = isOnPath(x, y);
+                
+                if (canPlace && !onPath) {
+                    towers.push(new Tower(x, y, selectedTowerType));
+                    money -= price;
+                    updateStats();
+                    
+                    // Обновляем счетчики лимитированных башен
+                    if (selectedTowerType === 'farm') farmCount++;
+                    if (selectedTowerType === 'atomic') atomicCount++;
+                    if (selectedTowerType === 'omega') omegaCount++;
+                    
+                    // Снимаем выделение с кнопки
+                    document.querySelectorAll('.tower-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Удаляем индикатор радиуса
+                    if (rangeIndicator) {
+                        document.body.removeChild(rangeIndicator);
+                        rangeIndicator = null;
+                    }
+                    
+                    selectedTowerType = null;
+                }
+            } else {
+                alert('Недостаточно денег!');
+            }
+        }
+    }
+});
+
+// Обработчик выбора башни в магазине
+document.querySelectorAll('.tower-item').forEach(item => {
+    item.addEventListener('click', function() {
+        selectedTowerType = this.getAttribute('data-type');
+        selectedTower = null;
+        
+        // Скрываем меню улучшений
+        document.getElementById('upgradeMenu').style.display = 'none';
+        
+        // Выделяем выбранную башню
+        document.querySelectorAll('.tower-item').forEach(i => {
+            i.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        
+        // Показываем индикатор радиуса (кроме фермы)
+        if (selectedTowerType !== 'farm') {
+            let radius;
+            switch(selectedTowerType) {
+                case 'pistol': radius = 10 * ST_TO_PX; break;
+                case 'swordsman': radius = 4 * ST_TO_PX; break;
+                case 'sniper': radius = 100 * ST_TO_PX; break;
+                case 'freezer': radius = 25 * ST_TO_PX; break;
+                case 'knight': radius = 28 * ST_TO_PX; break;
+                case 'chance': radius = 17 * ST_TO_PX; break;
+                case 'atomic': radius = 100 * ST_TO_PX; break;
+                case 'omega': radius = 30 * ST_TO_PX; break;
+            }
+            
+            createRangeIndicator(radius);
+            
+            // Обновляем позицию индикатора при движении мыши
+            const moveHandler = (e) => {
+                // Используем новую функцию для точного позиционирования
+                const mousePos = getMousePos(canvas, e);
+                rangeIndicator.style.left = (mousePos.x + canvas.getBoundingClientRect().left) + 'px';
+                rangeIndicator.style.top = (mousePos.y + canvas.getBoundingClientRect().top) + 'px';
+            };
+            
+            document.addEventListener('mousemove', moveHandler);
+            
+            // Удаляем обработчик при выборе другой башни или отмене выбора
+            const clearHandler = () => {
+                document.removeEventListener('mousemove', moveHandler);
+                document.removeEventListener('click', clearHandler);
+            };
+            
+            document.addEventListener('click', clearHandler, { once: true });
+        }
+    });
+});
+
+// Обработчик кнопки переключения отображения радиуса
+document.getElementById('toggleRadius').addEventListener('click', function() {
+    showRadius = !showRadius;
+    this.textContent = showRadius ? 'Скрыть радиус' : 'Показать радиус';
+});
+
+// Обработчик кнопки переключения индекса врагов
+document.getElementById('toggleIndex').addEventListener('click', function() {
+    const index = document.getElementById('enemyIndex');
+    if (index.style.display === 'block') {
+        index.style.display = 'none';
+        this.textContent = 'Показать индекс';
+    } else {
+        index.style.display = 'block';
+        this.textContent = 'Скрыть индекс';
+    }
+});
+
+// Обработчик кнопки перезапуска
+document.getElementById('restartGame').addEventListener('click', function() {
+    // Показываем экран настройки
+    document.getElementById('setupScreen').style.display = 'flex';
+    this.style.display = 'none';
+    document.getElementById('gameOverlay').style.display = 'none';
+});
+
+// Обработчик выбора сложности
+document.querySelectorAll('.difficulty-options .option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.difficulty-options .option-btn').forEach(b => {
+            b.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        difficulty = this.getAttribute('data-difficulty');
+    });
+});
+
+// Обработчик выбора карты
+document.querySelectorAll('.map-options .option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.map-options .option-btn').forEach(b => {
+            b.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        mapType = this.getAttribute('data-map');
+    });
+});
+
+// Обработчик кнопки начала игры
+document.getElementById('startGame').addEventListener('click', function() {
+    // Скрываем экран настройки
+    document.getElementById('setupScreen').style.display = 'none';
+    
+    // Сбрасываем игру
+    money = 200;
+    lives = 20;
+    wave = 0;
+    enemies = [];
+    towers = [];
+    bullets = [];
+    selectedTowerType = null;
+    selectedTower = null;
+    gameActive = true;
+    waveActive = false;
+    enemiesToSpawn = 0;
+    farmCount = 0;
+    atomicCount = 0;
+    omegaCount = 0;
+    
+    // Устанавливаем путь в зависимости от выбранной карты
+    setPath();
+    
+    // Сброс знаний о врагах
+    for (const type in enemyKnowledge) {
+        enemyKnowledge[type].discovered = false;
+    }
+    updateEnemyIndex();
+    
+    // Удаляем индикатор радиуса
+    if (rangeIndicator) {
+        document.body.removeChild(rangeIndicator);
+        rangeIndicator = null;
+    }
+    
+    // Удаляем ауру босса, если есть
+    if (bossAura) {
+        document.body.removeChild(bossAura);
+        bossAura = null;
+    }
+    
+    // Снимаем выделение с кнопок
+    document.querySelectorAll('.tower-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    updateStats();
+    gameLoop();
+});
+
+// Инициализация при загрузке
+setPath(); // Устанавливаем путь по умолчанию
+updateStats();
+updateEnemyIndex();

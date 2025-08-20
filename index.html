@@ -745,6 +745,17 @@
         let farmCount = 0;
         let atomicCount = 0;
         let omegaCount = 0;
+        // Функция для получения точных координат мыши относительно canvas
+function getMousePos(canvas, evt) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    return {
+        x: (evt.clientX - rect.left) * scaleX,
+        y: (evt.clientY - rect.top) * scaleY
+    };
+}
         
         let enemyKnowledge = {
             'red': { health: 0, speed: 0, discovered: false },

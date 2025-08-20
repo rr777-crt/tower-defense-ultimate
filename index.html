@@ -2471,6 +2471,166 @@ function getMousePos(canvas, evt) {
         setPath(); // Устанавливаем путь по умолчанию
         updateStats();
         updateEnemyIndex();
+        // Обработчик клика по canvas
+canvas.addEventListener('click', (e) => {
+    if (!gameActive) return;
+    
+    // Используем новую функцию для получения точных координат
+    const mousePos = getMousePos(canvas, e);
+    const x = mousePos.x;
+    const y = mousePos.y;
+    
+    // Скрываем меню улучшений при клике вне башни
+    let clickedOnTower = false;
+    
+    // Проверяем, кликнули ли по существующей башне
+    for (const tower of towers) {
+        const dx = tower.x - x;
+        const dy = tower.y - y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < tower.size) {
+            clickedOnTower = true;
+            selectedTower = tower;
+            selectedTowerType = null;
+            
+            // Показываем меню улучшения
+            showUpgradeMenu(tower, e.clientX, e.clientY);
+            
+            // Снимаем выделение с кнопок магазина
+            document.querySelectorAll('.tower-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Удаляем индикатор радиуса
+            if (rangeIndicator) {
+                document.body.removeChild(rangeIndicator);
+                rangeIndicator = null;
+            }
+            
+            break;
+        }
+    }
+    
+    // Если кликнули не по башне, скрываем меню улучшений
+    if (!clickedOnTower) {
+        document.getElementById('upgradeMenu').style.display = 'none';
+        
+        // Если выбрана башня для покупки
+        if (selectedTowerType) {
+            const price = parseInt(document.querySelector(`.tower-item[data-type="${selectedTowerType}"]`).getAttribute('data-price'));
+            
+            if (money >= price) {
+                // Проверяем лимиты для специальных башен
+                if (selectedTowerType === 'farm' && farmCount >= 5) {
+                    alert('Достигнут лимит ферм (5)!');
+                    return;
+                }
+                
+                if (selectedTowerType === 'atomic' && atomicCount >= 2) {
+                    alert('Достигнут лимит атомных башен (2)!');
+                    return;
+                }
+                
+                if (selectedTowerType === 'omega' && omegaCount >= 2) {
+                    alert('Достигнут лимит ОМЕГА башен (2)!');
+                    return;
+                }
+                
+                // Проверяем, нет ли здесь уже башни
+                let canPlace = true;
+                for (const tower of towers) {
+                    const dx = tower.x - x;
+                    const dy = tower.y - y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < TOWER_SIZE * 2) {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                
+                // Проверяем, не на пути ли башня и достаточно ли далеко от пути
+                const onPath = isOnPath(x, y);
+                
+                if (canPlace && !onPath) {
+                    towers.push(new Tower(x, y, selectedTowerType));
+                    money -= price;
+                    updateStats();
+                    
+                    // Обновляем счетчики лимитированных башен
+                    if (selectedTowerType === 'farm') farmCount++;
+                    if (selectedTowerType === 'atomic') atomicCount++;
+                    if (selectedTowerType === 'omega') omegaCount++;
+                    
+                    // Снимаем выделение с кнопки
+                  // Обработчик выбора башни в магазине
+document.querySelectorAll('.tower-item').forEach(item => {
+    item.addEventListener('click', function() {
+        selectedTowerType = this.getAttribute('data-type');
+        selectedTower = null;
+        
+        // Скрываем меню улучшений
+        document.getElementById('upgradeMenu').style.display = 'none';
+        
+        // Выделяем выбранную башню
+        document.querySelectorAll('.tower-item').forEach(i => {
+            i.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        
+        // Показываем индикатор радиуса (кроме фермы)
+        if (selectedTowerType !== 'farm') {
+            let radius;
+            switch(selectedTowerType) {
+                case 'pistol': radius = 10 * ST_TO_PX; break;
+                case 'swordsman': radius = 4 * ST_TO_PX; break;
+                case 'sniper': radius = 100 * ST_TO_PX; break;
+                case 'freezer': radius = 25 * ST_TO_PX; break;
+                case 'knight': radius = 28 * ST_TO_PX; break;
+                case 'chance': radius = 17 * ST_TO_PX; break;
+                case 'atomic': radius = 100 * ST_TO_PX; break;
+                case 'omega': radius = 30 * ST_TO_PX; break;
+            }
+            
+            createRangeIndicator(radius);
+            
+            // Обновляем позицию индикатора при движении мыши
+            const moveHandler = (e) => {
+                // Используем новую функцию для точного позиционирования
+                const mousePos = getMousePos(canvas, e);
+                rangeIndicator.style.left = (mousePos.x + canvas.getBoundingClientRect().left) + 'px';
+                rangeIndicator.style.top = (mousePos.y + canvas.getBoundingClientRect().top) + 'px';
+            };
+            
+            document.addEventListener('mousemove', moveHandler);
+            
+            // Удаляем обработчик при выборе другой башни или отмене выбора
+            const clearHandler = () => {
+                document.removeEventListener('mousemove', moveHandler);
+                document.removeEventListener('click', clearHandler);
+            };
+            
+            document.addEventListener('click', clearHandler, { once: true });
+        }
+    });
+});
+                    // Создать индикатор радиуса
+function createRangeIndicator(radius) {
+    if (rangeIndicator) {
+        document.body.removeChild(rangeIndicator);
+    }
+    
+    rangeIndicator = document.createElement('div');
+    rangeIndicator.className = 'range-indicator';
+    rangeIndicator.style.width = radius * 2 + 'px';
+    rangeIndicator.style.height = radius * 2 + 'px';
+    rangeIndicator.style.display = 'none'; // Сначала скрываем
+    
+    document.body.appendChild(rangeIndicator);
+    
+    return rangeIndicator;
+}
     </script>
 </body>
 </html>

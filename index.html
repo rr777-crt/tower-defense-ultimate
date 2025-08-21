@@ -711,9 +711,9 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Игровые переменные
-let money = 200;
-let lives = 20;
-let wave = 0;
+let money = 2000000;
+let lives = 2000;
+let wave = 135;
 let enemies = [];
 let towers = [];
 let bullets = [];
@@ -819,15 +819,15 @@ class Enemy {
         
         // Применяем модификаторы сложности
         if (difficulty === "hard") {
-            this.health *= 2;
+            this.health *= 1.4;
             this.maxHealth = this.health;
-            this.baseSpeed *= 1.05;
+            this.baseSpeed *= 1.1;
             this.speed = this.baseSpeed;
         }
         
         // Устанавливаем особые свойства врагов
         if (type === 'boss') {
-            this.auraRadius = 4 * ST_TO_PX; // 4st = 40px (как у мечника)
+            this.auraRadius = 5.2 * ST_TO_PX; // 4st = 40px (как у мечника)
         } else if (type === 'blue') {
             this.healTimer = 600; // 10 секунд при 60 FPS
         } else if (type === 'void') {

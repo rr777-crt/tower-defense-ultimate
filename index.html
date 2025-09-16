@@ -15,82 +15,43 @@
     font-family: Arial, sans-serif;
     background-color: #2c3e50;
     color: #ecf0f1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
   }
 
   h1 {
-    margin: 20px 0;
+    margin: 20px;
+    text-align: center;
     color: #f1c40f;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 
-  /* Настройка */
-  #setupScreen {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(44, 62, 80, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-  }
-  .setup-container {
-    background: #34495e;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-  }
-  .setup-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #f1c40f;
-  }
-  /* Основной интерфейс */
-#gameContainer {
-  width: 100%;
-  max-width: 1400px;
+  /* Экраны меню */
+#setupScreen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.9);
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  z-index: 200;
 }
-#canvasContainer {
-  position: relative;
-}
-#gameCanvas {
-  background-color: #27ae60;
-  border: 3px solid #f1c40f;
-  border-radius: 8px;
-}
-#infoPanel {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1400px;
-  padding: 10px 20px;
+.setup-container {
   background: #34495e;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  border: 2px solid #f1c40f;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  color: #ecf0f1;
 }
-#stats {
-  display: flex; gap: 20px; align-items: center;
-}
-#stats span {
-  font-weight: bold; color: #f1c40f;
-}
-#controls {
-  display: flex; gap: 10px; align-items: center;
+.setup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f1c40f;
 }
 button {
-  padding: 8px 15px;
+  padding: 10px 15px;
+  margin-top: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition: 0.2s;
@@ -98,90 +59,214 @@ button {
 button:hover {
   opacity: 0.8;
 }
-#toggleRadius {
-  background: #3498db; color: #fff;
+
+/* Основной UI */
+#gameContainer {
+  display: none;
+  padding: 10px 20px;
 }
-#toggleRadius:hover {
-  background: #2980b9;
+#statsBar {
+  display: flex;
+  justify-content: space-between;
+  background: #34495e;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 2px solid #f1c40f;
 }
-#toggleIndex {
-  background: #9b59b6; color: #fff;
+#statsBar span {
+  font-weight: bold;
+  color: #f1c40f;
 }
-#toggleIndex:hover {
-  background: #8e44ad;
+#canvasWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+#gameCanvas {
+  background-color: #27ae60;
+  border: 3px solid #f1c40f;
+  border-radius: 8px;
+}
+#controls {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  padding: 8px 12px;
+  font-size: 1em;
+}
+#toggleRadius, #toggleIndex {
+  background-color: #2980b9;
+  color: #fff;
+}
+#toggleRadius:hover, #toggleIndex:hover {
+  background-color: #3498db;
 }
 #restartBtn {
-  display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  background: #e74c3c; padding: 15px 30px; font-size: 1.2em; border-radius: 8px; cursor: pointer; z-index: 300;
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #e74c3c;
+  padding: 20px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 300;
 }
 #gameOverlay {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 100;
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 250;
 }
 
 /* Магазин */
 #shopScreen {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(44, 62, 80, 0.95);
-  display: none; flex-direction: column; align-items: center; padding: 20px; overflow-y: auto; z-index: 300;
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(44,62,80,0.95);
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 300;
 }
 #shopContainer {
-  background: #34495e; padding: 20px; border-radius: 10px; max-width: 1000px; width: 90%;
+  background: #34495e;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 #closeShop {
-  align-self: flex-end; font-size: 2em; background: none; border: none; color: #e74c3c; cursor: pointer; margin-bottom: 10px;
+  float: right;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
 }
 #categories {
-  display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 .category {
-  background: #2c3e50; padding: 10px 15px; border-radius: 5px; cursor: pointer; border: 2px solid #555; font-weight: bold;
+  background: #2c3e50;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid #555;
 }
 .category.active {
-  background: #f1c40f; color: #2c3e50; border-color: #f1c40f;
+  background: #f1c40f;
+  border-color: #f1c40f;
+  color: #2c3e50;
 }
 #shopItems {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 .shop-item {
-  background: #2c3e50; padding: 10px; border-radius: 5px; display: flex; flex-direction: column; gap: 10px; position: relative;
+  background: #2c3e50;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 .shop-item h3 {
-  margin-bottom: 5px; border-bottom: 2px solid #f1c40f; padding-bottom: 5px; color: #f1c40f;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #f1c40f;
+  padding-bottom: 5px;
+  color: #f1c40f;
 }
 #shopItemDetails {
-  font-size: 0.9em; color: #bdc3c7;
+  font-size: 0.9em;
+  color: #bdc3c7;
 }
 #shopItemPrice {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #buyBtn, #openCaseBtn {
-  background: #2ecc71; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
+  background: #2ecc71;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
 }
 #buyBtn:disabled, #openCaseBtn:disabled {
-  background: #7f8c8d; cursor: not-allowed;
+  background: #7f8c8d;
+  cursor: not-allowed;
 }
 #questionBtn {
-  background: #2980b9; color: #fff; padding: 2px 6px; border: none; border-radius: 3px; cursor: pointer; font-weight: bold; font-size: 0.9em;
+  background: #2980b9;
+  color: #fff;
+  padding: 2px 6px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 #questionBtn:hover {
   background: #3498db;
 }
-
-/* Радиус отображения */
-.range-indicator {
-  position: absolute; border: 2px dashed rgba(255,255,255,0.7); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
-  z-index: 10;
+.case-content {
+  display: none;
+  margin-top: 10px;
+  background: #1abc9c;
+  padding: 10px;
+  border-radius: 5px;
 }
-
-/* Враги индекс */
+.case-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.case-item .preview {
+  width: 40px; height: 40px;
+  border-radius: 4px;
+}
+.preview {
+  background-color: gray;
+}
 #enemyIndex {
-  display: none; position: fixed; top: 10px; right: 10px; width: 300px; max-height: 90vh; overflow-y: auto; background: #34495e; border: 2px solid #f1c40f; border-radius: 8px; padding: 10px; z-index: 400;
+  position: fixed;
+  top: 10px; right: 10px;
+  width: 300px; max-height: 90vh;
+  overflow-y: auto;
+  background: #34495e;
+  border: 2px solid #f1c40f;
+  border-radius: 8px;
+  padding: 10px;
+  display: none;
+  z-index: 400;
 }
 .enemy-item {
-  background: #2c3e50; padding: 8px; border-radius: 5px; margin-bottom: 8px; border: 1px solid #555;
+  background: #2c3e50;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #555;
 }
 .enemy-item h4 {
-  margin-bottom: 5px; color: #f1c40f;
+  margin-bottom: 4px;
+  color: #f1c40f;
 }
 </style>
 </head>
@@ -189,121 +274,123 @@ button:hover {
 
 <h1>Tower Defense</h1>
 
-<!-- Экран настройки -->
+<!-- Экран начала -->
 <div id="setupScreen">
   <div class="setup-container">
     <h2>Настройка игры</h2>
-    <div style="margin-bottom:10px;">Деньги: <span id="statsMoney">200</span></div>
-    <div style="margin-bottom:10px;">Жизни: <span id="statsLives">20</span></div>
-    <div style="margin-bottom:10px;">Волна: <span id="statsWave">0</span></div>
-    <div style="margin-bottom:10px;">Алмазы: <span id="statsDiamonds">0</span></div>
-    <div style="margin-bottom:10px;">Выберите сложность:</div>
-    <div style="display:flex; gap:10px; margin-bottom:10px;">
-      <button class="option-btn selected" data-difficulty="normal" id="diffNormal">Классика</button>
-      <button class="option-btn" data-difficulty="hard" id="diffHard">Сложный</button>
-      <button class="option-btn" data-difficulty="extreme" id="diffExtreme">Экстрим</button>
-    </div>
-    <div style="margin-bottom:10px;">Карта:</div>
-    <div style="display:flex; gap:10px; margin-bottom:10px;">
-      <button class="option-btn selected" data-map="hills" id="mapHills">Холмы</button>
-      <button class="option-btn" data-map="flat" id="mapFlat">Ровная дорога</button>
-      <button class="option-btn" data-map="mountains" id="mapMountains">Горки</button>
-    </div>
-    <button id="startGameBtn" style="padding:10px 20px; font-size:1.2em; background:#2ecc71; border:none; border-radius:5px; cursor:pointer;">Начать игру</button>
+    <div>Деньги: <span id="statsMoney">200</span></div>
+    <div>Жизни: <span id="statsLives">20</span></div>
+    <div>Волна: <span id="statsWave">0</span></div>
+    <div>Алмазы: <span id="statsDiamonds">0</span></div>
+    <div style="margin-top:10px;">Выберите сложность:</div>
+    <button class="option-btn selected" id="diffNormal" data-difficulty="normal">Классика</button>
+    <button class="option-btn" id="diffHard" data-difficulty="hard">Сложный</button>
+    <button class="option-btn" id="diffExtreme" data-difficulty="extreme">Экстрим</button>
+    <div style="margin-top:10px;">Карта:</div>
+    <button class="option-btn selected" id="mapHills" data-map="hills">Холмы</button>
+    <button class="option-btn" id="mapFlat" data-map="flat">Ровная дорога</button>
+    <button class="option-btn" id="mapMountains" data-map="mountains">Горки</button>
+    <button id="startGameBtn" style="margin-top:20px;">Начать игру</button>
   </div>
 </div>
 
 <!-- Основной интерфейс -->
-<div id="gameContainer" style="display:none;">
-  <div style="width:100%; display:flex; justify-content:space-between; padding:10px 20px; background:#34495e; border-radius:8px; margin-bottom:10px; border:2px solid #f1c40f;">
-    <div id="stats">
+<div id="gameContainer">
+  <div id="statsBar">
+    <div>
       Деньги: <span id="money">200</span> |
       Жизни: <span id="lives">20</span> |
       Волна: <span id="wave">0</span> |
       Алмазы: <span id="diamonds">0</span>
     </div>
-    <div id="gameControls">
+    <div>
       <button id="toggleRadius">Скрыть радиус</button>
-      <button id="toggleIndex">Показать индекс</button>
+      <button id="toggleIndex">Показать индекс врагов</button>
     </div>
   </div>
-  <div style="display:flex; gap:20px; flex-wrap:wrap;">
-    <div style="position:relative;">
+  <div style="display:flex; flex-wrap:wrap;">
+    <div id="canvasWrapper">
       <canvas id="gameCanvas" width="800" height="500"></canvas>
     </div>
-    <!-- Блок с магазинами/кейсами -->
+    <div style="margin-left:20px;">
+      <button id="openShopBtn" style="margin-bottom:10px;">Магазин</button>
+      <button id="restartBtn">Перезапустить</button>
+      <div id="enemyIndex"></div>
+    </div>
   </div>
-  <!-- Магазин -->
-  <div id="shopScreen">
-    <div id="shopContainer">
-      <button id="closeShop">&times;</button>
-      <h2>Магазин</h2>
-      <div id="categories">
-        <div class="category active" data-category="difficulties">Сложности</div>
-        <div class="category" data-category="maps">Карты</div>
-        <div class="category" data-category="cases">Кейсы</div>
+</div>
+
+<!-- Магазин -->
+<div id="shopScreen">
+  <div id="shopContainer">
+    <button id="closeShop">&times;</button>
+    <h2>Магазин</h2>
+    <div id="categories">
+      <div class="category active" data-category="difficulties">Сложности</div>
+      <div class="category" data-category="maps">Карты</div>
+      <div class="category" data-category="cases">Кейсы</div>
+    </div>
+    <div id="shopItems">
+      <!-- Тут карточки -->
+      <!-- Сложности -->
+      <div class="shop-item" data-category="difficulties">
+        <h3>Режим Экстрим</h3>
+        <p>Увеличивает HP врагов и скорость</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>💎 25</div>
+          <button id="buyExtreme" data-price="25">Купить</button>
+          <button class="question-btn" id="questionBtn-extreme">?</button>
+        </div>
       </div>
-      <div id="shopItems">
-        <!-- Тут карточки -->
-        <div class="shop-item" data-category="difficulties">
-          <h3>Режим Экстрим</h3>
-          <p>Увеличивает HP врагов и скорость</p>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>💎 25</div>
-            <button id="buyExtreme" data-price="25">Купить</button>
-            <button class="question-btn" id="questionBtn-extreme">?</button>
-          </div>
+      <!-- Карты -->
+      <div class="shop-item" data-category="maps">
+        <h3>Карта Горки</h3>
+        <p>Много поворотов и извилистых путей</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>💎 20</div>
+          <button id="buyMapMountains" data-price="20">Купить</button>
+          <button class="question-btn" id="questionBtn-mountains">?</button>
         </div>
-        <div class="shop-item" data-category="maps">
-          <h3>Карта Горки</h3>
-          <p>Много поворотов и извилистых путей</p>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>💎 20</div>
-            <button id="buyMapMountains" data-price="20">Купить</button>
-            <button class="question-btn" id="questionBtn-mountains">?</button>
-          </div>
+      </div>
+      <!-- Кейсы -->
+      <div class="shop-item" data-category="cases">
+        <h3>Обычный кейс</h3>
+        <p>Шанс получить башню</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>💎 50</div>
+          <button id="openNormalCase">Открыть</button>
+          <button class="question-btn" id="questionBtn-normal">?</button>
         </div>
-        <div class="shop-item" data-category="cases">
-          <h3>Обычный кейс</h3>
-          <p>Шанс получить башню</p>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>💎 50</div>
-            <button id="openNormalCase">Открыть</button>
-            <button class="question-btn" id="questionBtn-normal">?</button>
-          </div>
-          <div class="case-content" style="display:none;">
-            <div style="margin-top:10px;">Шансы:</div>
-            <div>- Двойной пистолет: 45%</div>
-            <div>- Бомбы: 30%</div>
-            <div>- Хорошая ферма: 20%</div>
-            <div>- Токсичный: 4%</div>
-            <div>- Турель: 0.6%</div>
-            <div>- Пустой: 0.4%</div>
-          </div>
+        <div class="case-content">
+          <div>Двойной пистолет: 45%</div>
+          <div>Бомбы: 30%</div>
+          <div>Хорошая ферма: 20%</div>
+          <div>Токсичный: 4%</div>
+          <div>Турель: 0.6%</div>
+          <div>Пустой: 0.4%</div>
         </div>
-        <div class="shop-item" data-category="cases">
-          <h3>Премиум кейс</h3>
-          <p>Улучшенные шансы</p>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>💎 200</div>
-            <button id="openPremiumCase">Открыть</button>
-            <button class="question-btn" id="questionBtn-premium">?</button>
-          </div>
-          <div class="case-content" style="display:none;">
-            <div style="margin-top:10px;">Шансы:</div>
-            <div>- Бомбы: 40%</div>
-            <div>- Хорошая ферма: 25%</div>
-            <div>- Токсичный: 20%</div>
-            <div>- Турель: 12.5%</div>
-            <div>- Пустой: 2.5%</div>
-          </div>
+      </div>
+      <div class="shop-item" data-category="cases">
+        <h3>Премиум кейс</h3>
+        <p>Улучшенные шансы</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>💎 200</div>
+          <button id="openPremiumCase">Открыть</button>
+          <button class="question-btn" id="questionBtn-premium">?</button>
+        </div>
+        <div class="case-content">
+          <div>Бомбы: 40%</div>
+          <div>Хорошая ферма: 25%</div>
+          <div>Токсичный: 20%</div>
+          <div>Турель: 12.5%</div>
+          <div>Пустой: 2.5%</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Весь ваш игровой скрипт -->
+<!-- Скрипт -->
 <script>
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -313,14 +400,12 @@ let towers = [];
 let enemies = [];
 let bullets = [];
 let puddles = [];
+
 let wave = 0;
-let money = 200;
-let lives = 20;
-let diamonds = 0;
-let totalDiamonds = 0;
-let waveMultiplier = 1;
-let waveCountForNextReward = 5;
-let waveCounter = 0;
+let waveCounter=0; // для наград
+let waveMultiplier=1;
+let waveRewardCount=5; // каждые 5 волн
+let enemySpawnTimer=0;
 
 let enemyKnowledge = {
   'red': { health: 0, speed: 0, discovered: false },
@@ -329,172 +414,219 @@ let enemyKnowledge = {
   'pink': { health: 0, speed: 0, discovered: false },
   'green': { health: 0, speed: 0, discovered: false },
   'white': { health: 0, speed: 0, discovered: false },
-  'boss': { health: 0, speed: 0, discovered: false, special: "" },
-  'blue': { health: 0, speed: 0, discovered: false, special: "" },
-  'sonic': { health: 0, speed: 0, discovered: false, special: "" },
-  'void': { health: 0, speed: 0, discovered: false, special: "" }
+  'boss': { health: 0, speed: 0, discovered: false },
+  'blue': { health: 0, speed: 0, discovered: false },
+  'sonic': { health: 0, speed: 0, discovered: false },
+  'void': { health: 0, speed: 0, discovered: false }
 };
 
-// Путь (будет меняться по карте)
 let PATH = [];
-let mapType = 'hills'; // по умолчанию
+let mapType='hills';
 
-let difficulty = 'normal';
+let difficulty='normal';
 
-let showRadius = true;
-let indexEnemies = false;
+let showRadius=true;
+let showIndex=false;
 
-let rangeIndicator = null;
+let selectedTowerType='pistol'; // по умолчанию
+let selectedTower=null;
 
-// Инициализация
-document.getElementById('startGameBtn').onclick = () => {
-  // старт
+let rangeIndicator=null;
+
+let stats = {
+  money:200,
+  lives:20,
+  diamonds:0,
+  wave:0
+};
+
+let bossAura=null;
+
+document.getElementById('startGameBtn').onclick=()=>{
   document.getElementById('setupScreen').style.display='none';
   document.getElementById('gameContainer').style.display='block';
-
-  // Инициализация
-  resetGame();
+  initGame();
   setPath();
   startWave();
   gameLoop();
 };
 
-function resetGame() {
-  wave = 0;
-  waveCounter = 0;
-  waveMultiplier = 1;
-  diamonds = 0;
-  totalDiamonds = 0;
-  money = 200;
-  lives = (difficulty==='extreme') ? 1 : 20;
-  enemies = [];
-  towers = [];
-  bullets = [];
-  puddles = [];
-  document.getElementById('money').innerText = money;
-  document.getElementById('lives').innerText = lives;
-  document.getElementById('wave').innerText = wave;
-  document.getElementById('diamonds').innerText = diamonds;
-  // Убираем ауры босса
-  if (bossAura) { document.body.removeChild(bossAura); bossAura = null; }
+document.getElementById('openShopBtn').onclick=()=> {
+  document.getElementById('shopScreen').style.display='flex';
+};
+document.getElementById('closeShop').onclick=()=>{
+  document.getElementById('shopScreen').style.display='none';
+};
+
+// Смена сложности
+document.getElementById('diffNormal').onclick=()=>selectDifficulty('normal');
+document.getElementById('diffHard').onclick=()=>selectDifficulty('hard');
+document.getElementById('diffExtreme').onclick=()=>selectDifficulty('extreme');
+function selectDifficulty(diff) {
+  difficulty=diff;
+  document.querySelectorAll('.option-btn').forEach(btn=>btn.classList.remove('selected'));
+  document.querySelectorAll('.option-btn').forEach(btn=>{
+    if (btn.dataset.difficulty===diff) btn.classList.add('selected');
+  });
 }
 
+// Карты
+document.getElementById('mapHills').onclick=()=>selectMap('hills');
+document.getElementById('mapFlat').onclick=()=>selectMap('flat');
+document.getElementById('mapMountains').onclick=()=>selectMap('mountains');
+function selectMap(map) {
+  mapType=map;
+  document.querySelectorAll('.option-btn').forEach(btn=>btn.classList.remove('selected'));
+  document.querySelectorAll('.option-btn').forEach(btn=>{
+    if (btn.dataset.map===map) btn.classList.add('selected');
+  });
+}
+
+// Кнопка начать игру
+document.getElementById('startGameBtn').onclick=()=>{
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('gameContainer').style.display='block';
+  initGame();
+  setPath();
+  startWave();
+  gameLoop();
+};
+
+// Изначальные переменные
+let enemies=[]; 
+let towers=[]; 
+let bullets=[]; 
+let puddles=[]; 
+
+let wave=0; 
+let waveCounter=0;
+let waveMultiplier=1;
+
+let enemySpawnTimer=0;
+let enemiesToSpawn=0;
+
+let maxEnemiesPerWave=10;
+
+// Инициализация
+function initGame() {
+  stats.money=200;
+  stats.lives=20;
+  stats.wave=0;
+  stats.diamonds=0;
+  updateStats();
+  enemies=[]; towers=[]; bullets=[]; puddles=[];
+  wave=0; waveCounter=0; waveMultiplier=1;
+  setPath();
+  startWave();
+}
+
+// Установка пути
 function setPath() {
   if (mapType==='hills') {
-    PATH = [ {x:-20,y:250}, {x:150,y:250}, {x:150,y:150}, {x:400,y:150},
-             {x:400,y:350}, {x:650,y:350}, {x:650,y:250}, {x:820,y:250} ];
+    PATH = [
+      {x:-20,y:250},
+      {x:150,y:250},
+      {x:150,y:150},
+      {x:400,y:150},
+      {x:400,y:350},
+      {x:650,y:350},
+      {x:650,y:250},
+      {x:820,y:250}
+    ];
   } else if (mapType==='flat') {
-    PATH = [ {x:-20,y:250}, {x:820,y:250} ];
+    PATH = [
+      {x:-20,y:250},
+      {x:820,y:250}
+    ];
   } else if (mapType==='mountains') {
-    PATH = [ {x:-20,y:250}, {x:100,y:250}, {x:100,y:100}, {x:200,y:100},
-             {x:200,y:400}, {x:300,y:400}, {x:300,y:150}, {x:500,y:150},
-             {x:500,y:350}, {x:700,y:350}, {x:700,y:200}, {x:820,y:200} ];
+    PATH = [
+      {x:-20,y:250},
+      {x:100,y:250},
+      {x:100,y:100},
+      {x:200,y:100},
+      {x:200,y:400},
+      {x:300,y:400},
+      {x:300,y:150},
+      {x:500,y:150},
+      {x:500,y:350},
+      {x:700,y:350},
+      {x:700,y:200},
+      {x:820,y:200}
+    ];
   }
 }
 
 // Враги
 class Enemy {
   constructor(type) {
-    this.type = type;
-    this.health = getEnemyHealth(type);
-    this.maxHealth = this.health;
-    this.speed = getEnemySpeed(type);
-    this.x = PATH[0].x;
-    this.y = PATH[0].y;
-    this.pathIndex = 0;
-    this.size = 10;
-    this.color = getEnemyColor(type);
-    this.slowPercent = 0;
+    this.type=type;
+    this.health=getEnemyHealth(type);
+    this.maxHealth=this.health;
+    this.speed=getEnemySpeed(type);
+    this.x=PATH[0].x;
+    this.y=PATH[0].y;
+    this.pathIndex=0;
+    this.size=10;
+    this.color=getEnemyColor(type);
+    this.slowPercent=0;
+    this.special='';
     if (type==='boss') {
-      this.auraRadius = 4*10; // 40px
+      this.health*=2; this.maxHealth=this.health;
     }
-    if (type==='blue') {
-      this.healTimer = 600; // 10 sec при 60 fps
-    }
-    if (type==='void') {
-      this.deleteTimer = 3600; // 60 сек
-    }
-
-    // В экстремуме враги имеют в 2 раза больше HP
-    if (difficulty==='extreme') {
-      this.health *=2;
-      this.maxHealth = this.health;
-    }
-
-    // Заполняем знания
     if (!enemyKnowledge[type].discovered) {
-      enemyKnowledge[type].health = this.health;
-      enemyKnowledge[type].speed = this.speed;
-      if (type==='boss') enemyKnowledge[type].special="Уменьшает урон башен в радиусе";
-      if (type==='blue') enemyKnowledge[type].special="Лечит других врагов";
-      if (type==='sonic') enemyKnowledge[type].special="Очень быстрый";
-      if (type==='void') enemyKnowledge[type].special="Удаляет башни раз в минуту";
       enemyKnowledge[type].discovered=true;
-      updateEnemyIndex();
+      enemyKnowledge[type].health=this.health;
+      enemyKnowledge[type].speed=this.speed;
     }
   }
   update() {
-    // особые враги
+    // Особенности врагов
     if (this.type==='white') {
-      this.speedTimer = (this.speedTimer || 0)+1;
-      if (this.speedTimer>=60) {
-        this.speedTimer=0;
-        this.speed = getEnemySpeed('white') + Math.random()*(getEnemySpeed('golden') - getEnemySpeed('white'));
-      }
+      this.speed= getEnemySpeed('white') + Math.random()*(getEnemySpeed('golden') - getEnemySpeed('white'));
     }
     if (this.type==='blue') {
-      this.healTimer--;
-      if (this.healTimer<=0) {
-        this.healTimer=600;
-        enemies.forEach(e => {
-          if (e!==this) {
-            e.health = Math.min(e.maxHealth, e.health + e.maxHealth*0.5);
-          }
+      this.healTimer = (this.healTimer||0)+1;
+      if (this.healTimer>=600) {
+        this.healTimer=0;
+        enemies.forEach(e=> {
+          if (e!==this) e.health=Math.min(e.maxHealth,e.health+e.maxHealth*0.5);
         });
       }
     }
     if (this.type==='void') {
-      this.deleteTimer--;
-      if (this.deleteTimer<=0) {
-        this.deleteTimer=3600;
-        // удаляем случайную башню (кроме omega)
+      this.deleteTimer = (this.deleteTimer||0)+1;
+      if (this.deleteTimer>=3600) {
+        this.deleteTimer=0;
+        // удаляет случайную башню кроме omega
         const nonOmega = towers.filter(t=>t.type!=='omega');
         if (nonOmega.length>0) {
           const t = nonOmega[Math.floor(Math.random()*nonOmega.length)];
-          // уменьшаем счетчики
-          if (t.type==='farm') farmCount--;
-          if (t.type==='atomic') atomicCount--;
-          if (t.type==='goodfarm') goodFarmCount--;
-          if (t.type==='toxic') toxicCount--;
-          if (t.type==='turret') turretCount--;
-          if (t.type==='empty') emptyCount--;
           towers.splice(towers.indexOf(t),1);
         }
       }
     }
-    // Проверка на лужи
+    // Проверка луж
     for (let p of puddles) {
-      const dx = this.x - p.x;
-      const dy = this.y - p.y;
-      const dist = Math.sqrt(dx*dx+dy*dy);
-      if (dist<p.radius) {
+      const dx=this.x - p.x;
+      const dy=this.y - p.y;
+      if (Math.sqrt(dx*dx+dy*dy)<p.radius) {
         this.takeDamage(p.damage);
       }
     }
-    this.speed = getEnemySpeed(this.type)*(1 - this.slowPercent/100);
-    const target = PATH[this.pathIndex];
-    const dx = target.x - this.x;
-    const dy = target.y - this.y;
-    const dist = Math.sqrt(dx*dx+dy*dy);
+    // движение
+    const target=PATH[this.pathIndex];
+    const dx=target.x - this.x;
+    const dy=target.y - this.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
     if (dist<this.speed) {
       this.x=target.x;
       this.y=target.y;
       this.pathIndex++;
       if (this.pathIndex>=PATH.length) {
-        // враг дошел
-        lives--;
+        // дошли
+        stats.lives--;
         updateStats();
-        if (lives<=0) gameOver();
+        if (stats.lives<=0) gameOver();
         return false;
       }
     } else {
@@ -508,36 +640,16 @@ class Enemy {
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
     ctx.fill();
-
-    // полоска здоровья
+    // здоровье
     ctx.fillStyle='rgba(0,0,0,0.5)';
     ctx.fillRect(this.x-this.size,this.y-this.size-8,this.size*2,4);
     ctx.fillStyle=this.type==='golden'?'#00ff00':'red';
     ctx.fillRect(this.x-this.size,this.y-this.size-8,(this.health/this.maxHealth)*(this.size*2),4);
-
-    // аура босса
-    if (this.type==='boss' && bossAura) {
-      bossAura.style.left = (this.x)+'px';
-      bossAura.style.top = (this.y)+'px';
-    }
   }
   takeDamage(dmg) {
-    if (this.type==='boss') {
-      // у босса урон уменьшается, если башня в радиусе
-      let actualDmg = dmg;
-      for (let t of towers) {
-        const dx = t.x - this.x;
-        const dy = t.y - this.y;
-        if (Math.sqrt(dx*dx+dy*dy)<this.auraRadius) {
-          actualDmg*=0.5;
-          break;
-        }
-      }
-      this.health -= actualDmg;
-    } else {
-      this.health -= dmg;
-    }
+    this.health-=dmg;
     if (this.health<=0) {
+      // награды
       let reward=0;
       switch(this.type) {
         case 'red': reward=10; break;
@@ -546,37 +658,33 @@ class Enemy {
         case 'pink': reward=30; break;
         case 'green': reward=75; break;
         case 'white': reward=100; break;
-        case 'boss': reward=500+wave*10; break;
+        case 'boss': reward=500+stats.wave*10; break;
         case 'blue': reward=150; break;
         case 'sonic': reward=200; break;
         case 'void': reward=1000; break;
       }
-      money+=reward;
+      stats.money+=reward;
       updateStats();
-      if (this.type==='boss' && bossAura) {
-        document.body.removeChild(bossAura);
-        bossAura=null;
-      }
-      return true;
+      // убрать
+      return false;
     }
-    return false;
+    return true;
   }
 }
 
 // функции для врагов
 function getEnemyHealth(type) {
-  if (type==='red') return 3+Math.floor(wave/3);
+  if (type==='red') return 3+Math.floor(stats.wave/3);
   if (type==='purple') return 15;
   if (type==='golden') return 35;
   if (type==='pink') return 11;
   if (type==='green') return 100;
   if (type==='white') return 120;
-  if (type==='boss') return 250+wave*10;
+  if (type==='boss') return 250+stats.wave*10;
   if (type==='blue') return 200;
   if (type==='sonic') return 10;
   if (type==='void') return 1000;
 }
-
 function getEnemySpeed(type) {
   if (type==='red') return 1;
   if (type==='purple') return 0.8;
@@ -589,7 +697,6 @@ function getEnemySpeed(type) {
   if (type==='sonic') return 2;
   if (type==='void') return 0.8;
 }
-
 function getEnemyColor(type) {
   if (type==='red') return 'red';
   if (type==='purple') return 'purple';
@@ -603,133 +710,97 @@ function getEnemyColor(type) {
   if (type==='void') return 'violet';
 }
 
-// башни
+// Башни
 class Tower {
   constructor(x,y,type) {
     this.x=x; this.y=y; this.type=type;
     this.upgraded=false;
-    this.targeting='first'; // 'first' или 'random'
     this.cooldown=0;
-    // параметры по типу
-    if (type==='pistol') {
-      this.radius=10*10; this.damage=1; this.fireRate=60;
-    } else if (type==='swordsman') {
-      this.radius=4*10; this.damage=1; this.fireRate=30;
-    } else if (type==='sniper') {
-      this.radius=100*10; this.damage=10; this.fireRate=300;
-    } else if (type==='freezer') {
-      this.radius=25*10; this.damage=1; this.fireRate=300; this.slowPercent=10;
-    } else if (type==='knight') {
-      this.innerRadius=5*10; this.outerRadius=28*10;
-      this.innerDamage=5; this.outerDamage=5;
-      this.innerFireRate=36; this.outerFireRate=114;
-    } else if (type==='farm') {
-      this.income=1; this.incomeRate=60;
-    } else if (type==='chance') {
-      this.radius=17*10; this.minDamage=7; this.maxDamage=17; this.fireRate=42;
-    } else if (type==='atomic') {
-      this.radius=100*10; this.damage=200; this.fireRate=3600;
-    } else if (type==='omega') {
-      this.innerRadius=9*10; this.outerRadius=30*10;
-      this.innerDamage=10; this.outerDamage=25;
-      this.innerFireRate=30; this.outerFireRate=180;
-    } else if (type==='doublepistol') {
-      this.radius=10*10; this.damage=2; this.fireRate=60; this.secondColor='lightblue';
-    } else if (type==='bomb') {
-      this.radius=8*10; this.damage=5; this.fireRate=150; this.aoe=true; this.aoeRadius=13*10;
-    } else if (type==='goodfarm') {
-      this.income=5; this.incomeRate=60;
-    } else if (type==='toxic') {
-      this.damage=1; this.fireRate=6; this.puddleRate=180; this.puddleDamage=1; this.puddleRadius=5*10; this.puddleDuration=300;
-    } else if (type==='turret') {
-      this.radius=15*10; this.damage=2; this.fireRate=12;
-    } else if (type==='empty') {
-      this.radius=10*10; this.damage=10; this.fireRate=60; this.slowPercent=50; this.specialChance=0.041; this.specialDamage=25; this.specialRate=600;
-    }
+    this.innerRadius=0;
+    this.outerRadius=0;
+    this.innerDamage=0;
+    this.outerDamage=0;
+    this.innerFireRate=0;
+    this.outerFireRate=0;
+    this.slowPercent=0;
+    this.specialChance=0;
+    this.specialDamage=0;
+    this.specialRate=0;
+    this.income=0;
+    this.incomeRate=60;
     this.size=15;
-  }
-  upgrade() {
-    if (this.upgraded) return;
-    // простая логика
-    if (this.type==='pistol') {
-      this.damage=2; this.upgraded=true;
-    } else if (this.type==='swordsman') {
-      this.damage=2; this.upgraded=true;
-    } else if (this.type==='sniper') {
-      this.damage=25; this.fireRate=150; this.upgraded=true;
-    } else if (this.type==='freezer') {
-      this.slowPercent=35; this.upgraded=true;
-    } else if (this.type==='knight') {
-      this.innerDamage=10; this.outerDamage=10; this.innerFireRate=20; this.outerFireRate=90; this.upgraded=true;
-    } else if (this.type==='farm') {
-      this.income=3; this.upgraded=true;
-    } else if (this.type==='chance') {
-      this.minDamage=17; this.maxDamage=37; this.fireRate=46; this.upgraded=true;
-    } else if (this.type==='atomic') {
-      this.damage=250; this.fireRate=3000; this.upgraded=true;
-    } else if (this.type==='omega') {
-      this.innerDamage=15; this.outerDamage=20; this.innerFireRate=24; this.outerFireRate=60; this.upgraded=true;
-    } else if (this.type==='doublepistol') {
-      this.damage=4; this.upgraded=true;
-    } else if (this.type==='bomb') {
-      this.damage=5; this.upgraded=true;
-    } else if (this.type==='toxic') {
-      this.damage=2; this.upgraded=true;
-    } else if (this.type==='turret') {
-      this.damage=2; this.upgrade=true;
-    } else if (this.type==='empty') {
-      this.damage=20; this.slowPercent=65; this.upgraded=true;
+    this.targeting='first';
+    this.color='gray';
+    // по типу
+    switch(type) {
+      case 'pistol':
+        this.radius=10*10; this.damage=1; this.fireRate=60; this.color='blue'; break;
+      case 'swordsman':
+        this.radius=4*10; this.damage=1; this.fireRate=30; this.color='red'; break;
+      case 'sniper':
+        this.radius=100*10; this.damage=10; this.fireRate=300; this.color='purple'; break;
+      case 'freezer':
+        this.radius=25*10; this.damage=1; this.fireRate=300; this.slowPercent=10; this.color='lightblue'; break;
+      case 'knight':
+        this.innerRadius=5*10; this.outerRadius=28*10;
+        this.innerDamage=5; this.outerDamage=5;
+        this.innerFireRate=36; this.outerFireRate=114;
+        this.color='orange'; break;
+      case 'farm':
+        this.income=1; this.incomeRate=60; this.color='brown'; break;
+      case 'chance':
+        this.radius=17*10; this.minDamage=7; this.maxDamage=17; this.fireRate=42; this.color='magenta'; break;
+      case 'atomic':
+        this.radius=100*10; this.damage=200; this.fireRate=3600; this.color='darkgreen'; break;
+      case 'omega':
+        this.innerRadius=9*10; this.outerRadius=30*10;
+        this.innerDamage=10; this.outerDamage=25;
+        this.innerFireRate=30; this.outerFireRate=180;
+        this.color='gold'; break;
+      case 'doublepistol':
+        this.radius=10*10; this.damage=2; this.fireRate=60; this.color='lightblue'; break;
+      case 'bomb':
+        this.radius=8*10; this.damage=5; this.fireRate=150; this.aoe=true; this.aoeRadius=13*10; this.color='black'; break;
+      case 'goodfarm':
+        this.income=5; this.incomeRate=60; this.color='green'; break;
+      case 'toxic':
+        this.damage=1; this.fireRate=6; this.puddleRate=180; this.puddleDamage=1; this.puddleRadius=5*10; this.puddleDuration=300; this.color='lime'; break;
+      case 'turret':
+        this.radius=15*10; this.damage=2; this.fireRate=12; this.color='gray'; break;
+      case 'empty':
+        this.radius=10*10; this.damage=10; this.fireRate=60; this.slowPercent=50; this.specialChance=0.041; this.specialDamage=25; this.specialRate=600; this.color='purple'; break;
     }
-  }
-  getSellPrice() {
-    const basePrice = {
-      'pistol':50,'swordsman':125,'sniper':250,'freezer':600,'knight':1000,
-      'farm':450,'chance':777,'atomic':10000,'omega':12500,'doublepistol':75,'bomb':325,'toxic':1250,'turret':2500,'empty':7500
-    }[this.type];
-    let sum=basePrice/2;
-    if (this.upgraded) {
-      switch(this.type) {
-        case 'pistol': sum+=150/2; break;
-        case 'swordsman': sum+=300/2; break;
-        case 'sniper': sum+=1000/2; break;
-        case 'freezer': sum+=1250/2; break;
-        case 'knight': sum+=2500/2; break;
-        case 'farm': sum+=900/2; break;
-        case 'chance': sum+=7777/2; break;
-        case 'atomic': sum+=30000/2; break;
-        case 'omega': sum+=40000/2; break;
-        case 'doublepistol': sum+=150/2; break;
-        case 'bomb': sum+=650/2; break;
-        case 'toxic': sum+=2500/2; break;
-        case 'turret': sum+=5000/2; break;
-        case 'empty': sum+=17500/2; break;
-      }
-    }
-    return Math.floor(sum);
   }
   update() {
-    // логика стрельбы
+    // доход
     if (this.type==='farm' || this.type==='goodfarm') {
-      this.incomeCount = (this.incomeCount || 0)+1;
+      this.incomeCount = (this.incomeCount||0)+1;
       if (this.incomeCount>=this.incomeRate) {
         this.incomeCount=0;
-        money+=this.income;
+        stats.money+=this.income;
         updateStats();
       }
       return;
     }
+    // ловушки
     if (this.type==='toxic') {
-      this.puddleCount = (this.puddleCount || 0)+1;
+      this.puddleCount = (this.puddleCount||0)+1;
       if (this.puddleCount>=this.puddleRate) {
         this.puddleCount=0;
         puddles.push(new Puddle(this.x,this.y,this.puddleDamage,this.puddleRadius,this.puddleDuration));
       }
       return;
     }
-    // внутренняя/внешняя атака для knight/omega
+    // стрельба
+    // для башен
+    if (this.type==='omega') {
+      this.innerCooldown=(this.innerCooldown||0)-1;
+      this.outerCooldown=(this.outerCooldown||0)-1;
+    }
     let enemiesInRange=[];
     for (let e of enemies) {
-      const dx=e.x - this.x; const dy=e.y - this.y;
+      const dx=e.x - this.x;
+      const dy=e.y - this.y;
       const dist=Math.sqrt(dx*dx+dy*dy);
       if (this.type==='knight'||this.type==='omega') {
         if (dist<this.outerRadius) enemiesInRange.push(e);
@@ -748,95 +819,60 @@ class Tower {
         target=enemiesInRange[Math.floor(Math.random()*enemiesInRange.length)];
       }
       if (this.type==='knight'||this.type==='omega') {
-        const dx=target.x - this.x; const dy=target.y - this.y;
+        const dx=target.x - this.x;
+        const dy=target.y - this.y;
         const dist=Math.sqrt(dx*dx+dy*dy);
-        if (dist<this.innerRadius && this.cooldown<=0) {
-          bullets.push({x:this.x,y:this.y,target:target,damage:this.innerDamage,speed:8,size:5,color:this.innerColor});
-          this.cooldown=this.innerFireRate;
+        if (dist<this.innerRadius && (this.innerCooldown||0)<=0) {
+          bullets.push({x:this.x,y:this.y,target:target,damage:this.innerDamage,speed:8,size:5,color:this.innerColor||'orange'});
+          this.innerCooldown=this.innerFireRate;
         }
-        if (dist>=this.innerRadius && this.outerCooldown<=0) {
-          bullets.push({x:this.x,y:this.y,target:target,damage:this.outerDamage,speed:5,size:5,color:this.outerColor});
+        if (dist>=this.innerRadius && (this.outerCooldown||0)<=0) {
+          bullets.push({x:this.x,y:this.y,target:target,damage:this.outerDamage,speed:5,size:5,color:this.outerColor||'orange'});
           this.outerCooldown=this.outerFireRate;
         }
       } else if (this.type==='freezer') {
-        if (this.cooldown<=0) {
-          // замедляем врагов
+        if ((this.cooldown||0)<=0) {
           for (let e of enemiesInRange) e.slowPercent=Math.max(e.slowPercent||0,this.slowPercent);
           bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:5,size:5,color:'lightblue'});
           this.cooldown=this.fireRate;
         }
       } else if (this.type==='chance') {
-        if (this.cooldown<=0) {
+        if ((this.cooldown||0)<=0) {
           const dmg=Math.random()*(this.maxDamage - this.minDamage)+this.minDamage;
           bullets.push({x:this.x,y:this.y,target:target,damage:dmg,speed:6,size:5,color:'magenta'});
           this.cooldown=this.fireRate;
         }
       } else if (this.type==='sniper') {
-        if (this.cooldown<=0) {
+        if ((this.cooldown||0)<=0) {
           bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:1000,size:5,color:'yellow',instant:true});
           this.cooldown=this.fireRate;
         }
       } else if (this.type==='bomb') {
-        if (this.cooldown<=0) {
+        if ((this.cooldown||0)<=0) {
           bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:5,size:7,color:'black',aoe:true,aoeRadius:this.aoeRadius});
           this.cooldown=this.fireRate;
         }
       } else if (this.type==='empty') {
-        if (this.cooldown<=0) {
+        if ((this.cooldown||0)<=0) {
           for (let e of enemiesInRange) e.slowPercent=Math.max(e.slowPercent||0,this.slowPercent);
           bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:5,size:5,color:'purple'});
           this.cooldown=this.fireRate;
         }
       } else {
-        // стандартная
-        if (this.cooldown<=0) {
-          bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:5,size:5,color:this.type==='doublepistol'?this.secondColor:'cyan'});
+        if ((this.cooldown||0)<=0) {
+          bullets.push({x:this.x,y:this.y,target:target,damage:this.damage,speed:5,size:5,color:this.type==='doublepistol'?this.secondColor||'lightblue':'cyan'});
           this.cooldown=this.fireRate;
         }
       }
     }
     if (this.cooldown>0) this.cooldown--;
-    if (this.type==='omega') {
-      this.innerCooldown=(this.innerCooldown||0)-1;
-      this.outerCooldown=(this.outerCooldown||0)-1;
-    }
   }
   draw() {
-    ctx.fillStyle='gray';
-    if (this.type==='pistol') {
-      ctx.fillStyle='blue';
-    } else if (this.type==='swordsman') {
-      ctx.fillStyle='red';
-    } else if (this.type==='sniper') {
-      ctx.fillStyle='purple';
-    } else if (this.type==='freezer') {
-      ctx.fillStyle='lightblue';
-    } else if (this.type==='knight') {
-      ctx.fillStyle='orange';
-    } else if (this.type==='farm') {
-      ctx.fillStyle='brown';
-    } else if (this.type==='chance') {
-      ctx.fillStyle='pink';
-    } else if (this.type==='atomic') {
-      ctx.fillStyle='darkgreen';
-    } else if (this.type==='omega') {
-      ctx.fillStyle='rainbow'; // или градиент
-    } else if (this.type==='doublepistol') {
-      ctx.fillStyle='blue';
-    } else if (this.type==='bomb') {
-      ctx.fillStyle='black';
-    } else if (this.type==='toxic') {
-      ctx.fillStyle='green';
-    } else if (this.type==='turret') {
-      ctx.fillStyle='gray';
-    } else if (this.type==='empty') {
-      ctx.fillStyle='purple';
-    }
+    ctx.fillStyle=this.color;
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
     ctx.fill();
-
-    // Радиус
+    // радиус
     if ((selectedTower===this || selectedTowerType===this.type) && showRadius) {
       ctx.strokeStyle='rgba(255,255,255,0.5)';
       ctx.setLineDash([5,5]);
@@ -851,50 +887,6 @@ class Tower {
   }
 }
 
-// Пульсы
-function updateBullets() {
-  for (let i=bullets.length-1;i>=0;i--) {
-    const b=bullets[i];
-    if (b.instant) {
-      if (b.target.takeDamage(b.damage)) {
-        enemies.splice(enemies.indexOf(b.target),1);
-      }
-      bullets.splice(i,1);
-      continue;
-    }
-    if (b.aoe && b.target) {
-      const dx=b.target.x - b.x;
-      const dy=b.target.y - b.y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if (dist<b.speed) {
-        for (let e of enemies) {
-          const dx2=e.x - b.target.x;
-          const dy2=e.y - b.target.y;
-          if (Math.sqrt(dx2*dx2+dy2*dy2)<b.aoeRadius) {
-            if (e.takeDamage(b.damage)) {
-              enemies.splice(enemies.indexOf(e),1);
-            }
-          }
-        }
-        bullets.splice(i,1);
-        continue;
-      }
-    }
-    const dx=b.target.x - b.x; const dy=b.target.y - b.y;
-    const dist=Math.sqrt(dx*dx+dy*dy);
-    if (dist<b.speed) {
-      if (b.target.takeDamage(b.damage)) {
-        enemies.splice(enemies.indexOf(b.target),1);
-      }
-      bullets.splice(i,1);
-    } else {
-      b.x+= (dx/dist)*b.speed;
-      b.y+= (dy/dist)*b.speed;
-    }
-  }
-}
-
-// Площадь
 class Puddle {
   constructor(x,y,damage,radius,duration) {
     this.x=x; this.y=y; this.damage=damage; this.radius=radius; this.duration=duration; this.counter=0;
@@ -906,71 +898,55 @@ class Puddle {
   draw() {
     ctx.fillStyle='rgba(0,255,0,0.3)';
     ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle='rgba(0,200,0,0.7)'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.stroke();
   }
 }
 
-// Обновление статистики
 function updateStats() {
-  document.getElementById('money').innerText=money;
-  document.getElementById('lives').innerText=lives;
-  document.getElementById('wave').innerText=wave;
-  document.getElementById('diamonds').innerText=diamonds;
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
 }
 
-// Обновление индекса врагов
-function updateEnemyIndex() {
-  // Можно сделать, чтобы при открытии обновлялись
-}
-
-// В старт
+// Начать волну
 function startWave() {
-  wave++;
-  document.getElementById('statsWave').innerText=wave;
+  stats.wave++;
+  document.getElementById('statsWave').innerText=stats.wave;
   // награды
-  diamonds += 1; totalDiamonds+=1; // базовая
+  let reward=0;
+  stats.diamonds+=1;
   if (difficulty==='hard') {
-    diamonds += 2;
-    totalDiamonds+=2;
+    stats.diamonds+=2;
   } else if (difficulty==='extreme') {
-    diamonds += 3;
-    totalDiamonds+=3;
+    stats.diamonds+=3;
   }
-  // каждые 5 волн +2 к награде
   waveCounter++;
-  if (waveCounter>=5) {
-    diamonds+=waveCounter*2;
-    totalDiamonds+=waveCounter*2;
+  if (waveCounter>=waveRewardCount) {
+    stats.diamonds+=waveCounter*2;
     waveCounter=0;
   }
   updateStats();
-
   // Множитель
-  if (wave%5===0) waveMultiplier*=2;
+  if (stats.wave%5===0) waveMultiplier*=2;
 
-  // Установка врагов
-  // ...
-  // Реализуйте по аналогии со старым кодом
-  // (см. упрощение ниже, чтобы было понятно)
-
-  enemiesToSpawn=0;
-  redCount=2+Math.floor(wave/3);
-  // остальные враги в зависимости от волны
-  // добавьте сюда
-  enemiesToSpawn=redCount; // и так далее
+  // подготовка врагов
+  enemiesToSpawn=5+Math.floor(stats.wave/2);
   enemySpawnTimer=0;
 }
 
 // Основной цикл
 function gameLoop() {
-  if (!gameActive) return;
   ctx.clearRect(0,0,canvas.width,canvas.height);
   drawPath();
 
   // враги
   for (let i=enemies.length-1;i>=0;i--) {
-    if (!enemies[i].update()) enemies.splice(i,1);
+    if (!enemies[i].update()) {
+      enemies.splice(i,1);
+    }
   }
+  for (let e of enemies) e.draw();
+
   // башни
   for (let t of towers) {
     t.update();
@@ -980,16 +956,23 @@ function gameLoop() {
   // пули
   updateBullets();
 
-  // враги
-  for (let e of enemies) e.draw();
-
   // лужи
-  for (let p of puddles) p.draw();
+  for (let p of puddles) {
+    if (!p.update()) {
+      puddles.splice(puddles.indexOf(p),1);
+    } else {
+      p.draw();
+    }
+  }
 
-  // Время спавна
+  // спавн врагов
   spawnEnemies();
 
-  requestAnimationFrame(gameLoop);
+  // отображение индекса врагов
+  if (showIndex) updateEnemyIndex();
+
+  // Можно добавить автоматический перезапуск
+  if (gameActive) requestAnimationFrame(gameLoop);
 }
 
 // Отрисовка пути
@@ -1009,59 +992,485 @@ function drawPath() {
   ctx.setLineDash([]);
 }
 
-// Вспомогательные функции
+// Спавн врагов
 function spawnEnemies() {
-  // реализуйте логику появления врагов по таймеру
-  // например, если enemiesToSpawn>0 и таймер==0, создайте врага
+  if (enemiesToSpawn>0) {
+    enemySpawnTimer++;
+    if (enemySpawnTimer>=60) { // каждые 1 сек при 60 fps
+      enemySpawnTimer=0;
+      // выбрать рандомный тип
+      let type='red';
+      if (stats.wave>=3 && Math.random()<0.1) type='purple';
+      if (stats.wave>=5 && Math.random()<0.05) type='golden';
+      if (stats.wave>=8 && Math.random()<0.03) type='pink';
+      if (stats.wave>=10 && Math.random()<0.02) type='green';
+      if (stats.wave>=15 && Math.random()<0.01) type='white';
+      if (stats.wave>=20 && Math.random()<0.005) type='boss';
+      if (stats.wave>=12 && Math.random()<0.04) type='blue';
+      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
+      if (stats.wave>=16 && Math.random()<0.01) type='void';
+
+      enemies.push(new Enemy(type));
+      enemiesToSpawn--;
+    }
+  }
 }
 
-// Обработчики кликов по канвасу
-canvas.addEventListener('click', (e) => {
+// Обработка кликов по карте
+canvas.addEventListener('click', e => {
   const rect=canvas.getBoundingClientRect();
   const x=(e.clientX-rect.left)*(canvas.width/rect.width);
   const y=(e.clientY-rect.top)*(canvas.height/rect.height);
-  // проверка на башню
-  // если клик по башне - показывать меню
-  // иначе, если выбран тип для постройки - строить
+
+  // проверить, есть ли башня
+  let clickedTower=null;
+  for (let t of towers) {
+    const dx=t.x - x;
+    const dy=t.y - y;
+    if (Math.sqrt(dx*dx+dy*dy)<t.size+5) {
+      clickedTower=t; break;
+    }
+  }
+  if (clickedTower) {
+    showUpgradeMenu(clickedTower,x,y);
+  } else {
+    // построить башню
+    // проверить деньги
+    if (stats.money>=50) {
+      stats.money-=50;
+      updateStats();
+      towers.push(new Tower(x,y,'pistol'));
+    }
+  }
 });
 
-// Показывать меню улучшения
+// Меню улучшения/продажи
 function showUpgradeMenu(tower,x,y) {
-  // реализуйте, как было в старом
+  // Простое окно
+  alert('Магия обновления или продаж пока не реализована');
 }
 
-// Создать радиус
-function createRangeIndicator(r) {
-  if (rangeIndicator) document.body.removeChild(rangeIndicator);
-  rangeIndicator=document.createElement('div');
-  rangeIndicator.className='range-indicator';
-  rangeIndicator.style.width=rangeIndicator.style.height=r*2+'px';
-  document.body.appendChild(rangeIndicator);
-  return rangeIndicator;
+// Обновление статистики
+function updateStats() {
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
 }
 
-// Обработка выбора в магазине
-// Вся логика выбора, покупки, открытие кейсов
-// ...
-
-// Обновление данных
-function gameOver() {
-  gameActive=false;
-  document.getElementById('restartBtn').style.display='block';
-  document.getElementById('gameOverlay').style.display='block';
-  waveMultiplier=1; // сброс множителя
+// Обновление индекса врагов
+function updateEnemyIndex() {
+  const container=document.getElementById('enemyIndex');
+  container.innerHTML='';
+  for (let e of enemies) {
+    const div=document.createElement('div');
+    div.className='enemy-item';
+    div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>pathIdx:${e.pathIndex}`;
+    container.appendChild(div);
+  }
+  container.style.display='block';
 }
+
+// Кнопки радиуса и индекса
+document.getElementById('toggleRadius').onclick=()=>{
+  showRadius=!showRadius;
+  document.getElementById('toggleRadius').innerText=showRadius?'Скрыть радиус':'Показать радиус';
+};
+document.getElementById('toggleIndex').onclick=()=>{
+  showIndex=!showIndex;
+  document.getElementById('enemyIndex').style.display=showIndex?'block':'none';
+};
 
 // Перезапуск
 document.getElementById('restartBtn').onclick=()=>{
-  document.getElementById('setupScreen').style.display='flex';
-  document.getElementById('restartBtn').style.display='none';
+  initGame();
+  startWave();
+  gameLoop();
   document.getElementById('gameOverlay').style.display='none';
+  document.getElementById('restartBtn').style.display='none';
 };
-// Остальной код — обработчики, логика покупки, генерации, и т.п.
 
-// Важное: добавьте весь код логики появления врагов, движение, стрельбу, управление башнями, обновление состояния, чтобы было полностью работающе.
+// Обработка покупок кейсов
+document.getElementById('openNormalCase').onclick=()=>{
+  if (stats.money>=50) {
+    stats.money-=50;
+    updateStats();
+    openCase('normal');
+  }
+};
+document.getElementById('openPremiumCase').onclick=()=>{
+  if (stats.money>=200) {
+    stats.money-=200;
+    updateStats();
+    openCase('premium');
+  }
+};
+document.getElementById('buyExtreme').onclick=()=>{
+  if (stats.money>=25) {
+    stats.money-=25;
+    updateStats();
+    // активировать экстремальный режим
+    selectDifficulty('extreme');
+  }
+};
+document.getElementById('buyMapMountains').onclick=()=>{
+  if (stats.money>=20) {
+    stats.money-=20;
+    updateStats();
+    selectMap('mountains');
+    setPath();
+  }
+};
+function openCase(type='normal') {
+  // случайный выбор из шансов
+  const rand=Math.random()*100;
+  let item=null;
+  if (type==='normal') {
+    if (rand<=45) item='doublepistol';
+    else if (rand<=75) item='bomb';
+    else if (rand<=95) item='farm';
+    else if (rand<=99) item='toxic';
+    else if (rand<=99.6) item='turret';
+    else item='empty';
+  } else {
+    // премиум
+    if (rand<=40) item='bomb';
+    else if (rand<=65) item='farm';
+    else if (rand<=85) item='toxic';
+    else if (rand<=97.5) item='turret';
+    else item='empty';
+  }
+  // добавляем башню
+  switch(item) {
+    case 'doublepistol':
+      towers.push(new Tower(150,150,'doublepistol'));
+      break;
+    case 'bomb':
+      towers.push(new Tower(200,200,'bomb'));
+      break;
+    case 'farm':
+      towers.push(new Tower(250,250,'farm'));
+      break;
+    case 'toxic':
+      towers.push(new Tower(300,300,'toxic'));
+      break;
+    case 'turret':
+      towers.push(new Tower(350,350,'turret'));
+      break;
+    case 'empty':
+      towers.push(new Tower(400,400,'empty'));
+      break;
+  }
+}
 
+// В основном цикле
+function gameLoop() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawPath();
+
+  // враги
+  for (let i=enemies.length-1;i>=0;i--) {
+    if (!enemies[i].update()) enemies.splice(i,1);
+  }
+
+  // враги
+  for (let e of enemies) e.draw();
+
+  // башни
+  for (let t of towers) {
+    t.update();
+    t.draw();
+  }
+
+  // пули
+  updateBullets();
+
+  // лужи
+  for (let p of puddles) {
+    if (!p.update()) {
+      puddles.splice(puddles.indexOf(p),1);
+    } else {
+      p.draw();
+    }
+  }
+
+  // спавн врагов
+  spawnEnemies();
+
+  // стреляет
+  for (let t of towers) {
+    t.update();
+  }
+
+  if (gameActive) requestAnimationFrame(gameLoop);
+}
+
+// Отрисовка пути
+function drawPath() {
+  ctx.strokeStyle='#f1c40f';
+  ctx.lineWidth=30;
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// Время спавна врагов
+function spawnEnemies() {
+  if (enemies.length>=maxEnemiesPerWave) return;
+  if (enemiesToSpawn>0) {
+    enemySpawnTimer++;
+    if (enemySpawnTimer>=60) {
+      enemySpawnTimer=0;
+      // выбор типа врага
+      let type='red';
+      if (stats.wave>=3 && Math.random()<0.1) type='purple';
+      if (stats.wave>=5 && Math.random()<0.05) type='golden';
+      if (stats.wave>=8 && Math.random()<0.03) type='pink';
+      if (stats.wave>=10 && Math.random()<0.02) type='green';
+      if (stats.wave>=15 && Math.random()<0.01) type='white';
+      if (stats.wave>=20 && Math.random()<0.005) type='boss';
+      if (stats.wave>=12 && Math.random()<0.04) type='blue';
+      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
+      if (stats.wave>=16 && Math.random()<0.01) type='void';
+
+      enemies.push(new Enemy(type));
+      enemiesToSpawn--;
+    }
+  }
+}
+
+// Обработка кликов
+canvas.addEventListener('click', e => {
+  const rect=canvas.getBoundingClientRect();
+  const x=(e.clientX-rect.left)*(canvas.width/rect.width);
+  const y=(e.clientY-rect.top)*(canvas.height/rect.height);
+
+  // найти башню
+  let clickedTower=null;
+  for (let t of towers) {
+    if (Math.sqrt((t.x - x)**2+(t.y - y)**2)<t.size+5) {
+      clickedTower=t; break;
+    }
+  }
+
+  if (clickedTower) {
+    showUpgradeMenu(clickedTower,x,y);
+  } else {
+    // построить башню
+    if (stats.money>=50) {
+      stats.money-=50;
+      updateStats();
+      towers.push(new Tower(x,y,'pistol'));
+    }
+  }
+});
+
+// Простое меню
+function showUpgradeMenu(tower,x,y) {
+  alert('Пока тут меню не реализовано. Можно улучшить или продать.');
+}
+
+// Обновляем статистику
+function updateStats() {
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
+}
+
+// Обработка пуль
+function updateBullets() {
+  for (let i=bullets.length-1;i>=0;i--) {
+    const b=bullets[i];
+    if (b.instant) {
+      if (b.target.takeDamage(b.damage)) {
+        // враг умер
+        enemies.splice(enemies.indexOf(b.target),1);
+      }
+      bullets.splice(i,1);
+      continue;
+    }
+    if (b.aoe && b.target) {
+      const dx=b.target.x - b.x;
+      const dy=b.target.y - b.y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if (dist<b.speed) {
+        // взрыв
+        for (let e of enemies) {
+          const dx2=e.x - b.target.x;
+          const dy2=e.y - b.target.y;
+          if (Math.sqrt(dx2*dx2+dy2*dy2)<b.aoeRadius) {
+            if (e.takeDamage(b.damage)) {
+              enemies.splice(enemies.indexOf(e),1);
+            }
+          }
+        }
+        bullets.splice(i,1);
+        continue;
+      }
+    }
+    // летит
+    const dx=b.target.x - b.x;
+    const dy=b.target.y - b.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if (dist<b.speed) {
+      if (b.target.takeDamage(b.damage)) {
+        enemies.splice(enemies.indexOf(b.target),1);
+      }
+      bullets.splice(i,1);
+    } else {
+      b.x+= (dx/dist)*b.speed;
+      b.y+= (dy/dist)*b.speed;
+    }
+  }
+}
+
+// Обновление врагов
+function updateEnemyIndex() {
+  const container=document.getElementById('enemyIndex');
+  container.innerHTML='';
+  for (let e of enemies) {
+    const div=document.createElement('div');
+    div.className='enemy-item';
+    div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>Путь: ${e.pathIndex}`;
+    container.appendChild(div);
+  }
+}
+
+// В основном цикле
+function gameLoop() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawPath();
+
+  // враги
+  for (let i=enemies.length-1;i>=0;i--) {
+    if (!enemies[i].update()) enemies.splice(i,1);
+  }
+  for (let e of enemies) e.draw();
+
+  // башни
+  for (let t of towers) {
+    t.update();
+    t.draw();
+  }
+
+  // пули
+  updateBullets();
+
+  // лужи
+  for (let p of puddles) {
+    if (!p.update()) {
+      puddles.splice(puddles.indexOf(p),1);
+    } else {
+      p.draw();
+    }
+  }
+
+  // запуск врагов
+  spawnEnemies();
+
+  // показать индекс
+  if (showIndex) updateEnemyIndex();
+
+  if (gameActive) requestAnimationFrame(gameLoop);
+}
+
+// Начинаем волну
+function startWave() {
+  stats.wave++;
+  document.getElementById('statsWave').innerText=stats.wave;
+  // награды за волну
+  stats.diamonds+=1;
+  if (difficulty==='hard') stats.diamonds+=2;
+  if (difficulty==='extreme') stats.diamonds+=3;
+  waveCounter++;
+  if (waveCounter>=waveRewardCount) {
+    stats.diamonds+=waveCounter*2;
+    waveCounter=0;
+  }
+  updateStats();
+
+  // множитель
+  if (stats.wave%5===0) waveMultiplier*=2;
+
+  // враги
+  enemiesToSpawn=5+Math.floor(stats.wave/2);
+  enemySpawnTimer=0;
+}
+
+// Время спавна врага
+function spawnEnemies() {
+  if (enemies.length>=maxEnemiesPerWave) return;
+  if (enemiesToSpawn>0) {
+    enemySpawnTimer++;
+    if (enemySpawnTimer>=60) {
+      enemySpawnTimer=0;
+      let type='red';
+      if (stats.wave>=3 && Math.random()<0.1) type='purple';
+      if (stats.wave>=5 && Math.random()<0.05) type='golden';
+      if (stats.wave>=8 && Math.random()<0.03) type='pink';
+      if (stats.wave>=10 && Math.random()<0.02) type='green';
+      if (stats.wave>=15 && Math.random()<0.01) type='white';
+      if (stats.wave>=20 && Math.random()<0.005) type='boss';
+      if (stats.wave>=12 && Math.random()<0.04) type='blue';
+      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
+      if (stats.wave>=16 && Math.random()<0.01) type='void';
+
+      enemies.push(new Enemy(type));
+      enemiesToSpawn--;
+    }
+  }
+}
+
+// Обработка кликов
+canvas.addEventListener('click', e => {
+  const rect=canvas.getBoundingClientRect();
+  const x=(e.clientX-rect.left)*(canvas.width/rect.width);
+  const y=(e.clientY-rect.top)*(canvas.height/rect.height);
+
+  // найти башню
+  let clickedTower=null;
+  for (let t of towers) {
+    if (Math.sqrt((t.x - x)**2+(t.y - y)**2)<t.size+5) {
+      clickedTower=t; break;
+    }
+  }
+
+  if (clickedTower) {
+    showUpgradeMenu(clickedTower,x,y);
+  } else {
+    // построить башню
+    // проверить деньги
+    if (stats.money>=50) {
+      stats.money-=50;
+      updateStats();
+      towers.push(new Tower(x,y,'pistol'));
+    }
+  }
+});
+
+// Простое меню
+function showUpgradeMenu(tower,x,y) {
+  alert('Пока тут меню не реализовано. Можно улучшить или продать.');
+}
+
+// Обработка кнопок радиуса
+document.getElementById('toggleRadius').onclick=()=>{
+  showRadius=!showRadius;
+  document.getElementById('toggleRadius').innerText=showRadius?'Скрыть радиус':'Показать радиус';
+};
+document.getElementById('toggleIndex').onclick=()=>{
+  showIndex=!showIndex;
+  document.getElementById('enemyIndex').style.display=showIndex?'block':'none';
+};
 </script>
 </body>
 </html>

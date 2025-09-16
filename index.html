@@ -5,269 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Tower Defense</title>
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: Arial, sans-serif;
     background-color: #2c3e50;
     color: #ecf0f1;
   }
+  h1 { text-align: center; margin: 20px; color: #f1c40f; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
-  h1 {
-    margin: 20px;
-    text-align: center;
-    color: #f1c40f;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
-
-  /* Экраны меню */
+  /* Экран настройки */
 #setupScreen {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(44, 62, 80, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
+  position: fixed; top:0; left:0; right:0; bottom:0;
+  background: rgba(44,62,80,0.9);
+  display:flex; justify-content:center; align-items:center; z-index:200;
 }
 .setup-container {
-  background: #34495e;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
-  color: #ecf0f1;
+  background:#34495e; padding:30px; border-radius:10px; max-width:500px; width:90%; color:#ecf0f1;
 }
-.setup-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #f1c40f;
-}
-button {
-  padding: 10px 15px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-button:hover {
-  opacity: 0.8;
-}
+.setup-container h2 { text-align:center; margin-bottom:20px; }
 
-/* Основной UI */
+button {
+  padding:10px 15px; margin-top:10px; border:none; border-radius:5px; cursor:pointer; font-weight:bold; transition:0.2s;
+}
+button:hover { opacity:0.8; }
+
 #gameContainer {
-  display: none;
-  padding: 10px 20px;
+  display:none; padding:10px 20px;
 }
 #statsBar {
-  display: flex;
-  justify-content: space-between;
-  background: #34495e;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  border: 2px solid #f1c40f;
+  display:flex; justify-content:space-between; background:#34495e; padding:10px 20px; border-radius:8px; margin-bottom:10px;
+  border:2px solid #f1c40f;
 }
-#statsBar span {
-  font-weight: bold;
-  color: #f1c40f;
-}
-#canvasWrapper {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-}
+#statsBar span { font-weight:bold; color:#f1c40f; }
+
+#canvasWrapper { position:relative; display:flex; align-items:flex-start; }
 #gameCanvas {
-  background-color: #27ae60;
-  border: 3px solid #f1c40f;
-  border-radius: 8px;
+  background-color:#27ae60; border:3px solid #f1c40f; border-radius:8px;
 }
 #controls {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-button {
-  padding: 8px 12px;
-  font-size: 1em;
+  display:flex; flex-direction:column; gap:10px; margin-left:20px;
 }
 #toggleRadius, #toggleIndex {
-  background-color: #2980b9;
-  color: #fff;
-}
-#toggleRadius:hover, #toggleIndex:hover {
-  background-color: #3498db;
+  background:#2980b9; color:#fff;
 }
 #restartBtn {
-  display: none;
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: #e74c3c;
-  padding: 20px;
-  font-size: 1.5em;
-  border-radius: 10px;
-  cursor: pointer;
-  z-index: 300;
+  display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:#e74c3c; padding:20px; font-size:1.5em; border-radius:10px; cursor:pointer; z-index:300;
 }
 #gameOverlay {
-  position: fixed;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 250;
+  position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:250;
 }
-
 /* Магазин */
 #shopScreen {
-  position: fixed;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(44,62,80,0.95);
-  display: none;
-  flex-direction: column;
-  overflow-y: auto;
-  padding: 20px;
-  z-index: 300;
+  position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(44,62,80,0.95); display:none; flex-direction:column; overflow-y:auto; padding:20px; z-index:300;
 }
 #shopContainer {
-  background: #34495e;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 1000px;
-  margin: 0 auto;
+  background:#34495e; padding:20px; border-radius:10px; max-width:1000px; margin:0 auto; color:#ecf0f1;
 }
 #closeShop {
-  float: right;
-  font-size: 1.5em;
-  background: none;
-  border: none;
-  color: #e74c3c;
-  cursor: pointer;
+  float:right; font-size:1.5em; background:none; border:none; color:#e74c3c; cursor:pointer;
 }
 #categories {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;
 }
 .category {
-  background: #2c3e50;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  border: 2px solid #555;
+  background:#2c3e50; padding:10px 15px; border-radius:5px; cursor:pointer; font-weight:bold; border:2px solid #555;
 }
-.category.active {
-  background: #f1c40f;
-  border-color: #f1c40f;
-  color: #2c3e50;
-}
+.category.active { background:#f1c40f; border-color:#f1c40f; color:#2c3e50; }
 #shopItems {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px;
 }
 .shop-item {
-  background: #2c3e50;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
+  background:#2c3e50; padding:10px; border-radius:5px; display:flex; flex-direction:column; gap:10px; position:relative;
 }
-.shop-item h3 {
-  margin-bottom: 5px;
-  border-bottom: 2px solid #f1c40f;
-  padding-bottom: 5px;
-  color: #f1c40f;
-}
-#shopItemDetails {
-  font-size: 0.9em;
-  color: #bdc3c7;
-}
-#shopItemPrice {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.shop-item h3 { margin-bottom:5px; border-bottom:2px solid #f1c40f; padding-bottom:5px; color:#f1c40f; }
+#shopItemDetails { font-size:0.9em; color:#bdc3c7; }
+#shopItemPrice { display:flex; justify-content:space-between; align-items:center; }
 #buyBtn, #openCaseBtn {
-  background: #2ecc71;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+  background:#2ecc71; padding:8px 12px; border:none; border-radius:4px; cursor:pointer; font-weight:bold;
 }
-#buyBtn:disabled, #openCaseBtn:disabled {
-  background: #7f8c8d;
-  cursor: not-allowed;
-}
+#buyBtn:disabled, #openCaseBtn:disabled { background:#7f8c8d; cursor:not-allowed; }
 #questionBtn {
-  background: #2980b9;
-  color: #fff;
-  padding: 2px 6px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 0.9em;
+  background:#2980b9; color:#fff; padding:2px 6px; border:none; border-radius:3px; cursor:pointer; font-size:0.9em;
 }
-#questionBtn:hover {
-  background: #3498db;
+#questionBtn:hover { background:#3498db; }
+.case-content { display:none; margin-top:10px; background:#1abc9c; padding:10px; border-radius:5px; }
+.enemyIndex {
+  position:fixed; top:10px; right:10px; width:300px; max-height:90vh; overflow-y:auto; background:#34495e; border:2px solid #f1c40f; border-radius:8px; padding:10px; display:none; z-index:400;
 }
-.case-content {
-  display: none;
-  margin-top: 10px;
-  background: #1abc9c;
-  padding: 10px;
-  border-radius: 5px;
-}
-.case-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.case-item .preview {
-  width: 40px; height: 40px;
-  border-radius: 4px;
-}
-.preview {
-  background-color: gray;
-}
-#enemyIndex {
-  position: fixed;
-  top: 10px; right: 10px;
-  width: 300px; max-height: 90vh;
-  overflow-y: auto;
-  background: #34495e;
-  border: 2px solid #f1c40f;
-  border-radius: 8px;
-  padding: 10px;
-  display: none;
-  z-index: 400;
-}
-.enemy-item {
-  background: #2c3e50;
-  padding: 8px;
-  margin-bottom: 8px;
-  border-radius: 5px;
-  border: 1px solid #555;
-}
-.enemy-item h4 {
-  margin-bottom: 4px;
-  color: #f1c40f;
-}
+.enemy-item { background:#2c3e50; padding:8px; margin-bottom:8px; border-radius:5px; border:1px solid #555; }
+.enemy-item h4 { margin-bottom:4px; color:#f1c40f; }
 </style>
 </head>
 <body>
@@ -295,7 +122,7 @@ button {
 </div>
 
 <!-- Основной интерфейс -->
-<div id="gameContainer">
+<div id="gameContainer" style="display:none;">
   <div id="statsBar">
     <div>
       Деньги: <span id="money">200</span> |
@@ -323,7 +150,7 @@ button {
 <!-- Магазин -->
 <div id="shopScreen">
   <div id="shopContainer">
-    <button id="closeShop">&times;</button>
+    <button id="closeShop">×</button>
     <h2>Магазин</h2>
     <div id="categories">
       <div class="category active" data-category="difficulties">Сложности</div>
@@ -331,7 +158,6 @@ button {
       <div class="category" data-category="cases">Кейсы</div>
     </div>
     <div id="shopItems">
-      <!-- Тут карточки -->
       <!-- Сложности -->
       <div class="shop-item" data-category="difficulties">
         <h3>Режим Экстрим</h3>
@@ -404,9 +230,12 @@ let puddles = [];
 let wave = 0;
 let waveCounter=0; // для наград
 let waveMultiplier=1;
-let waveRewardCount=5; // каждые 5 волн
+let waveRewardCount=5; // каждые 5 волн награда
 let enemySpawnTimer=0;
 
+let maxEnemiesPerWave=15;
+
+// Объекты знаний врагов
 let enemyKnowledge = {
   'red': { health: 0, speed: 0, discovered: false },
   'purple': { health: 0, speed: 0, discovered: false },
@@ -428,7 +257,7 @@ let difficulty='normal';
 let showRadius=true;
 let showIndex=false;
 
-let selectedTowerType='pistol'; // по умолчанию
+let selectedTowerType='pistol';
 let selectedTower=null;
 
 let rangeIndicator=null;
@@ -442,6 +271,7 @@ let stats = {
 
 let bossAura=null;
 
+// Начало
 document.getElementById('startGameBtn').onclick=()=>{
   document.getElementById('setupScreen').style.display='none';
   document.getElementById('gameContainer').style.display='block';
@@ -451,6 +281,7 @@ document.getElementById('startGameBtn').onclick=()=>{
   gameLoop();
 };
 
+// Кнопки меню
 document.getElementById('openShopBtn').onclick=()=> {
   document.getElementById('shopScreen').style.display='flex';
 };
@@ -458,7 +289,7 @@ document.getElementById('closeShop').onclick=()=>{
   document.getElementById('shopScreen').style.display='none';
 };
 
-// Смена сложности
+// Выбор сложности
 document.getElementById('diffNormal').onclick=()=>selectDifficulty('normal');
 document.getElementById('diffHard').onclick=()=>selectDifficulty('hard');
 document.getElementById('diffExtreme').onclick=()=>selectDifficulty('extreme');
@@ -470,7 +301,7 @@ function selectDifficulty(diff) {
   });
 }
 
-// Карты
+// Выбор карты
 document.getElementById('mapHills').onclick=()=>selectMap('hills');
 document.getElementById('mapFlat').onclick=()=>selectMap('flat');
 document.getElementById('mapMountains').onclick=()=>selectMap('mountains');
@@ -482,7 +313,7 @@ function selectMap(map) {
   });
 }
 
-// Кнопка начать игру
+// Начать игру
 document.getElementById('startGameBtn').onclick=()=>{
   document.getElementById('setupScreen').style.display='none';
   document.getElementById('gameContainer').style.display='block';
@@ -492,21 +323,6 @@ document.getElementById('startGameBtn').onclick=()=>{
   gameLoop();
 };
 
-// Изначальные переменные
-let enemies=[]; 
-let towers=[]; 
-let bullets=[]; 
-let puddles=[]; 
-
-let wave=0; 
-let waveCounter=0;
-let waveMultiplier=1;
-
-let enemySpawnTimer=0;
-let enemiesToSpawn=0;
-
-let maxEnemiesPerWave=10;
-
 // Инициализация
 function initGame() {
   stats.money=200;
@@ -514,10 +330,11 @@ function initGame() {
   stats.wave=0;
   stats.diamonds=0;
   updateStats();
-  enemies=[]; towers=[]; bullets=[]; puddles=[];
+  enemies.length=0;
+  towers.length=0;
+  bullets.length=0;
+  puddles.length=0;
   wave=0; waveCounter=0; waveMultiplier=1;
-  setPath();
-  startWave();
 }
 
 // Установка пути
@@ -569,10 +386,10 @@ class Enemy {
     this.size=10;
     this.color=getEnemyColor(type);
     this.slowPercent=0;
-    this.special='';
     if (type==='boss') {
       this.health*=2; this.maxHealth=this.health;
     }
+    // знания врагов
     if (!enemyKnowledge[type].discovered) {
       enemyKnowledge[type].discovered=true;
       enemyKnowledge[type].health=this.health;
@@ -580,7 +397,7 @@ class Enemy {
     }
   }
   update() {
-    // Особенности врагов
+    // особенности врагов
     if (this.type==='white') {
       this.speed= getEnemySpeed('white') + Math.random()*(getEnemySpeed('golden') - getEnemySpeed('white'));
     }
@@ -605,7 +422,7 @@ class Enemy {
         }
       }
     }
-    // Проверка луж
+    // проверка луж
     for (let p of puddles) {
       const dx=this.x - p.x;
       const dy=this.y - p.y;
@@ -649,7 +466,7 @@ class Enemy {
   takeDamage(dmg) {
     this.health-=dmg;
     if (this.health<=0) {
-      // награды
+      // награда
       let reward=0;
       switch(this.type) {
         case 'red': reward=10; break;
@@ -663,16 +480,15 @@ class Enemy {
         case 'sonic': reward=200; break;
         case 'void': reward=1000; break;
       }
-      stats.money+=reward;
+      stats.diamonds+=reward;
       updateStats();
-      // убрать
       return false;
     }
     return true;
   }
 }
 
-// функции для врагов
+// Шанс и параметры врагов
 function getEnemyHealth(type) {
   if (type==='red') return 3+Math.floor(stats.wave/3);
   if (type==='purple') return 15;
@@ -730,8 +546,8 @@ class Tower {
     this.incomeRate=60;
     this.size=15;
     this.targeting='first';
-    this.color='gray';
-    // по типу
+
+    // Настройка по типу
     switch(type) {
       case 'pistol':
         this.radius=10*10; this.damage=1; this.fireRate=60; this.color='blue'; break;
@@ -792,7 +608,6 @@ class Tower {
       return;
     }
     // стрельба
-    // для башен
     if (this.type==='omega') {
       this.innerCooldown=(this.innerCooldown||0)-1;
       this.outerCooldown=(this.outerCooldown||0)-1;
@@ -866,13 +681,16 @@ class Tower {
       }
     }
     if (this.cooldown>0) this.cooldown--;
+    if (this.type==='omega') {
+      this.innerCooldown=(this.innerCooldown||0)-1;
+      this.outerCooldown=(this.outerCooldown||0)-1;
+    }
   }
   draw() {
     ctx.fillStyle=this.color;
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
     ctx.fill();
-    // радиус
     if ((selectedTower===this || selectedTowerType===this.type) && showRadius) {
       ctx.strokeStyle='rgba(255,255,255,0.5)';
       ctx.setLineDash([5,5]);
@@ -915,17 +733,15 @@ function startWave() {
   // награды
   let reward=0;
   stats.diamonds+=1;
-  if (difficulty==='hard') {
-    stats.diamonds+=2;
-  } else if (difficulty==='extreme') {
-    stats.diamonds+=3;
-  }
+  if (difficulty==='hard') stats.diamonds+=2;
+  if (difficulty==='extreme') stats.diamonds+=3;
   waveCounter++;
   if (waveCounter>=waveRewardCount) {
     stats.diamonds+=waveCounter*2;
     waveCounter=0;
   }
   updateStats();
+
   // Множитель
   if (stats.wave%5===0) waveMultiplier*=2;
 
@@ -934,71 +750,13 @@ function startWave() {
   enemySpawnTimer=0;
 }
 
-// Основной цикл
-function gameLoop() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  drawPath();
-
-  // враги
-  for (let i=enemies.length-1;i>=0;i--) {
-    if (!enemies[i].update()) {
-      enemies.splice(i,1);
-    }
-  }
-  for (let e of enemies) e.draw();
-
-  // башни
-  for (let t of towers) {
-    t.update();
-    t.draw();
-  }
-
-  // пули
-  updateBullets();
-
-  // лужи
-  for (let p of puddles) {
-    if (!p.update()) {
-      puddles.splice(puddles.indexOf(p),1);
-    } else {
-      p.draw();
-    }
-  }
-
-  // спавн врагов
-  spawnEnemies();
-
-  // отображение индекса врагов
-  if (showIndex) updateEnemyIndex();
-
-  // Можно добавить автоматический перезапуск
-  if (gameActive) requestAnimationFrame(gameLoop);
-}
-
-// Отрисовка пути
-function drawPath() {
-  ctx.strokeStyle='#f1c40f';
-  ctx.lineWidth=30;
-  ctx.lineJoin='round'; ctx.lineCap='round';
-  ctx.beginPath();
-  ctx.moveTo(PATH[0].x,PATH[0].y);
-  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
-  ctx.stroke();
-  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
-  ctx.beginPath();
-  ctx.moveTo(PATH[0].x,PATH[0].y);
-  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
-  ctx.stroke();
-  ctx.setLineDash([]);
-}
-
-// Спавн врагов
+// Время спавна врагов
 function spawnEnemies() {
+  if (enemies.length>=maxEnemiesPerWave) return;
   if (enemiesToSpawn>0) {
     enemySpawnTimer++;
-    if (enemySpawnTimer>=60) { // каждые 1 сек при 60 fps
+    if (enemySpawnTimer>=60) {
       enemySpawnTimer=0;
-      // выбрать рандомный тип
       let type='red';
       if (stats.wave>=3 && Math.random()<0.1) type='purple';
       if (stats.wave>=5 && Math.random()<0.05) type='golden';
@@ -1021,246 +779,13 @@ canvas.addEventListener('click', e => {
   const rect=canvas.getBoundingClientRect();
   const x=(e.clientX-rect.left)*(canvas.width/rect.width);
   const y=(e.clientY-rect.top)*(canvas.height/rect.height);
-
   // проверить, есть ли башня
-  let clickedTower=null;
-  for (let t of towers) {
-    const dx=t.x - x;
-    const dy=t.y - y;
-    if (Math.sqrt(dx*dx+dy*dy)<t.size+5) {
-      clickedTower=t; break;
-    }
-  }
-  if (clickedTower) {
-    showUpgradeMenu(clickedTower,x,y);
-  } else {
-    // построить башню
-    // проверить деньги
-    if (stats.money>=50) {
-      stats.money-=50;
-      updateStats();
-      towers.push(new Tower(x,y,'pistol'));
-    }
-  }
-});
-
-// Меню улучшения/продажи
-function showUpgradeMenu(tower,x,y) {
-  // Простое окно
-  alert('Магия обновления или продаж пока не реализована');
-}
-
-// Обновление статистики
-function updateStats() {
-  document.getElementById('money').innerText=stats.money;
-  document.getElementById('lives').innerText=stats.lives;
-  document.getElementById('wave').innerText=stats.wave;
-  document.getElementById('diamonds').innerText=stats.diamonds;
-}
-
-// Обновление индекса врагов
-function updateEnemyIndex() {
-  const container=document.getElementById('enemyIndex');
-  container.innerHTML='';
-  for (let e of enemies) {
-    const div=document.createElement('div');
-    div.className='enemy-item';
-    div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>pathIdx:${e.pathIndex}`;
-    container.appendChild(div);
-  }
-  container.style.display='block';
-}
-
-// Кнопки радиуса и индекса
-document.getElementById('toggleRadius').onclick=()=>{
-  showRadius=!showRadius;
-  document.getElementById('toggleRadius').innerText=showRadius?'Скрыть радиус':'Показать радиус';
-};
-document.getElementById('toggleIndex').onclick=()=>{
-  showIndex=!showIndex;
-  document.getElementById('enemyIndex').style.display=showIndex?'block':'none';
-};
-
-// Перезапуск
-document.getElementById('restartBtn').onclick=()=>{
-  initGame();
-  startWave();
-  gameLoop();
-  document.getElementById('gameOverlay').style.display='none';
-  document.getElementById('restartBtn').style.display='none';
-};
-
-// Обработка покупок кейсов
-document.getElementById('openNormalCase').onclick=()=>{
-  if (stats.money>=50) {
-    stats.money-=50;
-    updateStats();
-    openCase('normal');
-  }
-};
-document.getElementById('openPremiumCase').onclick=()=>{
-  if (stats.money>=200) {
-    stats.money-=200;
-    updateStats();
-    openCase('premium');
-  }
-};
-document.getElementById('buyExtreme').onclick=()=>{
-  if (stats.money>=25) {
-    stats.money-=25;
-    updateStats();
-    // активировать экстремальный режим
-    selectDifficulty('extreme');
-  }
-};
-document.getElementById('buyMapMountains').onclick=()=>{
-  if (stats.money>=20) {
-    stats.money-=20;
-    updateStats();
-    selectMap('mountains');
-    setPath();
-  }
-};
-function openCase(type='normal') {
-  // случайный выбор из шансов
-  const rand=Math.random()*100;
-  let item=null;
-  if (type==='normal') {
-    if (rand<=45) item='doublepistol';
-    else if (rand<=75) item='bomb';
-    else if (rand<=95) item='farm';
-    else if (rand<=99) item='toxic';
-    else if (rand<=99.6) item='turret';
-    else item='empty';
-  } else {
-    // премиум
-    if (rand<=40) item='bomb';
-    else if (rand<=65) item='farm';
-    else if (rand<=85) item='toxic';
-    else if (rand<=97.5) item='turret';
-    else item='empty';
-  }
-  // добавляем башню
-  switch(item) {
-    case 'doublepistol':
-      towers.push(new Tower(150,150,'doublepistol'));
-      break;
-    case 'bomb':
-      towers.push(new Tower(200,200,'bomb'));
-      break;
-    case 'farm':
-      towers.push(new Tower(250,250,'farm'));
-      break;
-    case 'toxic':
-      towers.push(new Tower(300,300,'toxic'));
-      break;
-    case 'turret':
-      towers.push(new Tower(350,350,'turret'));
-      break;
-    case 'empty':
-      towers.push(new Tower(400,400,'empty'));
-      break;
-  }
-}
-
-// В основном цикле
-function gameLoop() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  drawPath();
-
-  // враги
-  for (let i=enemies.length-1;i>=0;i--) {
-    if (!enemies[i].update()) enemies.splice(i,1);
-  }
-
-  // враги
-  for (let e of enemies) e.draw();
-
-  // башни
-  for (let t of towers) {
-    t.update();
-    t.draw();
-  }
-
-  // пули
-  updateBullets();
-
-  // лужи
-  for (let p of puddles) {
-    if (!p.update()) {
-      puddles.splice(puddles.indexOf(p),1);
-    } else {
-      p.draw();
-    }
-  }
-
-  // спавн врагов
-  spawnEnemies();
-
-  // стреляет
-  for (let t of towers) {
-    t.update();
-  }
-
-  if (gameActive) requestAnimationFrame(gameLoop);
-}
-
-// Отрисовка пути
-function drawPath() {
-  ctx.strokeStyle='#f1c40f';
-  ctx.lineWidth=30;
-  ctx.lineJoin='round'; ctx.lineCap='round';
-  ctx.beginPath();
-  ctx.moveTo(PATH[0].x,PATH[0].y);
-  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
-  ctx.stroke();
-  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
-  ctx.beginPath();
-  ctx.moveTo(PATH[0].x,PATH[0].y);
-  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
-  ctx.stroke();
-  ctx.setLineDash([]);
-}
-
-// Время спавна врагов
-function spawnEnemies() {
-  if (enemies.length>=maxEnemiesPerWave) return;
-  if (enemiesToSpawn>0) {
-    enemySpawnTimer++;
-    if (enemySpawnTimer>=60) {
-      enemySpawnTimer=0;
-      // выбор типа врага
-      let type='red';
-      if (stats.wave>=3 && Math.random()<0.1) type='purple';
-      if (stats.wave>=5 && Math.random()<0.05) type='golden';
-      if (stats.wave>=8 && Math.random()<0.03) type='pink';
-      if (stats.wave>=10 && Math.random()<0.02) type='green';
-      if (stats.wave>=15 && Math.random()<0.01) type='white';
-      if (stats.wave>=20 && Math.random()<0.005) type='boss';
-      if (stats.wave>=12 && Math.random()<0.04) type='blue';
-      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
-      if (stats.wave>=16 && Math.random()<0.01) type='void';
-
-      enemies.push(new Enemy(type));
-      enemiesToSpawn--;
-    }
-  }
-}
-
-// Обработка кликов
-canvas.addEventListener('click', e => {
-  const rect=canvas.getBoundingClientRect();
-  const x=(e.clientX-rect.left)*(canvas.width/rect.width);
-  const y=(e.clientY-rect.top)*(canvas.height/rect.height);
-
-  // найти башню
   let clickedTower=null;
   for (let t of towers) {
     if (Math.sqrt((t.x - x)**2+(t.y - y)**2)<t.size+5) {
       clickedTower=t; break;
     }
   }
-
   if (clickedTower) {
     showUpgradeMenu(clickedTower,x,y);
   } else {
@@ -1275,7 +800,7 @@ canvas.addEventListener('click', e => {
 
 // Простое меню
 function showUpgradeMenu(tower,x,y) {
-  alert('Пока тут меню не реализовано. Можно улучшить или продать.');
+  alert('Меню улучшения и продажи не реализовано. Можно расширить.');
 }
 
 // Обновляем статистику
@@ -1343,9 +868,10 @@ function updateEnemyIndex() {
     div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>Путь: ${e.pathIndex}`;
     container.appendChild(div);
   }
+  container.style.display='block';
 }
 
-// В основном цикле
+// Основной цикл
 function gameLoop() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   drawPath();
@@ -1354,6 +880,7 @@ function gameLoop() {
   for (let i=enemies.length-1;i>=0;i--) {
     if (!enemies[i].update()) enemies.splice(i,1);
   }
+
   for (let e of enemies) e.draw();
 
   // башни
@@ -1377,36 +904,430 @@ function gameLoop() {
   // запуск врагов
   spawnEnemies();
 
-  // показать индекс
+  // показать индекс врагов
   if (showIndex) updateEnemyIndex();
 
+  // перезапуск
   if (gameActive) requestAnimationFrame(gameLoop);
 }
 
-// Начинаем волну
-function startWave() {
-  stats.wave++;
-  document.getElementById('statsWave').innerText=stats.wave;
-  // награды за волну
-  stats.diamonds+=1;
-  if (difficulty==='hard') stats.diamonds+=2;
-  if (difficulty==='extreme') stats.diamonds+=3;
-  waveCounter++;
-  if (waveCounter>=waveRewardCount) {
-    stats.diamonds+=waveCounter*2;
-    waveCounter=0;
-  }
-  updateStats();
-
-  // множитель
-  if (stats.wave%5===0) waveMultiplier*=2;
-
-  // враги
-  enemiesToSpawn=5+Math.floor(stats.wave/2);
-  enemySpawnTimer=0;
+// Нарисовать путь
+function drawPath() {
+  ctx.strokeStyle='#f1c40f';
+  ctx.lineWidth=30;
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.setLineDash([]);
 }
 
-// Время спавна врага
+// Время спавна врагов
+function spawnEnemies() {
+  if (enemies.length>=maxEnemiesPerWave) return;
+  if (enemiesToSpawn>0) {
+    enemySpawnTimer++;
+    if (enemySpawnTimer>=60) {
+      enemySpawnTimer=0;
+      let type='red';
+      // вероятность в зависимости от волны
+      if (stats.wave>=3 && Math.random()<0.1) type='purple';
+      if (stats.wave>=5 && Math.random()<0.05) type='golden';
+      if (stats.wave>=8 && Math.random()<0.03) type='pink';
+      if (stats.wave>=10 && Math.random()<0.02) type='green';
+      if (stats.wave>=15 && Math.random()<0.01) type='white';
+      if (stats.wave>=20 && Math.random()<0.005) type='boss';
+      if (stats.wave>=12 && Math.random()<0.04) type='blue';
+      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
+      if (stats.wave>=16 && Math.random()<0.01) type='void';
+
+      enemies.push(new Enemy(type));
+      enemiesToSpawn--;
+    }
+  }
+}
+
+// Обработка кликов
+canvas.addEventListener('click', e => {
+  const rect=canvas.getBoundingClientRect();
+  const x=(e.clientX-rect.left)*(canvas.width/rect.width);
+  const y=(e.clientY-rect.top)*(canvas.height/rect.height);
+  // проверить, есть ли башня
+  let clickedTower=null;
+  for (let t of towers) {
+    if (Math.sqrt((t.x - x)**2+(t.y - y)**2)<t.size+5) {
+      clickedTower=t; break;
+    }
+  }
+  if (clickedTower) {
+    showUpgradeMenu(clickedTower,x,y);
+  } else {
+    // построить башню
+    if (stats.money>=50) {
+      stats.money-=50;
+      updateStats();
+      towers.push(new Tower(x,y,'pistol'));
+    }
+  }
+});
+
+// Меню улучшения/продажи
+function showUpgradeMenu(tower,x,y) {
+  alert('Меню улучшений не реализовано. Можно расширить.');
+}
+
+// Обновление статистики
+function updateStats() {
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
+}
+
+// Обновление врагов
+function updateEnemyIndex() {
+  const container=document.getElementById('enemyIndex');
+  container.innerHTML='';
+  for (let e of enemies) {
+    const div=document.createElement('div');
+    div.className='enemy-item';
+    div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>Путь: ${e.pathIndex}`;
+    container.appendChild(div);
+  }
+  container.style.display='block';
+}
+
+// Кнопки радиуса и индекса
+document.getElementById('toggleRadius').onclick=()=>{
+  showRadius=!showRadius;
+  document.getElementById('toggleRadius').innerText=showRadius?'Скрыть радиус':'Показать радиус';
+};
+document.getElementById('toggleIndex').onclick=()=>{
+  showIndex=!showIndex;
+  document.getElementById('enemyIndex').style.display=showIndex?'block':'none';
+};
+
+// Перезапуск
+document.getElementById('restartBtn').onclick=()=>{
+  initGame();
+  startWave();
+  gameLoop();
+  document.getElementById('gameOverlay').style.display='none';
+  document.getElementById('restartBtn').style.display='none';
+};
+
+// Обработка покупок кейсов за алмазы
+document.getElementById('openNormalCase').onclick=()=>{
+  if (stats.diamonds>=50) {
+    stats.diamonds-=50;
+    updateStats();
+    openCase('normal');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('openPremiumCase').onclick=()=>{
+  if (stats.diamonds>=200) {
+    stats.diamonds-=200;
+    updateStats();
+    openCase('premium');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('buyExtreme').onclick=()=>{
+  if (stats.diamonds>=25) {
+    stats.diamonds-=25;
+    updateStats();
+    selectDifficulty('extreme');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('buyMapMountains').onclick=()=>{
+  if (stats.diamonds>=20) {
+    stats.diamonds-=20;
+    updateStats();
+    selectMap('mountains');
+    setPath();
+  } else alert('Недостаточно алмазов');
+};
+
+// Открытие кейса
+function openCase(type='normal') {
+  const rand=Math.random()*100;
+  let item=null;
+  if (type==='normal') {
+    if (rand<=45) item='doublepistol';
+    else if (rand<=75) item='bomb';
+    else if (rand<=95) item='farm';
+    else if (rand<=99) item='toxic';
+    else if (rand<=99.6) item='turret';
+    else item='empty';
+  } else {
+    // премиум
+    if (rand<=40) item='bomb';
+    else if (rand<=65) item='farm';
+    else if (rand<=85) item='toxic';
+    else if (rand<=97.5) item='turret';
+    else item='empty';
+  }
+  // добавляем башню
+  switch(item) {
+    case 'doublepistol':
+      towers.push(new Tower(150,150,'doublepistol'));
+      break;
+    case 'bomb':
+      towers.push(new Tower(200,200,'bomb'));
+      break;
+    case 'farm':
+      towers.push(new Tower(250,250,'farm'));
+      break;
+    case 'toxic':
+      towers.push(new Tower(300,300,'toxic'));
+      break;
+    case 'turret':
+      towers.push(new Tower(350,350,'turret'));
+      break;
+    case 'empty':
+      towers.push(new Tower(400,400,'empty'));
+      break;
+  }
+}
+
+// В основном цикле
+function gameLoop() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawPath();
+
+  // враги
+  for (let i=enemies.length-1;i>=0;i--) {
+    if (!enemies[i].update()) enemies.splice(i,1);
+  }
+
+  for (let e of enemies) e.draw();
+
+  // башни
+  for (let t of towers) {
+    t.update();
+    t.draw();
+  }
+
+  // пули
+  updateBullets();
+
+  // лужи
+  for (let p of puddles) {
+    if (!p.update()) {
+      puddles.splice(puddles.indexOf(p),1);
+    } else {
+      p.draw();
+    }
+  }
+
+  // спавн врагов
+  spawnEnemies();
+
+  // показать индекс врагов
+  if (showIndex) updateEnemyIndex();
+
+  // перезапуск
+  if (gameActive) requestAnimationFrame(gameLoop);
+}
+
+// Отрисовать путь
+function drawPath() {
+  ctx.strokeStyle='#f1c40f';
+  ctx.lineWidth=30;
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// Время появления врагов
+function spawnEnemies() {
+  if (enemies.length>=maxEnemiesPerWave) return;
+  if (enemiesToSpawn>0) {
+    enemySpawnTimer++;
+    if (enemySpawnTimer>=60) {
+      enemySpawnTimer=0;
+      let type='red';
+      if (stats.wave>=3 && Math.random()<0.1) type='purple';
+      if (stats.wave>=5 && Math.random()<0.05) type='golden';
+      if (stats.wave>=8 && Math.random()<0.03) type='pink';
+      if (stats.wave>=10 && Math.random()<0.02) type='green';
+      if (stats.wave>=15 && Math.random()<0.01) type='white';
+      if (stats.wave>=20 && Math.random()<0.005) type='boss';
+      if (stats.wave>=12 && Math.random()<0.04) type='blue';
+      if (stats.wave>=14 && Math.random()<0.02) type='sonic';
+      if (stats.wave>=16 && Math.random()<0.01) type='void';
+
+      enemies.push(new Enemy(type));
+      enemiesToSpawn--;
+    }
+  }
+}
+
+// Обработка кликов
+canvas.addEventListener('click', e => {
+  const rect=canvas.getBoundingClientRect();
+  const x=(e.clientX-rect.left)*(canvas.width/rect.width);
+  const y=(e.clientY-rect.top)*(canvas.height/rect.height);
+  // проверить, есть ли башня
+  let clickedTower=null;
+  for (let t of towers) {
+    if (Math.sqrt((t.x - x)**2+(t.y - y)**2)<t.size+5) {
+      clickedTower=t; break;
+    }
+  }
+  if (clickedTower) {
+    showUpgradeMenu(clickedTower,x,y);
+  } else {
+    // построить башню
+    if (stats.money>=50) {
+      stats.money-=50;
+      updateStats();
+      towers.push(new Tower(x,y,'pistol'));
+    }
+  }
+});
+
+// Меню улучшения и продажи
+function showUpgradeMenu(tower,x,y) {
+  alert('Меню улучшений и продажи — не реализовано.');
+}
+
+// Обновление статистики
+function updateStats() {
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
+}
+
+// Пули
+function updateBullets() {
+  for (let i=bullets.length-1;i>=0;i--) {
+    const b=bullets[i];
+    if (b.instant) {
+      if (b.target.takeDamage(b.damage)) {
+        enemies.splice(enemies.indexOf(b.target),1);
+      }
+      bullets.splice(i,1);
+      continue;
+    }
+    if (b.aoe && b.target) {
+      const dx=b.target.x - b.x;
+      const dy=b.target.y - b.y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if (dist<b.speed) {
+        for (let e of enemies) {
+          const dx2=e.x - b.target.x;
+          const dy2=e.y - b.target.y;
+          if (Math.sqrt(dx2*dx2+dy2*dy2)<b.aoeRadius) {
+            if (e.takeDamage(b.damage)) {
+              enemies.splice(enemies.indexOf(e),1);
+            }
+          }
+        }
+        bullets.splice(i,1);
+        continue;
+      }
+    }
+    // летит
+    const dx=b.target.x - b.x;
+    const dy=b.target.y - b.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if (dist<b.speed) {
+      if (b.target.takeDamage(b.damage)) {
+        enemies.splice(enemies.indexOf(b.target),1);
+      }
+      bullets.splice(i,1);
+    } else {
+      b.x+= (dx/dist)*b.speed;
+      b.y+= (dy/dist)*b.speed;
+    }
+  }
+}
+
+// Обновить индекс врагов
+function updateEnemyIndex() {
+  const container=document.getElementById('enemyIndex');
+  container.innerHTML='';
+  for (let e of enemies) {
+    const div=document.createElement('div');
+    div.className='enemy-item';
+    div.innerHTML=`<h4>Тип: ${e.type}</h4>hp:${Math.round(e.health)}/${e.maxHealth}<br/>pos: (${Math.round(e.x)},${Math.round(e.y)})<br/>путь:${e.pathIndex}`;
+    container.appendChild(div);
+  }
+  container.style.display='block';
+}
+
+// Основной цикл
+let gameRunning=true;
+function gameLoop() {
+  if (!gameRunning) return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawPath();
+
+  // враги
+  for (let i=enemies.length-1;i>=0;i--) {
+    if (!enemies[i].update()) enemies.splice(i,1);
+  }
+  for (let e of enemies) e.draw();
+
+  // башни
+  for (let t of towers) {
+    t.update();
+    t.draw();
+  }
+  // пули
+  updateBullets();
+
+  // лужи
+  for (let p of puddles) {
+    if (!p.update()) {
+      puddles.splice(puddles.indexOf(p),1);
+    } else {
+      p.draw();
+    }
+  }
+
+  // запуск врагов
+  spawnEnemies();
+
+  // показать индекс врагов
+  if (showIndex) updateEnemyIndex();
+
+  requestAnimationFrame(gameLoop);
+}
+
+// Нарисовать путь
+function drawPath() {
+  ctx.strokeStyle='#f1c40f';
+  ctx.lineWidth=30;
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.strokeStyle='#d35400'; ctx.lineWidth=2; ctx.setLineDash([5,15]);
+  ctx.beginPath();
+  ctx.moveTo(PATH[0].x,PATH[0].y);
+  for (let i=1;i<PATH.length;i++) ctx.lineTo(PATH[i].x,PATH[i].y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// Время появления врагов
 function spawnEnemies() {
   if (enemies.length>=maxEnemiesPerWave) return;
   if (enemiesToSpawn>0) {
@@ -1448,7 +1369,6 @@ canvas.addEventListener('click', e => {
     showUpgradeMenu(clickedTower,x,y);
   } else {
     // построить башню
-    // проверить деньги
     if (stats.money>=50) {
       stats.money-=50;
       updateStats();
@@ -1457,12 +1377,20 @@ canvas.addEventListener('click', e => {
   }
 });
 
-// Простое меню
+// Меню улучшения/продажи
 function showUpgradeMenu(tower,x,y) {
-  alert('Пока тут меню не реализовано. Можно улучшить или продать.');
+  alert('Меню улучшений и продажи — не реализовано.');
 }
 
-// Обработка кнопок радиуса
+// Обновление статистики
+function updateStats() {
+  document.getElementById('money').innerText=stats.money;
+  document.getElementById('lives').innerText=stats.lives;
+  document.getElementById('wave').innerText=stats.wave;
+  document.getElementById('diamonds').innerText=stats.diamonds;
+}
+
+// Обработка радиусов и индекса
 document.getElementById('toggleRadius').onclick=()=>{
   showRadius=!showRadius;
   document.getElementById('toggleRadius').innerText=showRadius?'Скрыть радиус':'Показать радиус';
@@ -1471,6 +1399,106 @@ document.getElementById('toggleIndex').onclick=()=>{
   showIndex=!showIndex;
   document.getElementById('enemyIndex').style.display=showIndex?'block':'none';
 };
+
+// Начать волну
+function startWave() {
+  stats.wave++;
+  document.getElementById('statsWave').innerText=stats.wave;
+  // награды
+  stats.diamonds+=1;
+  if (difficulty==='hard') stats.diamonds+=2;
+  if (difficulty==='extreme') stats.diamonds+=3;
+
+  waveCounter++;
+  if (waveCounter>=waveRewardCount) {
+    stats.diamonds+=waveCounter*2;
+    waveCounter=0;
+  }
+  updateStats();
+
+  if (stats.wave%5===0) waveMultiplier*=2;
+  enemiesToSpawn=5+Math.floor(stats.wave/2);
+  enemySpawnTimer=0;
+}
+
+// Кнопки покупок
+document.getElementById('openNormalCase').onclick=()=> {
+  if (stats.diamonds>=50) {
+    stats.diamonds-=50;
+    updateStats();
+    openCase('normal');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('openPremiumCase').onclick=()=> {
+  if (stats.diamonds>=200) {
+    stats.diamonds-=200;
+    updateStats();
+    openCase('premium');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('buyExtreme').onclick=()=> {
+  if (stats.diamonds>=25) {
+    stats.diamonds-=25;
+    updateStats();
+    selectDifficulty('extreme');
+  } else alert('Недостаточно алмазов');
+};
+document.getElementById('buyMapMountains').onclick=()=> {
+  if (stats.diamonds>=20) {
+    stats.diamonds-=20;
+    updateStats();
+    selectMap('mountains');
+    setPath();
+  } else alert('Недостаточно алмазов');
+};
+
+// Открытие кейса
+function openCase(type='normal') {
+  const rand=Math.random()*100;
+  let item=null;
+  if (type==='normal') {
+    if (rand<=45) item='doublepistol';
+    else if (rand<=75) item='bomb';
+    else if (rand<=95) item='farm';
+    else if (rand<=99) item='toxic';
+    else if (rand<=99.6) item='turret';
+    else item='empty';
+  } else {
+    if (rand<=40) item='bomb';
+    else if (rand<=65) item='farm';
+    else if (rand<=85) item='toxic';
+    else if (rand<=97.5) item='turret';
+    else item='empty';
+  }
+  // добавляем башню
+  switch(item) {
+    case 'doublepistol':
+      towers.push(new Tower(150,150,'doublepistol'));
+      break;
+    case 'bomb':
+      towers.push(new Tower(200,200,'bomb'));
+      break;
+    case 'farm':
+      towers.push(new Tower(250,250,'farm'));
+      break;
+    case 'toxic':
+      towers.push(new Tower(300,300,'toxic'));
+      break;
+    case 'turret':
+      towers.push(new Tower(350,350,'turret'));
+      break;
+    case 'empty':
+      towers.push(new Tower(400,400,'empty'));
+      break;
+  }
+}
+
+// Стартовая волна
+startWave();
+
+// Запуск цикла
+gameLoop();
+
 </script>
 </body>
 </html>

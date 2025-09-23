@@ -765,7 +765,19 @@ button:hover {
     opacity: 1 !important;
     visibility: visible !important;
 }
-        
+       /* Показываем все башни в магазине */
+.tower-item {
+    display: flex !important;
+}
+
+/* Показываем всю информацию в индексе врагов */
+.enemy-stats .unknown {
+    color: #bdc3c7 !important;
+    font-style: normal !important;
+}
+.enemy-stats .unknown:after {
+    content: " (Данные появятся после встречи)" !important;
+} 
         
     </style>
 </head>

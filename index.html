@@ -943,19 +943,278 @@ button:hover {
     <div class="game-container">
         <canvas id="gameCanvas" width="800" height="500"></canvas>
         
-        <div class="shop">
-            <h2>Магазин</h2>
-            <!-- ... (все башни остаются без изменений) ... -->
+     <div class="shop">
+    <h2>Магазин</h2>
+    
+    <!-- ОСНОВНЫЕ БАШНИ -->
+    <div class="tower-item" data-type="pistol" data-price="50">
+        <div class="tower-preview" style="background-color: blue; border-radius: 50%;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Пистолет</div>
+            <div class="tower-stats">Урон: 1/сек | Радиус: 100px</div>
+            <div class="upgrade-option">Улучшение: 150 монет → 2 урона/сек, радиус 120px</div>
         </div>
-        
-        <div class="enemy-index" id="enemyIndex">
-            <!-- ... (индекс врагов без изменений) ... -->
+        <div class="tower-price">50</div>
+    </div>
+    
+    <div class="tower-item" data-type="swordsman" data-price="125">
+        <div class="tower-preview" style="background-color: red; transform: rotate(45deg);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Мечник</div>
+            <div class="tower-stats">Урон: 1/0.5сек | Радиус: 40px</div>
+            <div class="upgrade-option">Улучшение: 300 монет → 2 урона/0.5сек</div>
         </div>
-        
-        <div class="upgrade-menu" id="upgradeMenu">
-            <!-- ... (меню улучшения без изменений) ... -->
+        <div class="tower-price">125</div>
+    </div>
+    
+    <div class="tower-item" data-type="sniper" data-price="250">
+        <div class="tower-preview" style="background-color: purple;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Снайпер</div>
+            <div class="tower-stats">Урон: 10/5сек | Радиус: 1000px</div>
+            <div class="upgrade-option">Улучшение: 1000 монет → 25 урона/2.5сек</div>
+        </div>
+        <div class="tower-price">250</div>
+    </div>
+    
+    <div class="tower-item" data-type="freezer" data-price="600">
+        <div class="tower-preview" style="background-color: lightblue; border-radius: 50%;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Холодильник</div>
+            <div class="tower-stats">Урон: 1/5сек | Радиус: 250px | Замедление: 10%</div>
+            <div class="upgrade-option">Улучшение: 1250 монет → замедление 35%</div>
+        </div>
+        <div class="tower-price">600</div>
+    </div>
+    
+    <div class="tower-item" data-type="knight" data-price="1000">
+        <div class="tower-preview" style="background: gray; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Рыцарь</div>
+            <div class="tower-stats">Внутр: 5ур/0.6сек/50px | Внеш: 5ур/1.9сек/280px</div>
+            <div class="upgrade-option">Улучшение: 2500 монет → усиление атаки</div>
+        </div>
+        <div class="tower-price">1000</div>
+    </div>
+    
+    <div class="tower-item" data-type="farm" data-price="450">
+        <div class="tower-preview" style="background-color: brown; border-radius: 50%;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Ферма</div>
+            <div class="tower-stats">Доход: 1 монета/сек | Лимит: 5</div>
+            <div class="upgrade-option">Улучшение: 900 монет → 3 монеты/сек</div>
+        </div>
+        <div class="tower-price">450</div>
+    </div>
+    
+    <div class="tower-item" data-type="chance" data-price="777">
+        <div class="tower-preview" style="background-color: pink; clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Шанс</div>
+            <div class="tower-stats">Урон: 7-17/0.7сек | Радиус: 170px</div>
+            <div class="upgrade-option">Улучшение: 7777 монет → 17-37 урона/0.77сек</div>
+        </div>
+        <div class="tower-price">777</div>
+    </div>
+    
+    <div class="tower-item" data-type="atomic" data-price="10000">
+        <div class="tower-preview" style="background-color: darkgreen; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Атомный</div>
+            <div class="tower-stats">Урон: 200/60сек | Радиус: 1000px | Лимит: 2</div>
+            <div class="upgrade-option">Улучшение: 30000 монет → 250 урона/50сек</div>
+        </div>
+        <div class="tower-price">10000</div>
+    </div>
+    
+    <div class="tower-item" data-type="omega" data-price="12500">
+        <div class="tower-preview" style="background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);"></div>
+        <div class="tower-info">
+            <div class="tower-name">ОМЕГА</div>
+            <div class="tower-stats">Внутр: 10ур/0.5сек/90px | Внеш: 25ур/3сек/300px | Лимит: 2</div>
+            <div class="upgrade-option">Улучшение: 40000 монет → 15ур/0.4сек/150px и 20ур/1сек/300px</div>
+        </div>
+        <div class="tower-price">12500</div>
+    </div>
+    
+    <!-- БАШНИ ИЗ КЕЙСОВ -->
+    <div class="tower-item" data-type="doublepistol" data-price="75">
+        <div class="tower-preview" style="background: linear-gradient(to right, blue, lightblue); border-radius: 50%;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Двойной пистолет</div>
+            <div class="tower-stats">Урон: 2/сек | Радиус: 100px</div>
+            <div class="upgrade-option">Улучшение: 150 монет → 4 урона/сек, радиус 120px</div>
+        </div>
+        <div class="tower-price">75</div>
+    </div>
+    
+    <div class="tower-item" data-type="bomb" data-price="325">
+        <div class="tower-preview" style="background-color: black; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Бомбы</div>
+            <div class="tower-stats">Урон: 5/2.5сек | Радиус: 80px | AoE</div>
+            <div class="upgrade-option">Улучшение: 650 монет → 5 урона/1.5сек, радиус 130px</div>
+        </div>
+        <div class="tower-price">325</div>
+    </div>
+    
+    <div class="tower-item" data-type="goodfarm" data-price="450">
+        <div class="tower-preview" style="background-color: gold;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Хорошая ферма</div>
+            <div class="tower-stats">Доход: 5 монет/сек | Лимит: 2</div>
+            <div class="upgrade-option">Нет улучшений</div>
+        </div>
+        <div class="tower-price">450</div>
+    </div>
+    
+    <div class="tower-item" data-type="toxic" data-price="1250">
+        <div class="tower-preview" style="background-color: green; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Токсичный</div>
+            <div class="tower-stats">Урон: 1/0.1сек | Лужа на поле | Лимит: 3</div>
+            <div class="upgrade-option">Улучшение: 2500 монет → 2 урона/0.1сек</div>
+        </div>
+        <div class="tower-price">1250</div>
+    </div>
+    
+    <div class="tower-item" data-type="turret" data-price="2500">
+        <div class="tower-preview" style="background-color: gray;"></div>
+        <div class="tower-info">
+            <div class="tower-name">Турель</div>
+            <div class="tower-stats">Урон: 2/0.2сек | Радиус: 150px | Лимит: 8</div>
+            <div class="upgrade-option">Улучшение: 5000 монет → 2 урона/0.1сек, радиус 160px</div>
+        </div>
+        <div class="tower-price">2500</div>
+    </div>
+    
+    <div class="tower-item" data-type="empty" data-price="7500">
+        <div class="tower-preview" style="background: linear-gradient(to right, purple, black);"></div>
+        <div class="tower-info">
+            <div class="tower-name">Пустой</div>
+            <div class="tower-stats">Урон: 10/сек | Радиус: 100px | Замедление 50% | Лимит: 1</div>
+            <div class="upgrade-option">Улучшение: 17500 монет → 20 урона/сек, радиус 200px, замедление 65%</div>
+        </div>
+        <div class="tower-price">7500</div>
+    </div>
+</div>
+
+<!-- ИНДЕКС ВРАГОВ -->
+<div class="enemy-index" id="enemyIndex">
+    <h2>Индекс врагов</h2>
+    
+    <div class="enemy-item" id="red-enemy">
+        <div class="enemy-name">Красный шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 3 + волна/3</div>
+            <div>Скорость: 1.0</div>
+            <div>Награда: 10 монет</div>
         </div>
     </div>
+    
+    <div class="enemy-item" id="purple-enemy">
+        <div class="enemy-name">Фиолетовый шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 15</div>
+            <div>Скорость: 0.5</div>
+            <div>Награда: 25 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="golden-enemy">
+        <div class="enemy-name">Золотой шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 35</div>
+            <div>Скорость: 2.0</div>
+            <div>Награда: 50 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="pink-enemy">
+        <div class="enemy-name">Розовый шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 11</div>
+            <div>Скорость: 5.0</div>
+            <div>Награда: 30 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="green-enemy">
+        <div class="enemy-name">Зеленый шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 100</div>
+            <div>Скорость: 0.32</div>
+            <div>Награда: 75 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="white-enemy">
+        <div class="enemy-name">Белый шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 120</div>
+            <div>Скорость: переменная (0.32-2.0)</div>
+            <div>Награда: 100 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="boss-enemy">
+        <div class="enemy-name">БОСС (Черный шар)</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 250 + 250 за каждые 50 волн</div>
+            <div>Скорость: 1.0</div>
+            <div>Особенность: Уменьшает урон башен в радиусе 40px</div>
+            <div>Награда: 500 + волна×10 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="blue-enemy">
+        <div class="enemy-name">Голубой шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 200</div>
+            <div>Скорость: 0.2</div>
+            <div>Особенность: Лечит других врагов каждые 10 секунд</div>
+            <div>Награда: 150 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="sonic-enemy">
+        <div class="enemy-name">Соник шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 10</div>
+            <div>Скорость: 10.0</div>
+            <div>Особенность: Очень быстрый</div>
+            <div>Награда: 200 монет</div>
+        </div>
+    </div>
+    
+    <div class="enemy-item" id="void-enemy">
+        <div class="enemy-name">Пустотный шар</div>
+        <div class="enemy-stats">
+            <div>Здоровье: 1000</div>
+            <div>Скорость: 0.33</div>
+            <div>Особенность: Удаляет случайную башню каждые 60 секунд</div>
+            <div>Награда: 1000 монет</div>
+        </div>
+    </div>
+</div>
+
+<!-- МЕНЮ УЛУЧШЕНИЯ -->
+<div class="upgrade-menu" id="upgradeMenu">
+    <h3>Улучшение башни</h3>
+    <div id="upgradeInfo">
+        <p>Выберите башню для просмотра информации об улучшении</p>
+    </div>
+    <div class="targeting-options" id="targetingOptions">
+        <label>
+            <input type="radio" name="targeting" value="first" checked> Первая цель (ближайшая к концу)
+        </label>
+        <label>
+            <input type="radio" name="targeting" value="random"> Случайная цель
+        </label>
+    </div>
+    <button class="upgrade-btn" id="upgradeBtn">Улучшить</button>
+    <button class="sell-btn" id="sellBtn">Продать (50% стоимости)</button>
+</div>
     
     <button id="restartGame">Начать заново</button>
     <div class="game-overlay" id="gameOverlay"></div>

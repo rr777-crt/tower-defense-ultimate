@@ -721,6 +721,52 @@ button:hover {
             border-radius: 5px;
             border: 1px solid #555;
         }
+        /* Стили для специальных башен из кейсов */
+#doublePistolTower,
+#bombTower,
+#goodFarmTower,
+#toxicTower,
+#turretTower,
+#emptyTower {
+    display: flex !important;
+}
+
+/* Стили для превью башен */
+.tower-preview[style*="linear-gradient(to right, blue, lightblue)"] {
+    background: linear-gradient(to right, blue, lightblue) !important;
+    border-radius: 50% !important;
+}
+
+.tower-preview[style*="background-color: black; clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"] {
+    background-color: black !important;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%) !important;
+}
+
+.tower-preview[style*="background-color: gold"] {
+    background-color: gold !important;
+}
+
+.tower-preview[style*="background-color: green; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%)"] {
+    background-color: green !important;
+    clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%) !important;
+}
+
+.tower-preview[style*="background-color: gray"] {
+    background-color: gray !important;
+}
+
+.tower-preview[style*="linear-gradient(to right, purple, black)"] {
+    background: linear-gradient(to right, purple, black) !important;
+}
+
+/* Убедимся, что все башни видны в магазине */
+.tower-item {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+        
+        
     </style>
 </head>
 <body>

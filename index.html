@@ -672,7 +672,7 @@ button:hover {
     }
 }
 
-/* Добавляем стиль для кнопки информации о кейсе */
+/* Р”РѕР±Р°РІР»СЏРµРј СЃС‚РёР»СЊ РґР»СЏ РєРЅРѕРїРєРё РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРµР№СЃРµ */
 .case-info-btn {
     padding: 5px 10px;
     background-color: #9b59b6;
@@ -697,7 +697,7 @@ button:hover {
     border: 1px solid #555;
 }
         
-        /* Добавляем стиль для кнопки информации о кейсе */
+        /* Р”РѕР±Р°РІР»СЏРµРј СЃС‚РёР»СЊ РґР»СЏ РєРЅРѕРїРєРё РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРµР№СЃРµ */
         .case-info-btn {
             padding: 5px 10px;
             background-color: #9b59b6;
@@ -721,7 +721,7 @@ button:hover {
             border-radius: 5px;
             border: 1px solid #555;
         }
-        /* Стили для специальных башен из кейсов */
+        /* РЎС‚РёР»Рё РґР»СЏ СЃРїРµС†РёР°Р»СЊРЅС‹С… Р±Р°С€РµРЅ РёР· РєРµР№СЃРѕРІ */
 #doublePistolTower,
 #bombTower,
 #goodFarmTower,
@@ -731,7 +731,7 @@ button:hover {
     display: flex !important;
 }
 
-/* Стили для превью башен */
+/* РЎС‚РёР»Рё РґР»СЏ РїСЂРµРІСЊСЋ Р±Р°С€РµРЅ */
 .tower-preview[style*="linear-gradient(to right, blue, lightblue)"] {
     background: linear-gradient(to right, blue, lightblue) !important;
     border-radius: 50% !important;
@@ -759,24 +759,24 @@ button:hover {
     background: linear-gradient(to right, purple, black) !important;
 }
 
-/* Убедимся, что все башни видны в магазине */
+/* РЈР±РµРґРёРјСЃСЏ, С‡С‚Рѕ РІСЃРµ Р±Р°С€РЅРё РІРёРґРЅС‹ РІ РјР°РіР°Р·РёРЅРµ */
 .tower-item {
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
-       /* Показываем все башни в магазине */
+       /* РџРѕРєР°Р·С‹РІР°РµРј РІСЃРµ Р±Р°С€РЅРё РІ РјР°РіР°Р·РёРЅРµ */
 .tower-item {
     display: flex !important;
 }
 
-/* Показываем всю информацию в индексе врагов */
+/* РџРѕРєР°Р·С‹РІР°РµРј РІСЃСЋ РёРЅС„РѕСЂРјР°С†РёСЋ РІ РёРЅРґРµРєСЃРµ РІСЂР°РіРѕРІ */
 .enemy-stats .unknown {
     color: #bdc3c7 !important;
     font-style: normal !important;
 }
 .enemy-stats .unknown:after {
-    content: " (Данные появятся после встречи)" !important;
+    content: " (Р”Р°РЅРЅС‹Рµ РїРѕСЏРІСЏС‚СЃСЏ РїРѕСЃР»Рµ РІСЃС‚СЂРµС‡Рё)" !important;
 } 
         
     </style>
@@ -784,142 +784,142 @@ button:hover {
 <body>
     <div class="setup-screen" id="setupScreen">
         <div class="setup-container">
-            <h2>Настройка игры</h2>
+            <h2>РќР°СЃС‚СЂРѕР№РєР° РёРіСЂС‹</h2>
             
             <div class="diamond-count" id="diamondCount">
-                <span class="diamond-icon">💎</span>
+                <span class="diamond-icon">рџ’Ћ</span>
                 <span id="diamondTotal">0</span>
             </div>
             
-            <button class="diamond-shop-btn" id="diamondShopBtn">Магазин</button>
+            <button class="diamond-shop-btn" id="diamondShopBtn">РњР°РіР°Р·РёРЅ</button>
             
             <div class="difficulty-options">
-                <h3>Выберите сложность:</h3>
+                <h3>Р’С‹Р±РµСЂРёС‚Рµ СЃР»РѕР¶РЅРѕСЃС‚СЊ:</h3>
                 <div class="option-group">
-                    <div class="option-btn selected" data-difficulty="normal">Классика</div>
-                    <div class="option-btn" data-difficulty="hard">Сложный режим</div>
-                    <div class="option-btn" data-difficulty="extreme" id="extremeDifficultyBtn">Экстрим</div>
+                    <div class="option-btn selected" data-difficulty="normal">РљР»Р°СЃСЃРёРєР°</div>
+                    <div class="option-btn" data-difficulty="hard">РЎР»РѕР¶РЅС‹Р№ СЂРµР¶РёРј</div>
+                    <div class="option-btn" data-difficulty="extreme" id="extremeDifficultyBtn">Р­РєСЃС‚СЂРёРј</div>
                 </div>
             </div>
             
             <div class="map-options">
-                <h3>Выберите карту:</h3>
+                <h3>Р’С‹Р±РµСЂРёС‚Рµ РєР°СЂС‚Сѓ:</h3>
                 <div class="option-group">
-                    <div class="option-btn selected" data-map="hills">Холмы</div>
-                    <div class="option-btn" data-map="flat">Ровная дорога</div>
-                    <div class="option-btn" data-map="mountains" id="mountainsMapBtn">Горки</div>
+                    <div class="option-btn selected" data-map="hills">РҐРѕР»РјС‹</div>
+                    <div class="option-btn" data-map="flat">Р РѕРІРЅР°СЏ РґРѕСЂРѕРіР°</div>
+                    <div class="option-btn" data-map="mountains" id="mountainsMapBtn">Р“РѕСЂРєРё</div>
                 </div>
             </div>
             
-            <!-- Убираем секцию инвентаря -->
+            <!-- РЈР±РёСЂР°РµРј СЃРµРєС†РёСЋ РёРЅРІРµРЅС‚Р°СЂСЏ -->
             
-            <button class="start-btn" id="startGame">Начать игру</button>
+            <button class="start-btn" id="startGame">РќР°С‡Р°С‚СЊ РёРіСЂСѓ</button>
         </div>
     </div>
     
     <div class="shop-screen" id="shopScreen">
-        <button class="close-shop" id="closeShop">×</button>
+        <button class="close-shop" id="closeShop">Г—</button>
         <div class="shop-container">
-            <h2>Магазин алмазов</h2>
+            <h2>РњР°РіР°Р·РёРЅ Р°Р»РјР°Р·РѕРІ</h2>
             
             <div class="shop-categories">
-                <div class="shop-category active" data-category="difficulties">Сложности</div>
-                <div class="shop-category" data-category="maps">Карты</div>
-                <div class="shop-category" data-category="cases">Кейсы</div>
+                <div class="shop-category active" data-category="difficulties">РЎР»РѕР¶РЅРѕСЃС‚Рё</div>
+                <div class="shop-category" data-category="maps">РљР°СЂС‚С‹</div>
+                <div class="shop-category" data-category="cases">РљРµР№СЃС‹</div>
             </div>
             
             <div class="shop-items">
                 <div class="shop-item" data-category="difficulties">
-                    <h3>Режим Экстрим</h3>
-                    <p>Откройте экстремальный режим сложности: +1% к скорости врагов, x2 здоровья, всего 1 жизнь</p>
+                    <h3>Р РµР¶РёРј Р­РєСЃС‚СЂРёРј</h3>
+                    <p>РћС‚РєСЂРѕР№С‚Рµ СЌРєСЃС‚СЂРµРјР°Р»СЊРЅС‹Р№ СЂРµР¶РёРј СЃР»РѕР¶РЅРѕСЃС‚Рё: +1% Рє СЃРєРѕСЂРѕСЃС‚Рё РІСЂР°РіРѕРІ, x2 Р·РґРѕСЂРѕРІСЊСЏ, РІСЃРµРіРѕ 1 Р¶РёР·РЅСЊ</p>
                     <div class="shop-item-price">
-                        <span class="diamond-icon">💎</span>
+                        <span class="diamond-icon">рџ’Ћ</span>
                         <span>25</span>
-                        <button class="shop-item-btn" data-item="extreme" data-price="25" id="buyExtremeBtn">Купить</button>
+                        <button class="shop-item-btn" data-item="extreme" data-price="25" id="buyExtremeBtn">РљСѓРїРёС‚СЊ</button>
                     </div>
                 </div>
                 
                 <div class="shop-item" data-category="maps">
-                    <h3>Карта Горки</h3>
-                    <p>Откройте карту с множеством поворотов и извилистым путем</p>
+                    <h3>РљР°СЂС‚Р° Р“РѕСЂРєРё</h3>
+                    <p>РћС‚РєСЂРѕР№С‚Рµ РєР°СЂС‚Сѓ СЃ РјРЅРѕР¶РµСЃС‚РІРѕРј РїРѕРІРѕСЂРѕС‚РѕРІ Рё РёР·РІРёР»РёСЃС‚С‹Рј РїСѓС‚РµРј</p>
                     <div class="shop-item-price">
-                        <span class="diamond-icon">💎</span>
+                        <span class="diamond-icon">рџ’Ћ</span>
                         <span>20</span>
-                        <button class="shop-item-btn" data-item="mountains" data-price="20" id="buyMountainsBtn">Купить</button>
+                        <button class="shop-item-btn" data-item="mountains" data-price="20" id="buyMountainsBtn">РљСѓРїРёС‚СЊ</button>
                     </div>
                 </div>
                 
                 <div class="shop-item" data-category="cases">
-                    <h3>Обычный кейс</h3>
-                    <p>Шанс получить одну из специальных башен</p>
+                    <h3>РћР±С‹С‡РЅС‹Р№ РєРµР№СЃ</h3>
+                    <p>РЁР°РЅСЃ РїРѕР»СѓС‡РёС‚СЊ РѕРґРЅСѓ РёР· СЃРїРµС†РёР°Р»СЊРЅС‹С… Р±Р°С€РµРЅ</p>
                     <button class="case-info-btn" data-case="normal">?</button>
                     <div class="case-info-content">
                         <div class="case-item">
                             <div class="inventory-preview" style="background: linear-gradient(to right, blue, lightblue);"></div>
-                            <span>Двойной пистолет</span>
+                            <span>Р”РІРѕР№РЅРѕР№ РїРёСЃС‚РѕР»РµС‚</span>
                             <span class="case-item-chance">45%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: black; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                            <span>Бомбы</span>
+                            <span>Р‘РѕРјР±С‹</span>
                             <span class="case-item-chance">30%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: gold;"></div>
-                            <span>Хорошая ферма</span>
+                            <span>РҐРѕСЂРѕС€Р°СЏ С„РµСЂРјР°</span>
                             <span class="case-item-chance">20%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: green; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%);"></div>
-                            <span>Токсичный</span>
+                            <span>РўРѕРєСЃРёС‡РЅС‹Р№</span>
                             <span class="case-item-chance">4%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: gray;"></div>
-                            <span>Турель</span>
+                            <span>РўСѓСЂРµР»СЊ</span>
                             <span class="case-item-chance">0.6%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background: linear-gradient(to right, purple, black);"></div>
-                            <span>Пустой</span>
+                            <span>РџСѓСЃС‚РѕР№</span>
                             <span class="case-item-chance">0.4%</span>
                         </div>
                     </div>
-                    <button class="shop-item-btn" data-case="normal" data-price="50" id="openNormalCaseBtn">Открыть за 💎50</button>
+                    <button class="shop-item-btn" data-case="normal" data-price="50" id="openNormalCaseBtn">РћС‚РєСЂС‹С‚СЊ Р·Р° рџ’Ћ50</button>
                 </div>
                 
                 <div class="shop-item" data-category="cases">
-                    <h3>Премиум кейс</h3>
-                    <p>Улучшенный шанс получить редкие башни</p>
+                    <h3>РџСЂРµРјРёСѓРј РєРµР№СЃ</h3>
+                    <p>РЈР»СѓС‡С€РµРЅРЅС‹Р№ С€Р°РЅСЃ РїРѕР»СѓС‡РёС‚СЊ СЂРµРґРєРёРµ Р±Р°С€РЅРё</p>
                     <button class="case-info-btn" data-case="premium">?</button>
                     <div class="case-info-content">
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: black; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                            <span>Бомбы</span>
+                            <span>Р‘РѕРјР±С‹</span>
                             <span class="case-item-chance">40%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: gold;"></div>
-                            <span>Хорошая ферма</span>
+                            <span>РҐРѕСЂРѕС€Р°СЏ С„РµСЂРјР°</span>
                             <span class="case-item-chance">25%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: green; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%);"></div>
-                            <span>Токсичный</span>
+                            <span>РўРѕРєСЃРёС‡РЅС‹Р№</span>
                             <span class="case-item-chance">20%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background-color: gray;"></div>
-                            <span>Турель</span>
+                            <span>РўСѓСЂРµР»СЊ</span>
                             <span class="case-item-chance">12.5%</span>
                         </div>
                         <div class="case-item">
                             <div class="inventory-preview" style="background: linear-gradient(to right, purple, black);"></div>
-                            <span>Пустой</span>
+                            <span>РџСѓСЃС‚РѕР№</span>
                             <span class="case-item-chance">2.5%</span>
                         </div>
                     </div>
-                    <button class="shop-item-btn" data-case="premium" data-price="200" id="openPremiumCaseBtn">Открыть за 💎200</button>
+                    <button class="shop-item-btn" data-case="premium" data-price="200" id="openPremiumCaseBtn">РћС‚РєСЂС‹С‚СЊ Р·Р° рџ’Ћ200</button>
                 </div>
             </div>
         </div>
@@ -929,14 +929,14 @@ button:hover {
     
     <div class="info-panel">
         <div class="stats">
-            Деньги: <span id="money">200</span> | 
-            Жизни: <span id="lives">20</span> | 
-            Волна: <span id="wave">0</span> |
-            Алмазы: <span id="diamonds">0</span>
+            Р”РµРЅСЊРіРё: <span id="money">200</span> | 
+            Р–РёР·РЅРё: <span id="lives">20</span> | 
+            Р’РѕР»РЅР°: <span id="wave">0</span> |
+            РђР»РјР°Р·С‹: <span id="diamonds">0</span>
         </div>
         <div class="controls">
-            <button id="toggleRadius">Скрыть радиус</button>
-            <button id="toggleIndex">Показать индекс</button>
+            <button id="toggleRadius">РЎРєСЂС‹С‚СЊ СЂР°РґРёСѓСЃ</button>
+            <button id="toggleIndex">РџРѕРєР°Р·Р°С‚СЊ РёРЅРґРµРєСЃ</button>
         </div>
     </div>
     
@@ -944,15 +944,15 @@ button:hover {
         <canvas id="gameCanvas" width="800" height="500"></canvas>
         
      <div class="shop">
-    <h2>Магазин</h2>
+    <h2>РњР°РіР°Р·РёРЅ</h2>
     
-    <!-- ОСНОВНЫЕ БАШНИ -->
+    <!-- РћРЎРќРћР’РќР«Р• Р‘РђРЁРќР -->
     <div class="tower-item" data-type="pistol" data-price="50">
         <div class="tower-preview" style="background-color: blue; border-radius: 50%;"></div>
         <div class="tower-info">
-            <div class="tower-name">Пистолет</div>
-            <div class="tower-stats">Урон: 1/сек | Радиус: 100px</div>
-            <div class="upgrade-option">Улучшение: 150 монет → 2 урона/сек, радиус 120px</div>
+            <div class="tower-name">РџРёСЃС‚РѕР»РµС‚</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 1/СЃРµРє | Р Р°РґРёСѓСЃ: 100px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 150 РјРѕРЅРµС‚ в†’ 2 СѓСЂРѕРЅР°/СЃРµРє, СЂР°РґРёСѓСЃ 120px</div>
         </div>
         <div class="tower-price">50</div>
     </div>
@@ -960,9 +960,9 @@ button:hover {
     <div class="tower-item" data-type="swordsman" data-price="125">
         <div class="tower-preview" style="background-color: red; transform: rotate(45deg);"></div>
         <div class="tower-info">
-            <div class="tower-name">Мечник</div>
-            <div class="tower-stats">Урон: 1/0.5сек | Радиус: 40px</div>
-            <div class="upgrade-option">Улучшение: 300 монет → 2 урона/0.5сек</div>
+            <div class="tower-name">РњРµС‡РЅРёРє</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 1/0.5СЃРµРє | Р Р°РґРёСѓСЃ: 40px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 300 РјРѕРЅРµС‚ в†’ 2 СѓСЂРѕРЅР°/0.5СЃРµРє</div>
         </div>
         <div class="tower-price">125</div>
     </div>
@@ -970,9 +970,9 @@ button:hover {
     <div class="tower-item" data-type="sniper" data-price="250">
         <div class="tower-preview" style="background-color: purple;"></div>
         <div class="tower-info">
-            <div class="tower-name">Снайпер</div>
-            <div class="tower-stats">Урон: 10/5сек | Радиус: 1000px</div>
-            <div class="upgrade-option">Улучшение: 1000 монет → 25 урона/2.5сек</div>
+            <div class="tower-name">РЎРЅР°Р№РїРµСЂ</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 10/5СЃРµРє | Р Р°РґРёСѓСЃ: 1000px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 1000 РјРѕРЅРµС‚ в†’ 25 СѓСЂРѕРЅР°/2.5СЃРµРє</div>
         </div>
         <div class="tower-price">250</div>
     </div>
@@ -980,9 +980,9 @@ button:hover {
     <div class="tower-item" data-type="freezer" data-price="600">
         <div class="tower-preview" style="background-color: lightblue; border-radius: 50%;"></div>
         <div class="tower-info">
-            <div class="tower-name">Холодильник</div>
-            <div class="tower-stats">Урон: 1/5сек | Радиус: 250px | Замедление: 10%</div>
-            <div class="upgrade-option">Улучшение: 1250 монет → замедление 35%</div>
+            <div class="tower-name">РҐРѕР»РѕРґРёР»СЊРЅРёРє</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 1/5СЃРµРє | Р Р°РґРёСѓСЃ: 250px | Р—Р°РјРµРґР»РµРЅРёРµ: 10%</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 1250 РјРѕРЅРµС‚ в†’ Р·Р°РјРµРґР»РµРЅРёРµ 35%</div>
         </div>
         <div class="tower-price">600</div>
     </div>
@@ -990,9 +990,9 @@ button:hover {
     <div class="tower-item" data-type="knight" data-price="1000">
         <div class="tower-preview" style="background: gray; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
         <div class="tower-info">
-            <div class="tower-name">Рыцарь</div>
-            <div class="tower-stats">Внутр: 5ур/0.6сек/50px | Внеш: 5ур/1.9сек/280px</div>
-            <div class="upgrade-option">Улучшение: 2500 монет → усиление атаки</div>
+            <div class="tower-name">Р С‹С†Р°СЂСЊ</div>
+            <div class="tower-stats">Р’РЅСѓС‚СЂ: 5СѓСЂ/0.6СЃРµРє/50px | Р’РЅРµС€: 5СѓСЂ/1.9СЃРµРє/280px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 2500 РјРѕРЅРµС‚ в†’ СѓСЃРёР»РµРЅРёРµ Р°С‚Р°РєРё</div>
         </div>
         <div class="tower-price">1000</div>
     </div>
@@ -1000,9 +1000,9 @@ button:hover {
     <div class="tower-item" data-type="farm" data-price="450">
         <div class="tower-preview" style="background-color: brown; border-radius: 50%;"></div>
         <div class="tower-info">
-            <div class="tower-name">Ферма</div>
-            <div class="tower-stats">Доход: 1 монета/сек | Лимит: 5</div>
-            <div class="upgrade-option">Улучшение: 900 монет → 3 монеты/сек</div>
+            <div class="tower-name">Р¤РµСЂРјР°</div>
+            <div class="tower-stats">Р”РѕС…РѕРґ: 1 РјРѕРЅРµС‚Р°/СЃРµРє | Р›РёРјРёС‚: 5</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 900 РјРѕРЅРµС‚ в†’ 3 РјРѕРЅРµС‚С‹/СЃРµРє</div>
         </div>
         <div class="tower-price">450</div>
     </div>
@@ -1010,9 +1010,9 @@ button:hover {
     <div class="tower-item" data-type="chance" data-price="777">
         <div class="tower-preview" style="background-color: pink; clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);"></div>
         <div class="tower-info">
-            <div class="tower-name">Шанс</div>
-            <div class="tower-stats">Урон: 7-17/0.7сек | Радиус: 170px</div>
-            <div class="upgrade-option">Улучшение: 7777 монет → 17-37 урона/0.77сек</div>
+            <div class="tower-name">РЁР°РЅСЃ</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 7-17/0.7СЃРµРє | Р Р°РґРёСѓСЃ: 170px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 7777 РјРѕРЅРµС‚ в†’ 17-37 СѓСЂРѕРЅР°/0.77СЃРµРє</div>
         </div>
         <div class="tower-price">777</div>
     </div>
@@ -1020,9 +1020,9 @@ button:hover {
     <div class="tower-item" data-type="atomic" data-price="10000">
         <div class="tower-preview" style="background-color: darkgreen; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);"></div>
         <div class="tower-info">
-            <div class="tower-name">Атомный</div>
-            <div class="tower-stats">Урон: 200/60сек | Радиус: 1000px | Лимит: 2</div>
-            <div class="upgrade-option">Улучшение: 30000 монет → 250 урона/50сек</div>
+            <div class="tower-name">РђС‚РѕРјРЅС‹Р№</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 200/60СЃРµРє | Р Р°РґРёСѓСЃ: 1000px | Р›РёРјРёС‚: 2</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 30000 РјРѕРЅРµС‚ в†’ 250 СѓСЂРѕРЅР°/50СЃРµРє</div>
         </div>
         <div class="tower-price">10000</div>
     </div>
@@ -1030,20 +1030,20 @@ button:hover {
     <div class="tower-item" data-type="omega" data-price="12500">
         <div class="tower-preview" style="background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);"></div>
         <div class="tower-info">
-            <div class="tower-name">ОМЕГА</div>
-            <div class="tower-stats">Внутр: 10ур/0.5сек/90px | Внеш: 25ур/3сек/300px | Лимит: 2</div>
-            <div class="upgrade-option">Улучшение: 40000 монет → 15ур/0.4сек/150px и 20ур/1сек/300px</div>
+            <div class="tower-name">РћРњР•Р“Рђ</div>
+            <div class="tower-stats">Р’РЅСѓС‚СЂ: 10СѓСЂ/0.5СЃРµРє/90px | Р’РЅРµС€: 25СѓСЂ/3СЃРµРє/300px | Р›РёРјРёС‚: 2</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 40000 РјРѕРЅРµС‚ в†’ 15СѓСЂ/0.4СЃРµРє/150px Рё 20СѓСЂ/1СЃРµРє/300px</div>
         </div>
         <div class="tower-price">12500</div>
     </div>
     
-    <!-- БАШНИ ИЗ КЕЙСОВ -->
+    <!-- Р‘РђРЁРќР РР— РљР•Р™РЎРћР’ -->
     <div class="tower-item" data-type="doublepistol" data-price="75">
         <div class="tower-preview" style="background: linear-gradient(to right, blue, lightblue); border-radius: 50%;"></div>
         <div class="tower-info">
-            <div class="tower-name">Двойной пистолет</div>
-            <div class="tower-stats">Урон: 2/сек | Радиус: 100px</div>
-            <div class="upgrade-option">Улучшение: 150 монет → 4 урона/сек, радиус 120px</div>
+            <div class="tower-name">Р”РІРѕР№РЅРѕР№ РїРёСЃС‚РѕР»РµС‚</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 2/СЃРµРє | Р Р°РґРёСѓСЃ: 100px</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 150 РјРѕРЅРµС‚ в†’ 4 СѓСЂРѕРЅР°/СЃРµРє, СЂР°РґРёСѓСЃ 120px</div>
         </div>
         <div class="tower-price">75</div>
     </div>
@@ -1051,9 +1051,9 @@ button:hover {
     <div class="tower-item" data-type="bomb" data-price="325">
         <div class="tower-preview" style="background-color: black; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
         <div class="tower-info">
-            <div class="tower-name">Бомбы</div>
-            <div class="tower-stats">Урон: 5/2.5сек | Радиус: 80px | AoE</div>
-            <div class="upgrade-option">Улучшение: 650 монет → 5 урона/1.5сек, радиус 130px</div>
+            <div class="tower-name">Р‘РѕРјР±С‹</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 5/2.5СЃРµРє | Р Р°РґРёСѓСЃ: 80px | AoE</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 650 РјРѕРЅРµС‚ в†’ 5 СѓСЂРѕРЅР°/1.5СЃРµРє, СЂР°РґРёСѓСЃ 130px</div>
         </div>
         <div class="tower-price">325</div>
     </div>
@@ -1061,9 +1061,9 @@ button:hover {
     <div class="tower-item" data-type="goodfarm" data-price="450">
         <div class="tower-preview" style="background-color: gold;"></div>
         <div class="tower-info">
-            <div class="tower-name">Хорошая ферма</div>
-            <div class="tower-stats">Доход: 5 монет/сек | Лимит: 2</div>
-            <div class="upgrade-option">Нет улучшений</div>
+            <div class="tower-name">РҐРѕСЂРѕС€Р°СЏ С„РµСЂРјР°</div>
+            <div class="tower-stats">Р”РѕС…РѕРґ: 5 РјРѕРЅРµС‚/СЃРµРє | Р›РёРјРёС‚: 2</div>
+            <div class="upgrade-option">РќРµС‚ СѓР»СѓС‡С€РµРЅРёР№</div>
         </div>
         <div class="tower-price">450</div>
     </div>
@@ -1071,9 +1071,9 @@ button:hover {
     <div class="tower-item" data-type="toxic" data-price="1250">
         <div class="tower-preview" style="background-color: green; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 90% 70%, 50% 100%, 10% 70%, 0% 35%, 20% 10%);"></div>
         <div class="tower-info">
-            <div class="tower-name">Токсичный</div>
-            <div class="tower-stats">Урон: 1/0.1сек | Лужа на поле | Лимит: 3</div>
-            <div class="upgrade-option">Улучшение: 2500 монет → 2 урона/0.1сек</div>
+            <div class="tower-name">РўРѕРєСЃРёС‡РЅС‹Р№</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 1/0.1СЃРµРє | Р›СѓР¶Р° РЅР° РїРѕР»Рµ | Р›РёРјРёС‚: 3</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 2500 РјРѕРЅРµС‚ в†’ 2 СѓСЂРѕРЅР°/0.1СЃРµРє</div>
         </div>
         <div class="tower-price">1250</div>
     </div>
@@ -1081,9 +1081,9 @@ button:hover {
     <div class="tower-item" data-type="turret" data-price="2500">
         <div class="tower-preview" style="background-color: gray;"></div>
         <div class="tower-info">
-            <div class="tower-name">Турель</div>
-            <div class="tower-stats">Урон: 2/0.2сек | Радиус: 150px | Лимит: 8</div>
-            <div class="upgrade-option">Улучшение: 5000 монет → 2 урона/0.1сек, радиус 160px</div>
+            <div class="tower-name">РўСѓСЂРµР»СЊ</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 2/0.2СЃРµРє | Р Р°РґРёСѓСЃ: 150px | Р›РёРјРёС‚: 8</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 5000 РјРѕРЅРµС‚ в†’ 2 СѓСЂРѕРЅР°/0.1СЃРµРє, СЂР°РґРёСѓСЃ 160px</div>
         </div>
         <div class="tower-price">2500</div>
     </div>
@@ -1091,140 +1091,140 @@ button:hover {
     <div class="tower-item" data-type="empty" data-price="7500">
         <div class="tower-preview" style="background: linear-gradient(to right, purple, black);"></div>
         <div class="tower-info">
-            <div class="tower-name">Пустой</div>
-            <div class="tower-stats">Урон: 10/сек | Радиус: 100px | Замедление 50% | Лимит: 1</div>
-            <div class="upgrade-option">Улучшение: 17500 монет → 20 урона/сек, радиус 200px, замедление 65%</div>
+            <div class="tower-name">РџСѓСЃС‚РѕР№</div>
+            <div class="tower-stats">РЈСЂРѕРЅ: 10/СЃРµРє | Р Р°РґРёСѓСЃ: 100px | Р—Р°РјРµРґР»РµРЅРёРµ 50% | Р›РёРјРёС‚: 1</div>
+            <div class="upgrade-option">РЈР»СѓС‡С€РµРЅРёРµ: 17500 РјРѕРЅРµС‚ в†’ 20 СѓСЂРѕРЅР°/СЃРµРє, СЂР°РґРёСѓСЃ 200px, Р·Р°РјРµРґР»РµРЅРёРµ 65%</div>
         </div>
         <div class="tower-price">7500</div>
     </div>
 </div>
 
-<!-- ИНДЕКС ВРАГОВ -->
+<!-- РРќР”Р•РљРЎ Р’Р РђР“РћР’ -->
 <div class="enemy-index" id="enemyIndex">
-    <h2>Индекс врагов</h2>
+    <h2>РРЅРґРµРєСЃ РІСЂР°РіРѕРІ</h2>
     
     <div class="enemy-item" id="red-enemy">
-        <div class="enemy-name">Красный шар</div>
+        <div class="enemy-name">РљСЂР°СЃРЅС‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 3 + волна/3</div>
-            <div>Скорость: 1.0</div>
-            <div>Награда: 10 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 3 + РІРѕР»РЅР°/3</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 1.0</div>
+            <div>РќР°РіСЂР°РґР°: 10 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="purple-enemy">
-        <div class="enemy-name">Фиолетовый шар</div>
+        <div class="enemy-name">Р¤РёРѕР»РµС‚РѕРІС‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 15</div>
-            <div>Скорость: 0.5</div>
-            <div>Награда: 25 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 15</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 0.5</div>
+            <div>РќР°РіСЂР°РґР°: 25 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="golden-enemy">
-        <div class="enemy-name">Золотой шар</div>
+        <div class="enemy-name">Р—РѕР»РѕС‚РѕР№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 35</div>
-            <div>Скорость: 2.0</div>
-            <div>Награда: 50 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 35</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 2.0</div>
+            <div>РќР°РіСЂР°РґР°: 50 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="pink-enemy">
-        <div class="enemy-name">Розовый шар</div>
+        <div class="enemy-name">Р РѕР·РѕРІС‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 11</div>
-            <div>Скорость: 5.0</div>
-            <div>Награда: 30 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 11</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 5.0</div>
+            <div>РќР°РіСЂР°РґР°: 30 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="green-enemy">
-        <div class="enemy-name">Зеленый шар</div>
+        <div class="enemy-name">Р—РµР»РµРЅС‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 100</div>
-            <div>Скорость: 0.32</div>
-            <div>Награда: 75 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 100</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 0.32</div>
+            <div>РќР°РіСЂР°РґР°: 75 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="white-enemy">
-        <div class="enemy-name">Белый шар</div>
+        <div class="enemy-name">Р‘РµР»С‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 120</div>
-            <div>Скорость: переменная (0.32-2.0)</div>
-            <div>Награда: 100 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 120</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: РїРµСЂРµРјРµРЅРЅР°СЏ (0.32-2.0)</div>
+            <div>РќР°РіСЂР°РґР°: 100 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="boss-enemy">
-        <div class="enemy-name">БОСС (Черный шар)</div>
+        <div class="enemy-name">Р‘РћРЎРЎ (Р§РµСЂРЅС‹Р№ С€Р°СЂ)</div>
         <div class="enemy-stats">
-            <div>Здоровье: 250 + 250 за каждые 50 волн</div>
-            <div>Скорость: 1.0</div>
-            <div>Особенность: Уменьшает урон башен в радиусе 40px</div>
-            <div>Награда: 500 + волна×10 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 250 + 250 Р·Р° РєР°Р¶РґС‹Рµ 50 РІРѕР»РЅ</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 1.0</div>
+            <div>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ: РЈРјРµРЅСЊС€Р°РµС‚ СѓСЂРѕРЅ Р±Р°С€РµРЅ РІ СЂР°РґРёСѓСЃРµ 40px</div>
+            <div>РќР°РіСЂР°РґР°: 500 + РІРѕР»РЅР°Г—10 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="blue-enemy">
-        <div class="enemy-name">Голубой шар</div>
+        <div class="enemy-name">Р“РѕР»СѓР±РѕР№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 200</div>
-            <div>Скорость: 0.2</div>
-            <div>Особенность: Лечит других врагов каждые 10 секунд</div>
-            <div>Награда: 150 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 200</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 0.2</div>
+            <div>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ: Р›РµС‡РёС‚ РґСЂСѓРіРёС… РІСЂР°РіРѕРІ РєР°Р¶РґС‹Рµ 10 СЃРµРєСѓРЅРґ</div>
+            <div>РќР°РіСЂР°РґР°: 150 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="sonic-enemy">
-        <div class="enemy-name">Соник шар</div>
+        <div class="enemy-name">РЎРѕРЅРёРє С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 10</div>
-            <div>Скорость: 10.0</div>
-            <div>Особенность: Очень быстрый</div>
-            <div>Награда: 200 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 10</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 10.0</div>
+            <div>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ: РћС‡РµРЅСЊ Р±С‹СЃС‚СЂС‹Р№</div>
+            <div>РќР°РіСЂР°РґР°: 200 РјРѕРЅРµС‚</div>
         </div>
     </div>
     
     <div class="enemy-item" id="void-enemy">
-        <div class="enemy-name">Пустотный шар</div>
+        <div class="enemy-name">РџСѓСЃС‚РѕС‚РЅС‹Р№ С€Р°СЂ</div>
         <div class="enemy-stats">
-            <div>Здоровье: 1000</div>
-            <div>Скорость: 0.33</div>
-            <div>Особенность: Удаляет случайную башню каждые 60 секунд</div>
-            <div>Награда: 1000 монет</div>
+            <div>Р—РґРѕСЂРѕРІСЊРµ: 1000</div>
+            <div>РЎРєРѕСЂРѕСЃС‚СЊ: 0.33</div>
+            <div>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ: РЈРґР°Р»СЏРµС‚ СЃР»СѓС‡Р°Р№РЅСѓСЋ Р±Р°С€РЅСЋ РєР°Р¶РґС‹Рµ 60 СЃРµРєСѓРЅРґ</div>
+            <div>РќР°РіСЂР°РґР°: 1000 РјРѕРЅРµС‚</div>
         </div>
     </div>
 </div>
 
-<!-- МЕНЮ УЛУЧШЕНИЯ -->
+<!-- РњР•РќР® РЈР›РЈР§РЁР•РќРРЇ -->
 <div class="upgrade-menu" id="upgradeMenu">
-    <h3>Улучшение башни</h3>
+    <h3>РЈР»СѓС‡С€РµРЅРёРµ Р±Р°С€РЅРё</h3>
     <div id="upgradeInfo">
-        <p>Выберите башню для просмотра информации об улучшении</p>
+        <p>Р’С‹Р±РµСЂРёС‚Рµ Р±Р°С€РЅСЋ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓР»СѓС‡С€РµРЅРёРё</p>
     </div>
     <div class="targeting-options" id="targetingOptions">
         <label>
-            <input type="radio" name="targeting" value="first" checked> Первая цель (ближайшая к концу)
+            <input type="radio" name="targeting" value="first" checked> РџРµСЂРІР°СЏ С†РµР»СЊ (Р±Р»РёР¶Р°Р№С€Р°СЏ Рє РєРѕРЅС†Сѓ)
         </label>
         <label>
-            <input type="radio" name="targeting" value="random"> Случайная цель
+            <input type="radio" name="targeting" value="random"> РЎР»СѓС‡Р°Р№РЅР°СЏ С†РµР»СЊ
         </label>
     </div>
-    <button class="upgrade-btn" id="upgradeBtn">Улучшить</button>
-    <button class="sell-btn" id="sellBtn">Продать (50% стоимости)</button>
+    <button class="upgrade-btn" id="upgradeBtn">РЈР»СѓС‡С€РёС‚СЊ</button>
+    <button class="sell-btn" id="sellBtn">РџСЂРѕРґР°С‚СЊ (50% СЃС‚РѕРёРјРѕСЃС‚Рё)</button>
 </div>
     
-    <button id="restartGame">Начать заново</button>
+    <button id="restartGame">РќР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ</button>
     <div class="game-overlay" id="gameOverlay"></div>
     
     <script>
-        // Получаем элементы canvas и контекст
+        // РџРѕР»СѓС‡Р°РµРј СЌР»РµРјРµРЅС‚С‹ canvas Рё РєРѕРЅС‚РµРєСЃС‚
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         
-        // Игровые переменные
+        // РРіСЂРѕРІС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ
         let money = 200;
         let lives = 20;
         let wave = 0;
@@ -1262,10 +1262,10 @@ button:hover {
         let toxicCount = 0;
         let turretCount = 0;
         let emptyCount = 0;
-        let waveRewardMultiplier = 1; // Множитель награды за волны
-        let ownedTowers = []; // Массив для хранения полученных башен
+        let waveRewardMultiplier = 1; // РњРЅРѕР¶РёС‚РµР»СЊ РЅР°РіСЂР°РґС‹ Р·Р° РІРѕР»РЅС‹
+        let ownedTowers = []; // РњР°СЃСЃРёРІ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РїРѕР»СѓС‡РµРЅРЅС‹С… Р±Р°С€РµРЅ
 
-        // Функция для получения точных координат мыши относительно canvas
+        // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РѕС‡РЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚ РјС‹С€Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ canvas
         function getMousePos(canvas, evt) {
             const rect = canvas.getBoundingClientRect();
             const scaleX = canvas.width / rect.width;
@@ -1277,7 +1277,7 @@ button:hover {
             };
         }
         
-        // Загрузка данных из localStorage
+        // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… РёР· localStorage
         function loadGameData() {
             const savedData = localStorage.getItem('tdGameData');
             if (savedData) {
@@ -1286,29 +1286,29 @@ button:hover {
                 ownedTowers = data.ownedTowers || [];
                 document.getElementById('diamondTotal').textContent = totalDiamonds;
                 
-                // Разблокируем купленные сложности и карты
+                // Р Р°Р·Р±Р»РѕРєРёСЂСѓРµРј РєСѓРїР»РµРЅРЅС‹Рµ СЃР»РѕР¶РЅРѕСЃС‚Рё Рё РєР°СЂС‚С‹
                 if (data.unlockedExtreme) {
                     document.getElementById('extremeDifficultyBtn').classList.remove('option-btn');
                     document.getElementById('extremeDifficultyBtn').classList.add('option-btn');
                     document.getElementById('buyExtremeBtn').disabled = true;
-                    document.getElementById('buyExtremeBtn').textContent = 'Куплено';
+                    document.getElementById('buyExtremeBtn').textContent = 'РљСѓРїР»РµРЅРѕ';
                 }
                 
                 if (data.unlockedMountains) {
                     document.getElementById('mountainsMapBtn').classList.remove('option-btn');
                     document.getElementById('mountainsMapBtn').classList.add('option-btn');
                     document.getElementById('buyMountainsBtn').disabled = true;
-                    document.getElementById('buyMountainsBtn').textContent = 'Куплено';
+                    document.getElementById('buyMountainsBtn').textContent = 'РљСѓРїР»РµРЅРѕ';
                 }
                 
-                // Показываем все полученные башни в магазине
+                // РџРѕРєР°Р·С‹РІР°РµРј РІСЃРµ РїРѕР»СѓС‡РµРЅРЅС‹Рµ Р±Р°С€РЅРё РІ РјР°РіР°Р·РёРЅРµ
                 ownedTowers.forEach(towerType => {
                     document.getElementById(`${towerType}Tower`).style.display = 'flex';
                 });
             }
         }
         
-        // Сохранение данных в localStorage
+        // РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С… РІ localStorage
         function saveGameData() {
             const data = {
                 totalDiamonds: totalDiamonds,
@@ -1320,7 +1320,7 @@ button:hover {
             localStorage.setItem('tdGameData', JSON.stringify(data));
         }
         
-        // Получение стиля для башни
+        // РџРѕР»СѓС‡РµРЅРёРµ СЃС‚РёР»СЏ РґР»СЏ Р±Р°С€РЅРё
         function getTowerStyle(type) {
             switch(type) {
                 case 'doublepistol': return 'background: linear-gradient(to right, blue, lightblue); border-radius: 50%;';
@@ -1333,15 +1333,15 @@ button:hover {
             }
         }
         
-        // Получение имени башни
+        // РџРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё Р±Р°С€РЅРё
         function getTowerName(type) {
             switch(type) {
-                case 'doublepistol': return 'Двойной пистолет';
-                case 'bomb': return 'Бомбы';
-                case 'goodfarm': return 'Хорошая ферма';
-                case 'toxic': return 'Токсичный';
-                case 'turret': return 'Турель';
-                case 'empty': return 'Пустой';
+                case 'doublepistol': return 'Р”РІРѕР№РЅРѕР№ РїРёСЃС‚РѕР»РµС‚';
+                case 'bomb': return 'Р‘РѕРјР±С‹';
+                case 'goodfarm': return 'РҐРѕСЂРѕС€Р°СЏ С„РµСЂРјР°';
+                case 'toxic': return 'РўРѕРєСЃРёС‡РЅС‹Р№';
+                case 'turret': return 'РўСѓСЂРµР»СЊ';
+                case 'empty': return 'РџСѓСЃС‚РѕР№';
                 default: return '';
             }
         }
@@ -1359,17 +1359,17 @@ button:hover {
             'void': { health: 0, speed: 0, discovered: false, special: "" }
         };
         
-        // Константы
+        // РљРѕРЅСЃС‚Р°РЅС‚С‹
         const ENEMY_BASE_SPEED = 1;
         const ENEMY_SIZE = 10;
         const TOWER_SIZE = 15;
         const BULLET_SIZE = 5;
         const ST_TO_PX = 10; // 1st = 10px
         
-        // Путь для врагов (желтая тропинка)
+        // РџСѓС‚СЊ РґР»СЏ РІСЂР°РіРѕРІ (Р¶РµР»С‚Р°СЏ С‚СЂРѕРїРёРЅРєР°)
         let PATH = [];
         
-        // Функция установки пути в зависимости от карты
+        // Р¤СѓРЅРєС†РёСЏ СѓСЃС‚Р°РЅРѕРІРєРё РїСѓС‚Рё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєР°СЂС‚С‹
         function setPath() {
             if (mapType === "hills") {
                 PATH = [
@@ -1405,7 +1405,7 @@ button:hover {
             }
         }
         
-        // Класс врага
+        // РљР»Р°СЃСЃ РІСЂР°РіР°
         class Enemy {
             constructor(type, health, speed, size, color) {
                 this.type = type;
@@ -1424,41 +1424,41 @@ button:hover {
                 this.healTimer = 0;
                 this.deleteTimer = 0;
                 
-                // Применяем модификаторы сложности
+                // РџСЂРёРјРµРЅСЏРµРј РјРѕРґРёС„РёРєР°С‚РѕСЂС‹ СЃР»РѕР¶РЅРѕСЃС‚Рё
                 if (difficulty === "hard") {
-                    this.health *= 1.5; // В 1.5 раз больше здоровья
+                    this.health *= 1.5; // Р’ 1.5 СЂР°Р· Р±РѕР»СЊС€Рµ Р·РґРѕСЂРѕРІСЊСЏ
                     this.maxHealth = this.health;
                     this.baseSpeed *= 1.05;
                     this.speed = this.baseSpeed;
                 } else if (difficulty === "extreme") {
-                    this.health *= 2; // В 2 раза больше здоровья
+                    this.health *= 2; // Р’ 2 СЂР°Р·Р° Р±РѕР»СЊС€Рµ Р·РґРѕСЂРѕРІСЊСЏ
                     this.maxHealth = this.health;
                     this.baseSpeed *= 1.01;
                     this.speed = this.baseSpeed;
                 }
                 
-                // Устанавливаем особые свойства врагов
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕСЃРѕР±С‹Рµ СЃРІРѕР№СЃС‚РІР° РІСЂР°РіРѕРІ
                 if (type === 'boss') {
-                    this.auraRadius = 4 * ST_TO_PX; // 4st = 40px (как у мечника)
+                    this.auraRadius = 4 * ST_TO_PX; // 4st = 40px (РєР°Рє Сѓ РјРµС‡РЅРёРєР°)
                 } else if (type === 'blue') {
-                    this.healTimer = 600; // 10 секунд при 60 FPS
+                    this.healTimer = 600; // 10 СЃРµРєСѓРЅРґ РїСЂРё 60 FPS
                 } else if (type === 'void') {
-                    this.deleteTimer = 3600; // 60 секунд при 60 FPS
+                    this.deleteTimer = 3600; // 60 СЃРµРєСѓРЅРґ РїСЂРё 60 FPS
                 }
                 
-                // Записываем информацию о враге, если он еще не был обнаружен
+                // Р—Р°РїРёСЃС‹РІР°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РІСЂР°РіРµ, РµСЃР»Рё РѕРЅ РµС‰Рµ РЅРµ Р±С‹Р» РѕР±РЅР°СЂСѓР¶РµРЅ
                 if (!enemyKnowledge[type].discovered) {
                     enemyKnowledge[type].health = health;
                     enemyKnowledge[type].speed = speed;
                     
                     if (type === 'boss') {
-                        enemyKnowledge[type].special = "Уменьшает урон башен в радиусе";
+                        enemyKnowledge[type].special = "РЈРјРµРЅСЊС€Р°РµС‚ СѓСЂРѕРЅ Р±Р°С€РµРЅ РІ СЂР°РґРёСѓСЃРµ";
                     } else if (type === 'blue') {
-                        enemyKnowledge[type].special = "Лечит других врагов";
+                        enemyKnowledge[type].special = "Р›РµС‡РёС‚ РґСЂСѓРіРёС… РІСЂР°РіРѕРІ";
                     } else if (type === 'sonic') {
-                        enemyKnowledge[type].special = "Очень быстрый";
+                        enemyKnowledge[type].special = "РћС‡РµРЅСЊ Р±С‹СЃС‚СЂС‹Р№";
                     } else if (type === 'void') {
-                        enemyKnowledge[type].special = "Удаляет башни раз в минуту";
+                        enemyKnowledge[type].special = "РЈРґР°Р»СЏРµС‚ Р±Р°С€РЅРё СЂР°Р· РІ РјРёРЅСѓС‚Сѓ";
                     }
                     
                     enemyKnowledge[type].discovered = true;
@@ -1467,25 +1467,25 @@ button:hover {
             }
             
             update() {
-                // Для белого врага - меняем скорость каждую секунду
+                // Р”Р»СЏ Р±РµР»РѕРіРѕ РІСЂР°РіР° - РјРµРЅСЏРµРј СЃРєРѕСЂРѕСЃС‚СЊ РєР°Р¶РґСѓСЋ СЃРµРєСѓРЅРґСѓ
                 if (this.type === 'white') {
                     this.speedChangeTimer++;
                     if (this.speedChangeTimer >= 60) {
                         this.speedChangeTimer = 0;
-                        // Меняем скорость случайным образом от скорости зеленого до золотого
+                        // РњРµРЅСЏРµРј СЃРєРѕСЂРѕСЃС‚СЊ СЃР»СѓС‡Р°Р№РЅС‹Рј РѕР±СЂР°Р·РѕРј РѕС‚ СЃРєРѕСЂРѕСЃС‚Рё Р·РµР»РµРЅРѕРіРѕ РґРѕ Р·РѕР»РѕС‚РѕРіРѕ
                         const greenSpeed = ENEMY_BASE_SPEED / 3.15675434;
                         const goldenSpeed = ENEMY_BASE_SPEED * 2;
                         this.speed = greenSpeed + Math.random() * (goldenSpeed - greenSpeed);
                     }
                 }
                 
-                // Для голубого врага - лечение каждые 10 секунд
+                // Р”Р»СЏ РіРѕР»СѓР±РѕРіРѕ РІСЂР°РіР° - Р»РµС‡РµРЅРёРµ РєР°Р¶РґС‹Рµ 10 СЃРµРєСѓРЅРґ
                 if (this.type === 'blue') {
                     this.healTimer--;
                     if (this.healTimer <= 0) {
-                        this.healTimer = 600; // Сброс таймера
+                        this.healTimer = 600; // РЎР±СЂРѕСЃ С‚Р°Р№РјРµСЂР°
                         
-                        // Лечим всех врагов на 50% от их максимального здоровья
+                        // Р›РµС‡РёРј РІСЃРµС… РІСЂР°РіРѕРІ РЅР° 50% РѕС‚ РёС… РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р·РґРѕСЂРѕРІСЊСЏ
                         for (const enemy of enemies) {
                             if (enemy !== this) {
                                 enemy.health = Math.min(enemy.maxHealth, enemy.health + enemy.maxHealth * 0.5);
@@ -1494,19 +1494,19 @@ button:hover {
                     }
                 }
                 
-                // Для пустотного врага - удаление башни каждые 60 секунд
+                // Р”Р»СЏ РїСѓСЃС‚РѕС‚РЅРѕРіРѕ РІСЂР°РіР° - СѓРґР°Р»РµРЅРёРµ Р±Р°С€РЅРё РєР°Р¶РґС‹Рµ 60 СЃРµРєСѓРЅРґ
                 if (this.type === 'void') {
                     this.deleteTimer--;
                     if (this.deleteTimer <= 0) {
-                        this.deleteTimer = 3600; // Сброс таймера
+                        this.deleteTimer = 3600; // РЎР±СЂРѕСЃ С‚Р°Р№РјРµСЂР°
                         
-                        // Удаляем случайную башню (кроме ОМЕГИ)
+                        // РЈРґР°Р»СЏРµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ Р±Р°С€РЅСЋ (РєСЂРѕРјРµ РћРњР•Р“Р)
                         const nonOmegaTowers = towers.filter(tower => tower.type !== 'omega');
                         if (nonOmegaTowers.length > 0) {
                             const randomIndex = Math.floor(Math.random() * nonOmegaTowers.length);
                             const towerToRemove = nonOmegaTowers[randomIndex];
                             
-                            // Обновляем счетчики лимитированных башен
+                            // РћР±РЅРѕРІР»СЏРµРј СЃС‡РµС‚С‡РёРєРё Р»РёРјРёС‚РёСЂРѕРІР°РЅРЅС‹С… Р±Р°С€РµРЅ
                             if (towerToRemove.type === 'farm') farmCount--;
                             if (towerToRemove.type === 'atomic') atomicCount--;
                             if (towerToRemove.type === 'omega') omegaCount--;
@@ -1520,7 +1520,7 @@ button:hover {
                     }
                 }
                 
-                // Проверяем, находится ли враг в луже
+                // РџСЂРѕРІРµСЂСЏРµРј, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РІСЂР°Рі РІ Р»СѓР¶Рµ
                 let inPuddle = false;
                 for (const puddle of puddles) {
                     const dx = this.x - puddle.x;
@@ -1534,10 +1534,10 @@ button:hover {
                     }
                 }
                 
-                // Применяем замедление, если есть
+                // РџСЂРёРјРµРЅСЏРµРј Р·Р°РјРµРґР»РµРЅРёРµ, РµСЃР»Рё РµСЃС‚СЊ
                 this.speed = this.baseSpeed * (1 - this.slowPercent / 100);
                 
-                // Движение по пути
+                // Р”РІРёР¶РµРЅРёРµ РїРѕ РїСѓС‚Рё
                 const targetX = PATH[this.pathIndex].x;
                 const targetY = PATH[this.pathIndex].y;
                 
@@ -1550,12 +1550,12 @@ button:hover {
                     this.y = targetY;
                     this.pathIndex++;
                     
-                    // Если враг дошел до конца пути
+                    // Р•СЃР»Рё РІСЂР°Рі РґРѕС€РµР» РґРѕ РєРѕРЅС†Р° РїСѓС‚Рё
                     if (this.pathIndex >= PATH.length) {
                         lives--;
                         updateStats();
                         
-                        // Проверка на проигрыш
+                        // РџСЂРѕРІРµСЂРєР° РЅР° РїСЂРѕРёРіСЂС‹С€
                         if (lives <= 0) {
                             gameOver();
                         }
@@ -1571,7 +1571,7 @@ button:hover {
             }
             
             draw() {
-                // Рисуем врага
+                // Р РёСЃСѓРµРј РІСЂР°РіР°
                 ctx.fillStyle = this.color;
                 
                 if (this.type === 'red' || this.type === 'purple' || this.type === 'pink' || 
@@ -1580,11 +1580,11 @@ button:hover {
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fill();
                 } else if (this.type === 'golden') {
-                    // Золотой враг с эффектом сияния
+                    // Р—РѕР»РѕС‚РѕР№ РІСЂР°Рі СЃ СЌС„С„РµРєС‚РѕРј СЃРёСЏРЅРёСЏ
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     
-                    // Градиент для золотого врага
+                    // Р“СЂР°РґРёРµРЅС‚ РґР»СЏ Р·РѕР»РѕС‚РѕРіРѕ РІСЂР°РіР°
                     const gradient = ctx.createRadialGradient(
                         this.x, this.y, 0, 
                         this.x, this.y, this.size
@@ -1595,26 +1595,26 @@ button:hover {
                     ctx.fillStyle = gradient;
                     ctx.fill();
                     
-                    // Эффект сияния
+                    // Р­С„С„РµРєС‚ СЃРёСЏРЅРёСЏ
                     ctx.strokeStyle = 'rgba(255, 215, 0, 0.6)';
                     ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size + 3, 0, Math.PI * 2);
                     ctx.stroke();
                 } else if (this.type === 'boss') {
-                    // Босс - черный шар с красной аура
+                    // Р‘РѕСЃСЃ - С‡РµСЂРЅС‹Р№ С€Р°СЂ СЃ РєСЂР°СЃРЅРѕР№ Р°СѓСЂР°
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fill();
                     
-                    // Аура босса
+                    // РђСѓСЂР° Р±РѕСЃСЃР°
                     ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
                     ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.auraRadius, 0, Math.PI * 2);
                     ctx.stroke();
                     
-                    // Обновляем индикатор ауры
+                    // РћР±РЅРѕРІР»СЏРµРј РёРЅРґРёРєР°С‚РѕСЂ Р°СѓСЂС‹
                     if (bossAura) {
                         bossAura.style.left = this.x + 'px';
                         bossAura.style.top = this.y + 'px';
@@ -1622,11 +1622,11 @@ button:hover {
                         bossAura.style.height = this.auraRadius * 2 + 'px';
                     }
                 } else if (this.type === 'sonic') {
-                    // Соник шар (желтый + синий)
+                    // РЎРѕРЅРёРє С€Р°СЂ (Р¶РµР»С‚С‹Р№ + СЃРёРЅРёР№)
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     
-                    // Градиент для соник шара
+                    // Р“СЂР°РґРёРµРЅС‚ РґР»СЏ СЃРѕРЅРёРє С€Р°СЂР°
                     const gradient = ctx.createRadialGradient(
                         this.x, this.y, 0, 
                         this.x, this.y, this.size
@@ -1637,18 +1637,18 @@ button:hover {
                     ctx.fillStyle = gradient;
                     ctx.fill();
                     
-                    // Эффект скорости
+                    // Р­С„С„РµРєС‚ СЃРєРѕСЂРѕСЃС‚Рё
                     ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
                     ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size + 3, 0, Math.PI * 2);
                     ctx.stroke();
                 } else if (this.type === 'void') {
-                    // Пустотный шар (фиолетовый + черный)
+                    // РџСѓСЃС‚РѕС‚РЅС‹Р№ С€Р°СЂ (С„РёРѕР»РµС‚РѕРІС‹Р№ + С‡РµСЂРЅС‹Р№)
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     
-                    // Градиент для пустотного шара
+                    // Р“СЂР°РґРёРµРЅС‚ РґР»СЏ РїСѓСЃС‚РѕС‚РЅРѕРіРѕ С€Р°СЂР°
                     const gradient = ctx.createRadialGradient(
                         this.x, this.y, 0, 
                         this.x, this.y, this.size
@@ -1659,7 +1659,7 @@ button:hover {
                     ctx.fillStyle = gradient;
                     ctx.fill();
                     
-                    // Эффект пустоты
+                    // Р­С„С„РµРєС‚ РїСѓСЃС‚РѕС‚С‹
                     ctx.strokeStyle = 'rgba(75, 0, 130, 0.6)';
                     ctx.lineWidth = 2;
                     ctx.beginPath();
@@ -1667,14 +1667,14 @@ button:hover {
                     ctx.stroke();
                 }
                 
-                // Рисуем полоску здоровья
+                // Р РёСЃСѓРµРј РїРѕР»РѕСЃРєСѓ Р·РґРѕСЂРѕРІСЊСЏ
                 const healthWidth = (this.health / this.maxHealth) * (this.size * 2);
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
                 ctx.fillRect(this.x - this.size, this.y - this.size - 8, this.size * 2, 4);
                 ctx.fillStyle = this.type === 'golden' ? '#00ff00' : 'red';
                 ctx.fillRect(this.x - this.size, this.y - this.size - 8, healthWidth, 4);
                 
-                // Для замедленных врагов добавляем эффект льда
+                // Р”Р»СЏ Р·Р°РјРµРґР»РµРЅРЅС‹С… РІСЂР°РіРѕРІ РґРѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚ Р»СЊРґР°
                 if (this.slowPercent > 0) {
                     ctx.strokeStyle = 'rgba(100, 200, 255, 0.7)';
                     ctx.lineWidth = 2;
@@ -1685,18 +1685,18 @@ button:hover {
             }
             
             takeDamage(damage) {
-                // Для босса - уменьшаем урон от башен в его ауре
+                // Р”Р»СЏ Р±РѕСЃСЃР° - СѓРјРµРЅСЊС€Р°РµРј СѓСЂРѕРЅ РѕС‚ Р±Р°С€РµРЅ РІ РµРіРѕ Р°СѓСЂРµ
                 if (this.type === 'boss') {
                     let actualDamage = damage;
                     
-                    // Проверяем, находится ли атакующая башня в ауре босса
+                    // РџСЂРѕРІРµСЂСЏРµРј, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё Р°С‚Р°РєСѓСЋС‰Р°СЏ Р±Р°С€РЅСЏ РІ Р°СѓСЂРµ Р±РѕСЃСЃР°
                     for (const tower of towers) {
                         const dx = tower.x - this.x;
                         const dy = tower.y - this.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
                         if (distance < this.auraRadius) {
-                            actualDamage = damage * 0.5; // Уменьшаем урон вдвое
+                            actualDamage = damage * 0.5; // РЈРјРµРЅСЊС€Р°РµРј СѓСЂРѕРЅ РІРґРІРѕРµ
                             break;
                         }
                     }
@@ -1725,7 +1725,7 @@ button:hover {
                     money += reward;
                     updateStats();
                     
-                    // Удаляем ауру босса, если это босс
+                    // РЈРґР°Р»СЏРµРј Р°СѓСЂСѓ Р±РѕСЃСЃР°, РµСЃР»Рё СЌС‚Рѕ Р±РѕСЃСЃ
                     if (this.type === 'boss' && bossAura) {
                         document.body.removeChild(bossAura);
                         bossAura = null;
@@ -1741,14 +1741,14 @@ button:hover {
             }
         }
         
-        // Класс лужи (для токсичной башни)
+        // РљР»Р°СЃСЃ Р»СѓР¶Рё (РґР»СЏ С‚РѕРєСЃРёС‡РЅРѕР№ Р±Р°С€РЅРё)
         class Puddle {
             constructor(x, y, damage, radius, duration) {
                 this.x = x;
                 this.y = y;
                 this.damage = damage;
                 this.radius = radius;
-                this.duration = duration; // в кадрах
+                this.duration = duration; // РІ РєР°РґСЂР°С…
                 this.timer = 0;
             }
             
@@ -1771,24 +1771,24 @@ button:hover {
             }
         }
         
-        // Класс башни
+        // РљР»Р°СЃСЃ Р±Р°С€РЅРё
         class Tower {
             constructor(x, y, type) {
                 this.x = x;
                 this.y = y;
                 this.type = type;
                 this.upgraded = false;
-                this.targeting = 'first'; // 'first' или 'random'
+                this.targeting = 'first'; // 'first' РёР»Рё 'random'
                 this.incomeTimer = 0;
                 this.puddleTimer = 0;
                 this.specialTimer = 0;
                 
-                // Установка параметров в зависимости от типа
+                // РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР°
                 switch(type) {
                     case 'pistol':
                         this.radius = 10 * ST_TO_PX; // 10st = 100px
                         this.damage = 1;
-                        this.fireRate = 60; // 1 выстрел в секунду (60 FPS)
+                        this.fireRate = 60; // 1 РІС‹СЃС‚СЂРµР» РІ СЃРµРєСѓРЅРґСѓ (60 FPS)
                         this.color = 'blue';
                         this.shape = 'circle';
                         this.upgradeCost = 150;
@@ -1799,7 +1799,7 @@ button:hover {
                     case 'swordsman':
                         this.radius = 4 * ST_TO_PX; // 4st = 40px
                         this.damage = 1;
-                        this.fireRate = 30; // 2 выстрела в секунду
+                        this.fireRate = 30; // 2 РІС‹СЃС‚СЂРµР»Р° РІ СЃРµРєСѓРЅРґСѓ
                         this.color = 'red';
                         this.shape = 'diamond';
                         this.upgradeCost = 300;
@@ -1810,18 +1810,18 @@ button:hover {
                     case 'sniper':
                         this.radius = 100 * ST_TO_PX; // 100st = 1000px
                         this.damage = 10;
-                        this.fireRate = 300; // 1 выстрел в 5 секунд
+                        this.fireRate = 300; // 1 РІС‹СЃС‚СЂРµР» РІ 5 СЃРµРєСѓРЅРґ
                         this.color = 'purple';
                         this.shape = 'square';
                         this.upgradeCost = 1000;
                         this.upgradeDamage = 25;
                         this.upgradeRadius = 100 * ST_TO_PX;
-                        this.upgradeFireRate = 150; // 1 выстрел в 2.5 секунды
+                        this.upgradeFireRate = 150; // 1 РІС‹СЃС‚СЂРµР» РІ 2.5 СЃРµРєСѓРЅРґС‹
                         break;
                     case 'freezer':
                         this.radius = 25 * ST_TO_PX; // 25st = 250px
                         this.damage = 1;
-                        this.fireRate = 300; // 1 выстрел в 5 секунд
+                        this.fireRate = 300; // 1 РІС‹СЃС‚СЂРµР» РІ 5 СЃРµРєСѓРЅРґ
                         this.slowPercent = 10;
                         this.color = 'lightblue';
                         this.shape = 'circle';
@@ -1836,8 +1836,8 @@ button:hover {
                         this.outerRadius = 28 * ST_TO_PX; // 28st = 280px
                         this.innerDamage = 5;
                         this.outerDamage = 5;
-                        this.innerFireRate = 36; // 0.6сек = 36 кадров
-                        this.outerFireRate = 114; // 1.9сек = 114 кадров
+                        this.innerFireRate = 36; // 0.6СЃРµРє = 36 РєР°РґСЂРѕРІ
+                        this.outerFireRate = 114; // 1.9СЃРµРє = 114 РєР°РґСЂРѕРІ
                         this.color = 'gray';
                         this.innerColor = 'red';
                         this.shape = 'pentagon';
@@ -1846,14 +1846,14 @@ button:hover {
                         this.upgradeOuterRadius = 30 * ST_TO_PX; // 30st = 300px
                         this.upgradeInnerDamage = 5;
                         this.upgradeOuterDamage = 10;
-                        this.upgradeInnerFireRate = 20; // 0.33сек = 20 кадров
-                        this.upgradeOuterFireRate = 90; // 1.5сек = 90 кадров
+                        this.upgradeInnerFireRate = 20; // 0.33СЃРµРє = 20 РєР°РґСЂРѕРІ
+                        this.upgradeOuterFireRate = 90; // 1.5СЃРµРє = 90 РєР°РґСЂРѕРІ
                         break;
                     case 'farm':
                         this.radius = 0;
                         this.damage = 0;
                         this.income = 1;
-                        this.incomeRate = 60; // 1 монета в секунду
+                        this.incomeRate = 60; // 1 РјРѕРЅРµС‚Р° РІ СЃРµРєСѓРЅРґСѓ
                         this.color = 'brown';
                         this.shape = 'circle';
                         this.upgradeCost = 900;
@@ -1863,31 +1863,31 @@ button:hover {
                         this.radius = 17 * ST_TO_PX; // 17st = 170px
                         this.minDamage = 7;
                         this.maxDamage = 17;
-                        this.fireRate = 42; // 0.7сек = 42 кадра
+                        this.fireRate = 42; // 0.7СЃРµРє = 42 РєР°РґСЂР°
                         this.color = 'pink';
                         this.shape = 'hexagon';
                         this.upgradeCost = 7777;
                         this.upgradeMinDamage = 17;
                         this.upgradeMaxDamage = 37;
-                        this.upgradeFireRate = 46; // 0.77сек = 46 кадров
+                        this.upgradeFireRate = 46; // 0.77СЃРµРє = 46 РєР°РґСЂРѕРІ
                         break;
                     case 'atomic':
                         this.radius = 100 * ST_TO_PX; // 100st = 1000px
                         this.damage = 200;
-                        this.fireRate = 3600; // 60сек = 3600 кадров
+                        this.fireRate = 3600; // 60СЃРµРє = 3600 РєР°РґСЂРѕРІ
                         this.color = 'darkgreen';
                         this.shape = 'octagon';
                         this.upgradeCost = 30000;
                         this.upgradeDamage = 250;
-                        this.upgradeFireRate = 3000; // 50сек = 3000 кадров
+                        this.upgradeFireRate = 3000; // 50СЃРµРє = 3000 РєР°РґСЂРѕРІ
                         break;
                     case 'omega':
                         this.innerRadius = 9 * ST_TO_PX; // 9st = 90px
                         this.outerRadius = 30 * ST_TO_PX; // 30st = 300px
                         this.innerDamage = 10;
                         this.outerDamage = 25;
-                        this.innerFireRate = 30; // 0.5сек = 30 кадров
-                        this.outerFireRate = 180; // 3сек = 180 кадров
+                        this.innerFireRate = 30; // 0.5СЃРµРє = 30 РєР°РґСЂРѕРІ
+                        this.outerFireRate = 180; // 3СЃРµРє = 180 РєР°РґСЂРѕРІ
                         this.color = 'rainbow';
                         this.innerColor = 'cyan';
                         this.shape = 'square';
@@ -1896,13 +1896,13 @@ button:hover {
                         this.upgradeOuterRadius = 30 * ST_TO_PX; // 30st = 300px
                         this.upgradeInnerDamage = 15;
                         this.upgradeOuterDamage = 20;
-                        this.upgradeInnerFireRate = 24; // 0.4сек = 24 кадра
-                        this.upgradeOuterFireRate = 60; // 1сек = 60 кадров
+                        this.upgradeInnerFireRate = 24; // 0.4СЃРµРє = 24 РєР°РґСЂР°
+                        this.upgradeOuterFireRate = 60; // 1СЃРµРє = 60 РєР°РґСЂРѕРІ
                         break;
                     case 'doublepistol':
                         this.radius = 10 * ST_TO_PX; // 10st = 100px
                         this.damage = 2;
-                        this.fireRate = 60; // 1 выстрел в секунду (60 FPS)
+                        this.fireRate = 60; // 1 РІС‹СЃС‚СЂРµР» РІ СЃРµРєСѓРЅРґСѓ (60 FPS)
                         this.color = 'blue';
                         this.secondColor = 'lightblue';
                         this.shape = 'circle';
@@ -1914,32 +1914,32 @@ button:hover {
                     case 'bomb':
                         this.radius = 8 * ST_TO_PX; // 8st = 80px
                         this.damage = 5;
-                        this.fireRate = 150; // 2.5сек = 150 кадров
+                        this.fireRate = 150; // 2.5СЃРµРє = 150 РєР°РґСЂРѕРІ
                         this.aoe = true;
                         this.color = 'black';
                         this.shape = 'triangle';
                         this.upgradeCost = 650;
                         this.upgradeDamage = 5;
                         this.upgradeRadius = 13 * ST_TO_PX; // 13st = 130px
-                        this.upgradeFireRate = 90; // 1.5сек = 90 кадров
+                        this.upgradeFireRate = 90; // 1.5СЃРµРє = 90 РєР°РґСЂРѕРІ
                         break;
                     case 'goodfarm':
                         this.radius = 0;
                         this.damage = 0;
                         this.income = 5;
-                        this.incomeRate = 60; // 5 монет в секунду
+                        this.incomeRate = 60; // 5 РјРѕРЅРµС‚ РІ СЃРµРєСѓРЅРґСѓ
                         this.color = 'gold';
                         this.shape = 'square';
-                        this.size = 20; // Большой размер
+                        this.size = 20; // Р‘РѕР»СЊС€РѕР№ СЂР°Р·РјРµСЂ
                         break;
                     case 'toxic':
                         this.radius = 0;
                         this.damage = 1;
-                        this.fireRate = 6; // 0.1сек = 6 кадров
-                        this.puddleRate = 180; // 3сек = 180 кадров
+                        this.fireRate = 6; // 0.1СЃРµРє = 6 РєР°РґСЂРѕРІ
+                        this.puddleRate = 180; // 3СЃРµРє = 180 РєР°РґСЂРѕРІ
                         this.puddleDamage = 1;
                         this.puddleRadius = 5 * ST_TO_PX; // 5st = 50px
-                        this.puddleDuration = 300; // 5сек = 300 кадров
+                        this.puddleDuration = 300; // 5СЃРµРє = 300 РєР°РґСЂРѕРІ
                         this.color = 'green';
                         this.shape = 'decagon';
                         this.upgradeCost = 2500;
@@ -1948,26 +1948,26 @@ button:hover {
                     case 'turret':
                         this.radius = 15 * ST_TO_PX; // 15st = 150px
                         this.damage = 2;
-                        this.fireRate = 12; // 0.2сек = 12 кадров
+                        this.fireRate = 12; // 0.2СЃРµРє = 12 РєР°РґСЂРѕРІ
                         this.color = 'gray';
                         this.shape = 'square';
-                        this.size = 20; // Большой размер
+                        this.size = 20; // Р‘РѕР»СЊС€РѕР№ СЂР°Р·РјРµСЂ
                         this.upgradeCost = 5000;
                         this.upgradeDamage = 2;
                         this.upgradeRadius = 16 * ST_TO_PX; // 16st = 160px
-                        this.upgradeFireRate = 6; // 0.1сек = 6 кадров
+                        this.upgradeFireRate = 6; // 0.1СЃРµРє = 6 РєР°РґСЂРѕРІ
                         break;
                     case 'empty':
                         this.radius = 10 * ST_TO_PX; // 10st = 100px
                         this.damage = 10;
-                        this.fireRate = 60; // 1сек = 60 кадров
+                        this.fireRate = 60; // 1СЃРµРє = 60 РєР°РґСЂРѕРІ
                         this.slowPercent = 50;
                         this.color = 'purple';
                         this.auraColor = 'black';
                         this.shape = 'diamond';
                         this.specialChance = 0.041; // 4.1%
                         this.specialDamage = 25;
-                        this.specialRate = 600; // 10сек = 600 кадров
+                        this.specialRate = 600; // 10СЃРµРє = 600 РєР°РґСЂРѕРІ
                         this.upgradeCost = 17500;
                         this.upgradeDamage = 20;
                         this.upgradeRadius = 20 * ST_TO_PX; // 20st = 200px
@@ -2053,7 +2053,7 @@ button:hover {
             }
             
             update() {
-                // Для фермы - генерируем доход
+                // Р”Р»СЏ С„РµСЂРјС‹ - РіРµРЅРµСЂРёСЂСѓРµРј РґРѕС…РѕРґ
                 if (this.type === 'farm' || this.type === 'goodfarm') {
                     this.incomeTimer++;
                     if (this.incomeTimer >= this.incomeRate) {
@@ -2064,7 +2064,7 @@ button:hover {
                     return;
                 }
                 
-                // Для токсичной башни - создаем лужи
+                // Р”Р»СЏ С‚РѕРєСЃРёС‡РЅРѕР№ Р±Р°С€РЅРё - СЃРѕР·РґР°РµРј Р»СѓР¶Рё
                 if (this.type === 'toxic') {
                     this.puddleTimer++;
                     if (this.puddleTimer >= this.puddleRate) {
@@ -2074,13 +2074,13 @@ button:hover {
                     return;
                 }
                 
-                // Для пустой башни - специальная атака
+                // Р”Р»СЏ РїСѓСЃС‚РѕР№ Р±Р°С€РЅРё - СЃРїРµС†РёР°Р»СЊРЅР°СЏ Р°С‚Р°РєР°
                 if (this.type === 'empty') {
                     this.specialTimer++;
                     if (this.specialTimer >= this.specialRate) {
                         this.specialTimer = 0;
                         if (Math.random() < this.specialChance) {
-                            // Наносим урон всем врагам на поле
+                            // РќР°РЅРѕСЃРёРј СѓСЂРѕРЅ РІСЃРµРј РІСЂР°РіР°Рј РЅР° РїРѕР»Рµ
                             for (const enemy of enemies) {
                                 enemy.takeDamage(this.specialDamage);
                             }
@@ -2088,9 +2088,9 @@ button:hover {
                     }
                 }
                 
-                // Для атомной башни - особый тип атаки
+                // Р”Р»СЏ Р°С‚РѕРјРЅРѕР№ Р±Р°С€РЅРё - РѕСЃРѕР±С‹Р№ С‚РёРї Р°С‚Р°РєРё
                 if (this.type === 'atomic' && this.cooldown <= 0) {
-                    // Атомная башня наносит урон всем врагам на карте
+                    // РђС‚РѕРјРЅР°СЏ Р±Р°С€РЅСЏ РЅР°РЅРѕСЃРёС‚ СѓСЂРѕРЅ РІСЃРµРј РІСЂР°РіР°Рј РЅР° РєР°СЂС‚Рµ
                     for (const enemy of enemies) {
                         enemy.takeDamage(this.damage);
                     }
@@ -2098,7 +2098,7 @@ button:hover {
                     return;
                 }
                 
-                // Находим врагов в радиусе
+                // РќР°С…РѕРґРёРј РІСЂР°РіРѕРІ РІ СЂР°РґРёСѓСЃРµ
                 let enemiesInRange = [];
                 
                 for (const enemy of enemies) {
@@ -2118,10 +2118,10 @@ button:hover {
                 }
                 
                 if (enemiesInRange.length > 0) {
-                    // Выбираем цель в зависимости от стратегии
+                    // Р’С‹Р±РёСЂР°РµРј С†РµР»СЊ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃС‚СЂР°С‚РµРіРёРё
                     let target;
                     if (this.targeting === 'first') {
-                        // Первая цель (ближайшая к концу пути)
+                        // РџРµСЂРІР°СЏ С†РµР»СЊ (Р±Р»РёР¶Р°Р№С€Р°СЏ Рє РєРѕРЅС†Сѓ РїСѓС‚Рё)
                         target = enemiesInRange[0];
                         for (const enemy of enemiesInRange) {
                             if (enemy.pathIndex > target.pathIndex) {
@@ -2129,17 +2129,17 @@ button:hover {
                             }
                         }
                     } else {
-                        // Случайная цель
+                        // РЎР»СѓС‡Р°Р№РЅР°СЏ С†РµР»СЊ
                         target = enemiesInRange[Math.floor(Math.random() * enemiesInRange.length)];
                     }
                     
-                    // Стрельба по врагу
+                    // РЎС‚СЂРµР»СЊР±Р° РїРѕ РІСЂР°РіСѓ
                     if ((this.type === 'knight' || this.type === 'omega') && target) {
                         const dx = target.x - this.x;
                         const dy = target.y - this.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Внутренняя атака
+                        // Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ Р°С‚Р°РєР°
                         if (distance < this.innerRadius && this.cooldown <= 0) {
                             bullets.push({
                                 x: this.x,
@@ -2154,7 +2154,7 @@ button:hover {
                             this.cooldown = this.innerFireRate;
                         }
                         
-                        // Внешняя атака
+                        // Р’РЅРµС€РЅСЏСЏ Р°С‚Р°РєР°
                         if (distance >= this.innerRadius && this.outerCooldown <= 0) {
                             bullets.push({
                                 x: this.x,
@@ -2170,12 +2170,12 @@ button:hover {
                         }
                     } else if (this.cooldown <= 0 && target) {
                         if (this.type === 'freezer') {
-                            // Холодильник замедляет врагов
+                            // РҐРѕР»РѕРґРёР»СЊРЅРёРє Р·Р°РјРµРґР»СЏРµС‚ РІСЂР°РіРѕРІ
                             for (const enemy of enemiesInRange) {
                                 enemy.slowDown(this.slowPercent);
                             }
                             
-                            // И наносит урон цели
+                            // Р РЅР°РЅРѕСЃРёС‚ СѓСЂРѕРЅ С†РµР»Рё
                             bullets.push({
                                 x: this.x,
                                 y: this.y,
@@ -2187,7 +2187,7 @@ button:hover {
                                 instant: false
                             });
                         } else if (this.type === 'chance') {
-                            // Башня шанса - случайный урон в диапазоне
+                            // Р‘Р°С€РЅСЏ С€Р°РЅСЃР° - СЃР»СѓС‡Р°Р№РЅС‹Р№ СѓСЂРѕРЅ РІ РґРёР°РїР°Р·РѕРЅРµ
                             const randomDamage = this.minDamage + Math.random() * (this.maxDamage - this.minDamage);
                             bullets.push({
                                 x: this.x,
@@ -2200,19 +2200,19 @@ button:hover {
                                 instant: false
                             });
                         } else if (this.type === 'sniper') {
-                            // Снайпер - мгновенные пули
+                            // РЎРЅР°Р№РїРµСЂ - РјРіРЅРѕРІРµРЅРЅС‹Рµ РїСѓР»Рё
                             bullets.push({
                                 x: this.x,
                                 y: this.y,
                                 target: target,
                                 damage: this.damage,
-                                speed: 1000, // Очень высокая скорость для мгновенного попадания
+                                speed: 1000, // РћС‡РµРЅСЊ РІС‹СЃРѕРєР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ РґР»СЏ РјРіРЅРѕРІРµРЅРЅРѕРіРѕ РїРѕРїР°РґР°РЅРёСЏ
                                 size: BULLET_SIZE,
                                 color: 'yellow',
                                 instant: true
                             });
                         } else if (this.type === 'bomb') {
-                            // Бомба - AoE урон
+                            // Р‘РѕРјР±Р° - AoE СѓСЂРѕРЅ
                             bullets.push({
                                 x: this.x,
                                 y: this.y,
@@ -2226,12 +2226,12 @@ button:hover {
                                 aoeRadius: this.radius / 2
                             });
                         } else if (this.type === 'empty') {
-                            // Пустая башня - замедление врагов в радиусе
+                            // РџСѓСЃС‚Р°СЏ Р±Р°С€РЅСЏ - Р·Р°РјРµРґР»РµРЅРёРµ РІСЂР°РіРѕРІ РІ СЂР°РґРёСѓСЃРµ
                             for (const enemy of enemiesInRange) {
                                 enemy.slowDown(this.slowPercent);
                             }
                             
-                            // И наносит урон цели
+                            // Р РЅР°РЅРѕСЃРёС‚ СѓСЂРѕРЅ С†РµР»Рё
                             bullets.push({
                                 x: this.x,
                                 y: this.y,
@@ -2243,7 +2243,7 @@ button:hover {
                                 instant: false
                             });
                         } else {
-                            // Обычная башня
+                            // РћР±С‹С‡РЅР°СЏ Р±Р°С€РЅСЏ
                             bullets.push({
                                 x: this.x,
                                 y: this.y,
@@ -2271,9 +2271,9 @@ button:hover {
             }
             
             draw() {
-                // Рисуем башню
+                // Р РёСЃСѓРµРј Р±Р°С€РЅСЋ
                 if (this.type === 'omega') {
-                    // ОМЕГА башня с градиентом
+                    // РћРњР•Р“Рђ Р±Р°С€РЅСЏ СЃ РіСЂР°РґРёРµРЅС‚РѕРј
                     const gradient = ctx.createRadialGradient(
                         this.x, this.y, 0,
                         this.x, this.y, this.size
@@ -2287,7 +2287,7 @@ button:hover {
                     
                     ctx.fillStyle = gradient;
                 } else if (this.type === 'doublepistol') {
-                    // Двойный пистолет с градиентом
+                    // Р”РІРѕР№РЅС‹Р№ РїРёСЃС‚РѕР»РµС‚ СЃ РіСЂР°РґРёРµРЅС‚РѕРј
                     const gradient = ctx.createLinearGradient(
                         this.x - this.size, this.y,
                         this.x + this.size, this.y
@@ -2329,7 +2329,7 @@ button:hover {
                     ctx.closePath();
                     ctx.fill();
                     
-                    // Внутренняя часть
+                    // Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ С‡Р°СЃС‚СЊ
                     ctx.fillStyle = this.innerColor;
                     ctx.beginPath();
                     ctx.arc(0, 0, this.size/2, 0, Math.PI * 2);
@@ -2398,14 +2398,14 @@ button:hover {
                     ctx.restore();
                 }
                 
-                // Для фермы показываем значок монеты
+                // Р”Р»СЏ С„РµСЂРјС‹ РїРѕРєР°Р·С‹РІР°РµРј Р·РЅР°С‡РѕРє РјРѕРЅРµС‚С‹
                 if (this.type === 'farm' || this.type === 'goodfarm') {
                     ctx.fillStyle = 'gold';
                     ctx.font = '12px Arial';
                     ctx.fillText('$', this.x - 4, this.y + 4);
                 }
                 
-                // Для пустой башни показываем ауру
+                // Р”Р»СЏ РїСѓСЃС‚РѕР№ Р±Р°С€РЅРё РїРѕРєР°Р·С‹РІР°РµРј Р°СѓСЂСѓ
                 if (this.type === 'empty') {
                     ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
                     ctx.lineWidth = 2;
@@ -2414,13 +2414,13 @@ button:hover {
                     ctx.stroke();
                 }
                 
-                // Рисуем радиус (только при выборе и если включено отображение)
+                // Р РёСЃСѓРµРј СЂР°РґРёСѓСЃ (С‚РѕР»СЊРєРѕ РїСЂРё РІС‹Р±РѕСЂРµ Рё РµСЃР»Рё РІРєР»СЋС‡РµРЅРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ)
                 if ((selectedTower === this || selectedTowerType === this.type) && showRadius) {
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
                     ctx.setLineDash([5, 5]);
                     
                     if (this.type === 'knight' || this.type === 'omega') {
-                        // Рисуем два радиуса для рыцаря и ОМЕГИ
+                        // Р РёСЃСѓРµРј РґРІР° СЂР°РґРёСѓСЃР° РґР»СЏ СЂС‹С†Р°СЂСЏ Рё РћРњР•Р“Р
                         ctx.beginPath();
                         ctx.arc(this.x, this.y, this.innerRadius, 0, Math.PI * 2);
                         ctx.stroke();
@@ -2436,11 +2436,11 @@ button:hover {
                     
                     ctx.setLineDash([]);
                     
-                    // Показываем уровень улучшения
+                    // РџРѕРєР°Р·С‹РІР°РµРј СѓСЂРѕРІРµРЅСЊ СѓР»СѓС‡С€РµРЅРёСЏ
                     if (this.upgraded) {
                         ctx.fillStyle = 'gold';
                         ctx.font = '10px Arial';
-                        ctx.fillText('Ул.', this.x - 7, this.y + 4);
+                        ctx.fillText('РЈР».', this.x - 7, this.y + 4);
                     }
                 }
             }
@@ -2472,7 +2472,7 @@ button:hover {
             }
         }
         
-        // Функция обновления статистики
+        // Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃС‚Р°С‚РёСЃС‚РёРєРё
         function updateStats() {
             document.getElementById('money').textContent = money;
             document.getElementById('lives').textContent = lives;
@@ -2480,7 +2480,7 @@ button:hover {
             document.getElementById('diamonds').textContent = diamonds;
         }
         
-        // Функция обновления индекса врагов
+        // Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РёРЅРґРµРєСЃР° РІСЂР°РіРѕРІ
         function updateEnemyIndex() {
             for (const type in enemyKnowledge) {
                 if (enemyKnowledge[type].discovered) {
@@ -2490,12 +2490,12 @@ button:hover {
                         
                         let specialHtml = '';
                         if (type === 'boss' || type === 'blue' || type === 'sonic' || type === 'void') {
-                            specialHtml = `<div>Особенность: ${enemyKnowledge[type].special}</div>`;
+                            specialHtml = `<div>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ: ${enemyKnowledge[type].special}</div>`;
                         }
                         
                         statsElement.innerHTML = `
-                            <div>Здоровье: ${enemyKnowledge[type].health}</div>
-                            <div>Скорость: ${enemyKnowledge[type].speed.toFixed(2)}</div>
+                            <div>Р—РґРѕСЂРѕРІСЊРµ: ${enemyKnowledge[type].health}</div>
+                            <div>РЎРєРѕСЂРѕСЃС‚СЊ: ${enemyKnowledge[type].speed.toFixed(2)}</div>
                             ${specialHtml}
                         `;
                     }
@@ -2503,14 +2503,14 @@ button:hover {
             }
         }
         
-        // Функция начала волны
+        // Р¤СѓРЅРєС†РёСЏ РЅР°С‡Р°Р»Р° РІРѕР»РЅС‹
         function startWave() {
             if (!gameActive || waveActive) return;
             
             wave++;
             waveActive = true;
             
-            // Начисляем алмазы за волну в зависимости от сложности
+            // РќР°С‡РёСЃР»СЏРµРј Р°Р»РјР°Р·С‹ Р·Р° РІРѕР»РЅСѓ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё
             if (difficulty === "normal") {
                 diamonds += 1;
                 totalDiamonds += 1;
@@ -2522,7 +2522,7 @@ button:hover {
                 totalDiamonds += 3;
             }
             
-            // Награда за каждые 5 волн
+            // РќР°РіСЂР°РґР° Р·Р° РєР°Р¶РґС‹Рµ 5 РІРѕР»РЅ
             if (wave % 5 === 0) {
                 let reward = 0;
                 if (difficulty === "normal") {
@@ -2535,17 +2535,17 @@ button:hover {
                 
                 diamonds += reward;
                 totalDiamonds += reward;
-                waveRewardMultiplier *= 2; // Удваиваем множитель награды
+                waveRewardMultiplier *= 2; // РЈРґРІР°РёРІР°РµРј РјРЅРѕР¶РёС‚РµР»СЊ РЅР°РіСЂР°РґС‹
                 
-                alert(`Поздравляем! Вы прошли ${wave} волну и получаете ${reward} алмазов!`);
+                alert(`РџРѕР·РґСЂР°РІР»СЏРµРј! Р’С‹ РїСЂРѕС€Р»Рё ${wave} РІРѕР»РЅСѓ Рё РїРѕР»СѓС‡Р°РµС‚Рµ ${reward} Р°Р»РјР°Р·РѕРІ!`);
             }
             
             document.getElementById('diamondTotal').textContent = totalDiamonds;
             updateStats();
             saveGameData();
             
-            // Определяем количество и тип врагов в зависимости от волны
-            redCount = 2 + wave * 2; // +2 красных с каждой волной
+            // РћРїСЂРµРґРµР»СЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ Рё С‚РёРї РІСЂР°РіРѕРІ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІРѕР»РЅС‹
+            redCount = 2 + wave * 2; // +2 РєСЂР°СЃРЅС‹С… СЃ РєР°Р¶РґРѕР№ РІРѕР»РЅРѕР№
             purpleCount = 0;
             goldenCount = 0;
             pinkCount = 0;
@@ -2556,57 +2556,57 @@ button:hover {
             sonicCount = 0;
             voidCount = 0;
             
-            // Добавляем фиолетовых врагов после 5 волны
+            // Р”РѕР±Р°РІР»СЏРµРј С„РёРѕР»РµС‚РѕРІС‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 5 РІРѕР»РЅС‹
             if (wave >= 5) {
                 purpleCount = Math.floor((wave - 5) / 2) + 1;
             }
             
-            // Добавляем золотых врагов после 25 волны
+            // Р”РѕР±Р°РІР»СЏРµРј Р·РѕР»РѕС‚С‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 25 РІРѕР»РЅС‹
             if (wave >= 25) {
                 goldenCount = Math.floor((wave - 25) / 2) + 1;
             }
             
-            // Добавляем розовых врагов после 35 волны
+            // Р”РѕР±Р°РІР»СЏРµРј СЂРѕР·РѕРІС‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 35 РІРѕР»РЅС‹
             if (wave >= 35) {
                 pinkCount = Math.floor((wave - 35) / 3) + 1;
             }
             
-            // Добавляем зеленых врагов после 40 волны
+            // Р”РѕР±Р°РІР»СЏРµРј Р·РµР»РµРЅС‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 40 РІРѕР»РЅС‹
             if (wave >= 40) {
                 greenCount = Math.floor((wave - 40) / 3) + 1;
             }
             
-            // Добавляем белых врагов после 70 волны
+            // Р”РѕР±Р°РІР»СЏРµРј Р±РµР»С‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 70 РІРѕР»РЅС‹
             if (wave >= 70) {
                 whiteCount = Math.floor((wave - 70) / 5) + 1;
             }
             
-            // Добавляем босса каждые 50 волн
+            // Р”РѕР±Р°РІР»СЏРµРј Р±РѕСЃСЃР° РєР°Р¶РґС‹Рµ 50 РІРѕР»РЅ
             if (wave % 50 === 0) {
                 bossCount = 1;
             }
             
-            // Добавляем голубых врагов после 55 волны
+            // Р”РѕР±Р°РІР»СЏРµРј РіРѕР»СѓР±С‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 55 РІРѕР»РЅС‹
             if (wave >= 55) {
                 blueCount = Math.floor((wave - 55) / 25) + 1;
             }
             
-            // Добавляем соник врагов после 90 волны
+            // Р”РѕР±Р°РІР»СЏРµРј СЃРѕРЅРёРє РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 90 РІРѕР»РЅС‹
             if (wave >= 90) {
                 sonicCount = Math.floor((wave - 90) / 3) + 1;
             }
             
-            // Добавляем пустотных врагов после 125 волны
+            // Р”РѕР±Р°РІР»СЏРµРј РїСѓСЃС‚РѕС‚РЅС‹С… РІСЂР°РіРѕРІ РїРѕСЃР»Рµ 125 РІРѕР»РЅС‹
             if (wave >= 125) {
                 voidCount = Math.floor((wave - 125) / 25) + 1;
             }
             
             enemiesToSpawn = redCount + purpleCount + goldenCount + pinkCount + greenCount + whiteCount + 
                             bossCount + blueCount + sonicCount + voidCount;
-            enemySpawnTimer = 30; // Задержка перед первым врагом
+            enemySpawnTimer = 30; // Р—Р°РґРµСЂР¶РєР° РїРµСЂРµРґ РїРµСЂРІС‹Рј РІСЂР°РіРѕРј
         }
         
-        // Функция спавна врагов
+        // Р¤СѓРЅРєС†РёСЏ СЃРїР°РІРЅР° РІСЂР°РіРѕРІ
         function spawnEnemy() {
             if (enemiesToSpawn > 0 && enemySpawnTimer <= 0) {
                 let enemy;
@@ -2624,7 +2624,7 @@ button:hover {
                     enemy = new Enemy('boss', 250 + (Math.floor(wave / 50) * 250), ENEMY_BASE_SPEED, ENEMY_SIZE * 2, 'black');
                     bossCount--;
                     
-                    // Создаем индикатор ауры босса
+                    // РЎРѕР·РґР°РµРј РёРЅРґРёРєР°С‚РѕСЂ Р°СѓСЂС‹ Р±РѕСЃСЃР°
                     bossAura = document.createElement('div');
                     bossAura.className = 'boss-aura';
                     bossAura.style.width = enemy.auraRadius * 2 + 'px';
@@ -2652,33 +2652,33 @@ button:hover {
                 
                 enemies.push(enemy);
                 enemiesToSpawn--;
-                enemySpawnTimer = 30; // Задержка между врагами
+                enemySpawnTimer = 30; // Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ РІСЂР°РіР°РјРё
             }
             
             if (enemySpawnTimer > 0) {
                 enemySpawnTimer--;
             }
             
-            // Если все враги созданы и все убиты - начинаем следующую волну
+            // Р•СЃР»Рё РІСЃРµ РІСЂР°РіРё СЃРѕР·РґР°РЅС‹ Рё РІСЃРµ СѓР±РёС‚С‹ - РЅР°С‡РёРЅР°РµРј СЃР»РµРґСѓСЋС‰СѓСЋ РІРѕР»РЅСѓ
             if (enemiesToSpawn === 0 && enemies.length === 0) {
                 waveActive = false;
-                // Автоматически начинаем следующую волну
+                // РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РЅР°С‡РёРЅР°РµРј СЃР»РµРґСѓСЋС‰СѓСЋ РІРѕР»РЅСѓ
                 setTimeout(startWave, 2000);
             }
         }
         
-        // Функция обновления пуль
+        // Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РїСѓР»СЊ
         function updateBullets() {
             for (let i = bullets.length - 1; i >= 0; i--) {
                 const bullet = bullets[i];
                 
-                // Если цель уже уничтожена, удаляем пулю
+                // Р•СЃР»Рё С†РµР»СЊ СѓР¶Рµ СѓРЅРёС‡С‚РѕР¶РµРЅР°, СѓРґР°Р»СЏРµРј РїСѓР»СЋ
                 if (!enemies.includes(bullet.target)) {
                     bullets.splice(i, 1);
                     continue;
                 }
                 
-                // Для мгновенных пуль (снайпер) - сразу наносим урон
+                // Р”Р»СЏ РјРіРЅРѕРІРµРЅРЅС‹С… РїСѓР»СЊ (СЃРЅР°Р№РїРµСЂ) - СЃСЂР°Р·Сѓ РЅР°РЅРѕСЃРёРј СѓСЂРѕРЅ
                 if (bullet.instant) {
                     if (bullet.target.takeDamage(bullet.damage)) {
                         enemies.splice(enemies.indexOf(bullet.target), 1);
@@ -2687,14 +2687,14 @@ button:hover {
                     continue;
                 }
                 
-                // Для AoE пуль (бомбы) - наносим урон всем врагам в радиусе
+                // Р”Р»СЏ AoE РїСѓР»СЊ (Р±РѕРјР±С‹) - РЅР°РЅРѕСЃРёРј СѓСЂРѕРЅ РІСЃРµРј РІСЂР°РіР°Рј РІ СЂР°РґРёСѓСЃРµ
                 if (bullet.aoe && bullet.target) {
                     const dx = bullet.target.x - bullet.x;
                     const dy = bullet.target.y - bullet.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
                     if (distance < bullet.speed) {
-                        // Попадание по врагу - наносим урон всем врагам в радиусе
+                        // РџРѕРїР°РґР°РЅРёРµ РїРѕ РІСЂР°РіСѓ - РЅР°РЅРѕСЃРёРј СѓСЂРѕРЅ РІСЃРµРј РІСЂР°РіР°Рј РІ СЂР°РґРёСѓСЃРµ
                         for (const enemy of enemies) {
                             const enemyDx = enemy.x - bullet.target.x;
                             const enemyDy = enemy.y - bullet.target.y;
@@ -2711,13 +2711,13 @@ button:hover {
                     }
                 }
                 
-                // Движение пули к цели
+                // Р”РІРёР¶РµРЅРёРµ РїСѓР»Рё Рє С†РµР»Рё
                 const dx = bullet.target.x - bullet.x;
                 const dy = bullet.target.y - bullet.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < bullet.speed) {
-                    // Попадание по врагу
+                    // РџРѕРїР°РґР°РЅРёРµ РїРѕ РІСЂР°РіСѓ
                     if (bullet.target.takeDamage(bullet.damage)) {
                         enemies.splice(enemies.indexOf(bullet.target), 1);
                     }
@@ -2729,7 +2729,7 @@ button:hover {
             }
         }
         
-        // Функция обновления луж
+        // Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ Р»СѓР¶
         function updatePuddles() {
             for (let i = puddles.length - 1; i >= 0; i--) {
                 if (!puddles[i].update()) {
@@ -2738,17 +2738,17 @@ button:hover {
             }
         }
         
-        // Функция завершения игры
+        // Р¤СѓРЅРєС†РёСЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
         function gameOver() {
             gameActive = false;
-            waveRewardMultiplier = 1; // Сбрасываем множитель награды
+            waveRewardMultiplier = 1; // РЎР±СЂР°СЃС‹РІР°РµРј РјРЅРѕР¶РёС‚РµР»СЊ РЅР°РіСЂР°РґС‹
             document.getElementById('restartGame').style.display = 'block';
             document.getElementById('gameOverlay').style.display = 'block';
         }
         
-        // Рисуем путь (желтая тропинка)
+        // Р РёСЃСѓРµРј РїСѓС‚СЊ (Р¶РµР»С‚Р°СЏ С‚СЂРѕРїРёРЅРєР°)
         function drawPath() {
-            ctx.strokeStyle = '#f1c40f'; // Желтый цвет
+            ctx.strokeStyle = '#f1c40f'; // Р–РµР»С‚С‹Р№ С†РІРµС‚
             ctx.lineWidth = 30;
             ctx.lineJoin = 'round';
             ctx.lineCap = 'round';
@@ -2761,7 +2761,7 @@ button:hover {
             
             ctx.stroke();
             
-            // Добавляем текстуру тропинки
+            // Р”РѕР±Р°РІР»СЏРµРј С‚РµРєСЃС‚СѓСЂСѓ С‚СЂРѕРїРёРЅРєРё
             ctx.strokeStyle = '#d35400';
             ctx.lineWidth = 2;
             ctx.setLineDash([5, 15]);
@@ -2776,7 +2776,7 @@ button:hover {
             ctx.setLineDash([]);
         }
         
-        // Показать меню улучшения
+        // РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ СѓР»СѓС‡С€РµРЅРёСЏ
         function showUpgradeMenu(tower, x, y) {
             const menu = document.getElementById('upgradeMenu');
             const upgradeInfo = document.getElementById('upgradeInfo');
@@ -2784,10 +2784,10 @@ button:hover {
             const sellBtn = document.getElementById('sellBtn');
             const targetingOptions = document.getElementById('targetingOptions');
             
-            // Устанавливаем текущую стратегию выбора цели
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РµРєСѓС‰СѓСЋ СЃС‚СЂР°С‚РµРіРёСЋ РІС‹Р±РѕСЂР° С†РµР»Рё
             document.querySelector(`input[name="targeting"][value="${tower.targeting}"]`).checked = true;
             
-            // Обработчик изменения стратегии
+            // РћР±СЂР°Р±РѕС‚С‡РёРє РёР·РјРµРЅРµРЅРёСЏ СЃС‚СЂР°С‚РµРіРёРё
             targetingOptions.querySelectorAll('input[name="targeting"]').forEach(input => {
                 input.onchange = () => {
                     tower.targeting = input.value;
@@ -2795,7 +2795,7 @@ button:hover {
             });
             
             if (tower.upgraded) {
-                upgradeInfo.innerHTML = '<p>Башня уже улучшена до максимального уровня</p>';
+                upgradeInfo.innerHTML = '<p>Р‘Р°С€РЅСЏ СѓР¶Рµ СѓР»СѓС‡С€РµРЅР° РґРѕ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ</p>';
                 upgradeBtn.disabled = true;
             } else {
                 let upgradeText = '';
@@ -2803,235 +2803,235 @@ button:hover {
                 switch(tower.type) {
                     case 'pistol':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'swordsman':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'sniper':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'freezer':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Замедление: ${tower.slowPercent}%</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>Р—Р°РјРµРґР»РµРЅРёРµ: ${tower.slowPercent}%</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Замедление: ${tower.upgradeSlowPercent}%</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>Р—Р°РјРµРґР»РµРЅРёРµ: ${tower.upgradeSlowPercent}%</li>
                             </ul>
                         `;
                         break;
                     case 'knight':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Внутр. урон: ${tower.innerDamage}</li>
-                                <li>Внутр. радиус: ${tower.innerRadius/ST_TO_PX}st</li>
-                                <li>Внутр. скорость: ${60/tower.innerFireRate} выстр/сек</li>
-                                <li>Внеш. урон: ${tower.outerDamage}</li>
-                                <li>Внеш. радиус: ${tower.outerRadius/ST_TO_PX}st</li>
-                                <li>Внеш. скорость: ${60/tower.outerFireRate} выстр/сек</li>
+                                <li>Р’РЅСѓС‚СЂ. СѓСЂРѕРЅ: ${tower.innerDamage}</li>
+                                <li>Р’РЅСѓС‚СЂ. СЂР°РґРёСѓСЃ: ${tower.innerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅСѓС‚СЂ. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.innerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
+                                <li>Р’РЅРµС€. СѓСЂРѕРЅ: ${tower.outerDamage}</li>
+                                <li>Р’РЅРµС€. СЂР°РґРёСѓСЃ: ${tower.outerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅРµС€. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.outerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Внутр. урон: ${tower.upgradeInnerDamage}</li>
-                                <li>Внутр. радиус: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
-                                <li>Внутр. скорость: ${60/tower.upgradeInnerFireRate} выстр/сек</li>
-                                <li>Внеш. урон: ${tower.upgradeOuterDamage}</li>
-                                <li>Внеш. радиус: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
-                                <li>Внеш. скорость: ${60/tower.upgradeOuterFireRate} выстр/сек</li>
+                                <li>Р’РЅСѓС‚СЂ. СѓСЂРѕРЅ: ${tower.upgradeInnerDamage}</li>
+                                <li>Р’РЅСѓС‚СЂ. СЂР°РґРёСѓСЃ: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅСѓС‚СЂ. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeInnerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
+                                <li>Р’РЅРµС€. СѓСЂРѕРЅ: ${tower.upgradeOuterDamage}</li>
+                                <li>Р’РЅРµС€. СЂР°РґРёСѓСЃ: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅРµС€. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeOuterFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'farm':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Доход: ${tower.income} монета/сек</li>
+                                <li>Р”РѕС…РѕРґ: ${tower.income} РјРѕРЅРµС‚Р°/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Доход: ${tower.upgradeIncome} монеты/сек</li>
+                                <li>Р”РѕС…РѕРґ: ${tower.upgradeIncome} РјРѕРЅРµС‚С‹/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'chance':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.minDamage}-${tower.maxDamage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.minDamage}-${tower.maxDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeMinDamage}-${tower.upgradeMaxDamage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeMinDamage}-${tower.upgradeMaxDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'atomic':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${tower.fireRate/60} сек/выстрел</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${tower.fireRate/60} СЃРµРє/РІС‹СЃС‚СЂРµР»</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${tower.upgradeFireRate/60} сек/выстрел</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${tower.upgradeFireRate/60} СЃРµРє/РІС‹СЃС‚СЂРµР»</li>
                             </ul>
                         `;
                         break;
                     case 'omega':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Внутр. урон: ${tower.innerDamage}</li>
-                                <li>Внутр. радиус: ${tower.innerRadius/ST_TO_PX}st</li>
-                                <li>Внутр. скорость: ${60/tower.innerFireRate} выстр/сек</li>
-                                <li>Внеш. урон: ${tower.outerDamage}</li>
-                                <li>Внеш. радиус: ${tower.outerRadius/ST_TO_PX}st</li>
-                                <li>Внеш. скорость: ${60/tower.outerFireRate} выстр/сек</li>
+                                <li>Р’РЅСѓС‚СЂ. СѓСЂРѕРЅ: ${tower.innerDamage}</li>
+                                <li>Р’РЅСѓС‚СЂ. СЂР°РґРёСѓСЃ: ${tower.innerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅСѓС‚СЂ. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.innerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
+                                <li>Р’РЅРµС€. СѓСЂРѕРЅ: ${tower.outerDamage}</li>
+                                <li>Р’РЅРµС€. СЂР°РґРёСѓСЃ: ${tower.outerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅРµС€. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.outerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Внутр. урон: ${tower.upgradeInnerDamage}</li>
-                                <li>Внутр. радиус: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
-                                <li>Внутр. скорость: ${60/tower.upgradeInnerFireRate} выстр/сек</li>
-                                <li>Внеш. урон: ${tower.upgradeOuterDamage}</li>
-                                <li>Внеш. радиус: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
-                                <li>Внеш. скорость: ${60/tower.upgradeOuterFireRate} выстр/сек</li>
+                                <li>Р’РЅСѓС‚СЂ. СѓСЂРѕРЅ: ${tower.upgradeInnerDamage}</li>
+                                <li>Р’РЅСѓС‚СЂ. СЂР°РґРёСѓСЃ: ${tower.upgradeInnerRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅСѓС‚СЂ. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeInnerFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
+                                <li>Р’РЅРµС€. СѓСЂРѕРЅ: ${tower.upgradeOuterDamage}</li>
+                                <li>Р’РЅРµС€. СЂР°РґРёСѓСЃ: ${tower.upgradeOuterRadius/ST_TO_PX}st</li>
+                                <li>Р’РЅРµС€. СЃРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeOuterFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'doublepistol':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'bomb':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'toxic':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}/0.1сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}/0.1СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}/0.1сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}/0.1СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'turret':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.fireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.fireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Скорость: ${60/tower.upgradeFireRate} выстр/сек</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>РЎРєРѕСЂРѕСЃС‚СЊ: ${60/tower.upgradeFireRate} РІС‹СЃС‚СЂ/СЃРµРє</li>
                             </ul>
                         `;
                         break;
                     case 'empty':
                         upgradeText = `
-                            <p>Текущие характеристики:</p>
+                            <p>РўРµРєСѓС‰РёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:</p>
                             <ul>
-                                <li>Урон: ${tower.damage}/сек</li>
-                                <li>Радиус: ${tower.radius/ST_TO_PX}st</li>
-                                <li>Замедление: ${tower.slowPercent}%</li>
+                                <li>РЈСЂРѕРЅ: ${tower.damage}/СЃРµРє</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.radius/ST_TO_PX}st</li>
+                                <li>Р—Р°РјРµРґР»РµРЅРёРµ: ${tower.slowPercent}%</li>
                             </ul>
-                            <p>После улучшения:</p>
+                            <p>РџРѕСЃР»Рµ СѓР»СѓС‡С€РµРЅРёСЏ:</p>
                             <ul>
-                                <li>Урон: ${tower.upgradeDamage}/сек</li>
-                                <li>Радиус: ${tower.upgradeRadius/ST_TO_PX}st</li>
-                                <li>Замедление: ${tower.upgradeSlowPercent}%</li>
+                                <li>РЈСЂРѕРЅ: ${tower.upgradeDamage}/СЃРµРє</li>
+                                <li>Р Р°РґРёСѓСЃ: ${tower.upgradeRadius/ST_TO_PX}st</li>
+                                <li>Р—Р°РјРµРґР»РµРЅРёРµ: ${tower.upgradeSlowPercent}%</li>
                             </ul>
                         `;
                         break;
                 }
                 
-                upgradeInfo.innerHTML = upgradeText + `<p>Стоимость: ${tower.upgradeCost} монет</p>`;
+                upgradeInfo.innerHTML = upgradeText + `<p>РЎС‚РѕРёРјРѕСЃС‚СЊ: ${tower.upgradeCost} РјРѕРЅРµС‚</p>`;
                 
                 upgradeBtn.disabled = money < tower.upgradeCost;
                 upgradeBtn.onclick = function() {
@@ -3044,13 +3044,13 @@ button:hover {
                 };
             }
             
-            // Настройка кнопки продажи
+            // РќР°СЃС‚СЂРѕР№РєР° РєРЅРѕРїРєРё РїСЂРѕРґР°Р¶Рё
             const sellPrice = tower.getSellPrice();
-            sellBtn.textContent = `Продать (${sellPrice} монет)`;
+            sellBtn.textContent = `РџСЂРѕРґР°С‚СЊ (${sellPrice} РјРѕРЅРµС‚)`;
             sellBtn.onclick = function() {
                 money += sellPrice;
                 
-                // Обновляем счетчики лимитированных башен
+                // РћР±РЅРѕРІР»СЏРµРј СЃС‡РµС‚С‡РёРєРё Р»РёРјРёС‚РёСЂРѕРІР°РЅРЅС‹С… Р±Р°С€РµРЅ
                 if (tower.type === 'farm') farmCount--;
                 if (tower.type === 'atomic') atomicCount--;
                 if (tower.type === 'omega') omegaCount--;
@@ -3063,26 +3063,26 @@ button:hover {
                 updateStats();
                 menu.style.display = 'none';
                 
-                // Удаляем индикатор радиуса, если он отображается
+                // РЈРґР°Р»СЏРµРј РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР°, РµСЃР»Рё РѕРЅ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ
                 if (rangeIndicator) {
                     document.body.removeChild(rangeIndicator);
                     rangeIndicator = null;
                 }
             };
             
-            // Показываем опции выбора цели только для боевых башен
+            // РџРѕРєР°Р·С‹РІР°РµРј РѕРїС†РёРё РІС‹Р±РѕСЂР° С†РµР»Рё С‚РѕР»СЊРєРѕ РґР»СЏ Р±РѕРµРІС‹С… Р±Р°С€РµРЅ
             if (tower.type === 'farm' || tower.type === 'goodfarm' || tower.type === 'toxic') {
                 targetingOptions.style.display = 'none';
             } else {
                 targetingOptions.style.display = 'block';
             }
             
-            // Позиционируем меню рядом с башней
+            // РџРѕР·РёС†РёРѕРЅРёСЂСѓРµРј РјРµРЅСЋ СЂСЏРґРѕРј СЃ Р±Р°С€РЅРµР№
             const rect = menu.getBoundingClientRect();
             let left = x + 20;
             let top = y - 150;
             
-            // Проверяем, чтобы меню не выходило за пределы экрана
+            // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚РѕР±С‹ РјРµРЅСЋ РЅРµ РІС‹С…РѕРґРёР»Рѕ Р·Р° РїСЂРµРґРµР»С‹ СЌРєСЂР°РЅР°
             if (left + rect.width > window.innerWidth) {
                 left = x - rect.width - 20;
             }
@@ -3100,7 +3100,7 @@ button:hover {
             menu.style.display = 'block';
         }
         
-        // Создать индикатор радиуса
+        // РЎРѕР·РґР°С‚СЊ РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР°
         function createRangeIndicator(radius) {
             if (rangeIndicator) {
                 document.body.removeChild(rangeIndicator);
@@ -3115,44 +3115,44 @@ button:hover {
             return rangeIndicator;
         }
         
-        // Основной игровой цикл
+        // РћСЃРЅРѕРІРЅРѕР№ РёРіСЂРѕРІРѕР№ С†РёРєР»
         function gameLoop() {
             if (!gameActive) return;
             
-            // Очистка canvas
+            // РћС‡РёСЃС‚РєР° canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Рисуем путь
+            // Р РёСЃСѓРµРј РїСѓС‚СЊ
             drawPath();
             
-            // Рисуем лужи
+            // Р РёСЃСѓРµРј Р»СѓР¶Рё
             for (const puddle of puddles) {
                 puddle.draw();
             }
             
-            // Спавн врагов
+            // РЎРїР°РІРЅ РІСЂР°РіРѕРІ
             spawnEnemy();
             
-            // Обновление врагов
+            // РћР±РЅРѕРІР»РµРЅРёРµ РІСЂР°РіРѕРІ
             for (let i = enemies.length - 1; i >= 0; i--) {
                 if (!enemies[i].update()) {
                     enemies.splice(i, 1);
                 }
             }
             
-            // Обновление башен
+            // РћР±РЅРѕРІР»РµРЅРёРµ Р±Р°С€РµРЅ
             for (const tower of towers) {
                 tower.update();
                 tower.draw();
             }
             
-            // Обновление пуль
+            // РћР±РЅРѕРІР»РµРЅРёРµ РїСѓР»СЊ
             updateBullets();
             
-            // Обновление луж
+            // РћР±РЅРѕРІР»РµРЅРёРµ Р»СѓР¶
             updatePuddles();
             
-            // Рисуем пули
+            // Р РёСЃСѓРµРј РїСѓР»Рё
             for (const bullet of bullets) {
                 ctx.fillStyle = bullet.color;
                 ctx.beginPath();
@@ -3160,12 +3160,12 @@ button:hover {
                 ctx.fill();
             }
             
-            // Рисуем врагов
+            // Р РёСЃСѓРµРј РІСЂР°РіРѕРІ
             for (const enemy of enemies) {
                 enemy.draw();
             }
             
-            // Автозапуск первой волны
+            // РђРІС‚РѕР·Р°РїСѓСЃРє РїРµСЂРІРѕР№ РІРѕР»РЅС‹
             if (wave === 0 && !waveActive) {
                 startWave();
             }
@@ -3173,7 +3173,7 @@ button:hover {
             requestAnimationFrame(gameLoop);
         }
         
-        // Обработчик клика по canvas
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєР»РёРєР° РїРѕ canvas
         canvas.addEventListener('click', (e) => {
             if (!gameActive) return;
             
@@ -3181,10 +3181,10 @@ button:hover {
             const x = mousePos.x;
             const y = mousePos.y;
             
-            // Скрываем меню улучшений при клике вне башни
+            // РЎРєСЂС‹РІР°РµРј РјРµРЅСЋ СѓР»СѓС‡С€РµРЅРёР№ РїСЂРё РєР»РёРєРµ РІРЅРµ Р±Р°С€РЅРё
             let clickedOnTower = false;
             
-            // Проверяем, кликнули ли по существующей башне
+            // РџСЂРѕРІРµСЂСЏРµРј, РєР»РёРєРЅСѓР»Рё Р»Рё РїРѕ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµР№ Р±Р°С€РЅРµ
             for (const tower of towers) {
                 const dx = tower.x - x;
                 const dy = tower.y - y;
@@ -3195,15 +3195,15 @@ button:hover {
                     selectedTower = tower;
                     selectedTowerType = null;
                     
-                    // Показываем меню улучшения
+                    // РџРѕРєР°Р·С‹РІР°РµРј РјРµРЅСЋ СѓР»СѓС‡С€РµРЅРёСЏ
                     showUpgradeMenu(tower, e.clientX, e.clientY);
                     
-                    // Снимаем выделение с кнопок магазина
+                    // РЎРЅРёРјР°РµРј РІС‹РґРµР»РµРЅРёРµ СЃ РєРЅРѕРїРѕРє РјР°РіР°Р·РёРЅР°
                     document.querySelectorAll('.tower-item').forEach(item => {
                         item.classList.remove('selected');
                     });
                     
-                    // Удаляем индикатор радиуса
+                    // РЈРґР°Р»СЏРµРј РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР°
                     if (rangeIndicator) {
                         document.body.removeChild(rangeIndicator);
                         rangeIndicator = null;
@@ -3213,55 +3213,55 @@ button:hover {
                 }
             }
             
-            // Если кликнули не по башне, скрываем меню улучшений
+            // Р•СЃР»Рё РєР»РёРєРЅСѓР»Рё РЅРµ РїРѕ Р±Р°С€РЅРµ, СЃРєСЂС‹РІР°РµРј РјРµРЅСЋ СѓР»СѓС‡С€РµРЅРёР№
             if (!clickedOnTower) {
                 document.getElementById('upgradeMenu').style.display = 'none';
                 
-                // Если выбрана башня для покупки
+                // Р•СЃР»Рё РІС‹Р±СЂР°РЅР° Р±Р°С€РЅСЏ РґР»СЏ РїРѕРєСѓРїРєРё
                 if (selectedTowerType) {
                     const price = parseInt(document.querySelector(`.tower-item[data-type="${selectedTowerType}"]`).getAttribute('data-price'));
                     
                     if (money >= price) {
-                        // Проверяем лимиты для специальных башен
+                        // РџСЂРѕРІРµСЂСЏРµРј Р»РёРјРёС‚С‹ РґР»СЏ СЃРїРµС†РёР°Р»СЊРЅС‹С… Р±Р°С€РµРЅ
                         if (selectedTowerType === 'farm' && farmCount >= 5) {
-                            alert('Достигнут лимит ферм (5)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С„РµСЂРј (5)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'atomic' && atomicCount >= 2) {
-                            alert('Достигнут лимит атомных башен (2)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ Р°С‚РѕРјРЅС‹С… Р±Р°С€РµРЅ (2)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'omega' && omegaCount >= 2) {
-                            alert('Достигнут лимит ОМЕГА башен (2)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ РћРњР•Р“Рђ Р±Р°С€РµРЅ (2)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'goodfarm' && goodFarmCount >= 2) {
-                            alert('Достигнут лимит хороших ферм (2)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С…РѕСЂРѕС€РёС… С„РµСЂРј (2)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'toxic' && toxicCount >= 3) {
-                            alert('Достигнут лимит токсичных башен (3)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С‚РѕРєСЃРёС‡РЅС‹С… Р±Р°С€РµРЅ (3)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'turret' && turretCount >= 8) {
-                            alert('Достигнут лимит турелей (8)!');
+                            alert('Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С‚СѓСЂРµР»РµР№ (8)!');
                             return;
                         }
                         
                         if (selectedTowerType === 'empty') {
                             const limit = (difficulty === "extreme") ? 2 : 1;
                             if (emptyCount >= limit) {
-                                alert(`Достигнут лимит пустых башен (${limit})!`);
+                                alert(`Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ РїСѓСЃС‚С‹С… Р±Р°С€РµРЅ (${limit})!`);
                                 return;
                             }
                         }
                         
-                        // Проверяем, нет ли здесь уже башни
+                        // РџСЂРѕРІРµСЂСЏРµРј, РЅРµС‚ Р»Рё Р·РґРµСЃСЊ СѓР¶Рµ Р±Р°С€РЅРё
                         let canPlace = true;
                         for (const tower of towers) {
                             const dx = tower.x - x;
@@ -3274,7 +3274,7 @@ button:hover {
                             }
                         }
                         
-                        // Проверяем, не на пути ли башня и достаточно ли далеко от пути
+                        // РџСЂРѕРІРµСЂСЏРµРј, РЅРµ РЅР° РїСѓС‚Рё Р»Рё Р±Р°С€РЅСЏ Рё РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р»Рё РґР°Р»РµРєРѕ РѕС‚ РїСѓС‚Рё
                         const onPath = isOnPath(x, y);
                         
                         if (canPlace && !onPath) {
@@ -3282,7 +3282,7 @@ button:hover {
                             money -= price;
                             updateStats();
                             
-                            // Обновляем счетчики лимитированных башен
+                            // РћР±РЅРѕРІР»СЏРµРј СЃС‡РµС‚С‡РёРєРё Р»РёРјРёС‚РёСЂРѕРІР°РЅРЅС‹С… Р±Р°С€РµРЅ
                             if (selectedTowerType === 'farm') farmCount++;
                             if (selectedTowerType === 'atomic') atomicCount++;
                             if (selectedTowerType === 'omega') omegaCount++;
@@ -3291,12 +3291,12 @@ button:hover {
                             if (selectedTowerType === 'turret') turretCount++;
                             if (selectedTowerType === 'empty') emptyCount++;
                             
-                            // Снимаем выделение с кнопки
+                            // РЎРЅРёРјР°РµРј РІС‹РґРµР»РµРЅРёРµ СЃ РєРЅРѕРїРєРё
                             document.querySelectorAll('.tower-item').forEach(item => {
                                 item.classList.remove('selected');
                             });
                             
-                            // Удаляем индикатор радиуса
+                            // РЈРґР°Р»СЏРµРј РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР°
                             if (rangeIndicator) {
                                 document.body.removeChild(rangeIndicator);
                                 rangeIndicator = null;
@@ -3305,28 +3305,28 @@ button:hover {
                             selectedTowerType = null;
                         }
                     } else {
-                        alert('Недостаточно денег!');
+                        alert('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі!');
                     }
                 }
             }
         });
         
-        // Проверка, находится ли точка на пути
+        // РџСЂРѕРІРµСЂРєР°, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё С‚РѕС‡РєР° РЅР° РїСѓС‚Рё
         function isOnPath(x, y) {
             for (let i = 0; i < PATH.length - 1; i++) {
                 const p1 = PATH[i];
                 const p2 = PATH[i + 1];
                 
-                // Проверяем, находится ли точка рядом с отрезком пути
+                // РџСЂРѕРІРµСЂСЏРµРј, РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё С‚РѕС‡РєР° СЂСЏРґРѕРј СЃ РѕС‚СЂРµР·РєРѕРј РїСѓС‚Рё
                 const dist = pointToLineDistance(x, y, p1.x, p1.y, p2.x, p2.y);
-                if (dist < 25) { // Ширина пути + запас
+                if (dist < 25) { // РЁРёСЂРёРЅР° РїСѓС‚Рё + Р·Р°РїР°СЃ
                     return true;
                 }
             }
             return false;
         }
         
-        // Вычисление расстояния от точки до отрезка
+        // Р’С‹С‡РёСЃР»РµРЅРёРµ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РѕС‚ С‚РѕС‡РєРё РґРѕ РѕС‚СЂРµР·РєР°
         function pointToLineDistance(px, py, x1, y1, x2, y2) {
             const A = px - x1;
             const B = py - y1;
@@ -3360,22 +3360,22 @@ button:hover {
             return Math.sqrt(dx * dx + dy * dy);
         }
         
-        // Обработчик выбора башни в магазине
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РІС‹Р±РѕСЂР° Р±Р°С€РЅРё РІ РјР°РіР°Р·РёРЅРµ
         document.querySelectorAll('.tower-item').forEach(item => {
             item.addEventListener('click', function() {
                 selectedTowerType = this.getAttribute('data-type');
                 selectedTower = null;
                 
-                // Скрываем меню улучшений
+                // РЎРєСЂС‹РІР°РµРј РјРµРЅСЋ СѓР»СѓС‡С€РµРЅРёР№
                 document.getElementById('upgradeMenu').style.display = 'none';
                 
-                // Выделяем выбранную башню
+                // Р’С‹РґРµР»СЏРµРј РІС‹Р±СЂР°РЅРЅСѓСЋ Р±Р°С€РЅСЋ
                 document.querySelectorAll('.tower-item').forEach(i => {
                     i.classList.remove('selected');
                 });
                 this.classList.add('selected');
                 
-                // Показываем индикатор радиуса (кроме фермы)
+                // РџРѕРєР°Р·С‹РІР°РµРј РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР° (РєСЂРѕРјРµ С„РµСЂРјС‹)
                 if (selectedTowerType !== 'farm' && selectedTowerType !== 'goodfarm' && selectedTowerType !== 'toxic') {
                     let radius;
                     switch(selectedTowerType) {
@@ -3395,7 +3395,7 @@ button:hover {
                     
                     createRangeIndicator(radius);
                     
-                    // Обновляем позицию индикатора при движении мыши
+                    // РћР±РЅРѕРІР»СЏРµРј РїРѕР·РёС†РёСЋ РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРё РґРІРёР¶РµРЅРёРё РјС‹С€Рё
                     const moveHandler = (e) => {
                         rangeIndicator.style.left = e.clientX + 'px';
                         rangeIndicator.style.top = e.clientY + 'px';
@@ -3403,7 +3403,7 @@ button:hover {
                     
                     document.addEventListener('mousemove', moveHandler);
                     
-                    // Удаляем обработчик при выборе другой башни или отмене выбора
+                    // РЈРґР°Р»СЏРµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РїСЂРё РІС‹Р±РѕСЂРµ РґСЂСѓРіРѕР№ Р±Р°С€РЅРё РёР»Рё РѕС‚РјРµРЅРµ РІС‹Р±РѕСЂР°
                     const clearHandler = () => {
                         document.removeEventListener('mousemove', moveHandler);
                         document.removeEventListener('click', clearHandler);
@@ -3414,33 +3414,33 @@ button:hover {
             });
         });
         
-        // Обработчик кнопки переключения отображения радиуса
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЂР°РґРёСѓСЃР°
         document.getElementById('toggleRadius').addEventListener('click', function() {
             showRadius = !showRadius;
-            this.textContent = showRadius ? 'Скрыть радиус' : 'Показать радиус';
+            this.textContent = showRadius ? 'РЎРєСЂС‹С‚СЊ СЂР°РґРёСѓСЃ' : 'РџРѕРєР°Р·Р°С‚СЊ СЂР°РґРёСѓСЃ';
         });
         
-        // Обработчик кнопки переключения индекса врагов
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РёРЅРґРµРєСЃР° РІСЂР°РіРѕРІ
         document.getElementById('toggleIndex').addEventListener('click', function() {
             const index = document.getElementById('enemyIndex');
             if (index.style.display === 'block') {
                 index.style.display = 'none';
-                this.textContent = 'Показать индекс';
+                this.textContent = 'РџРѕРєР°Р·Р°С‚СЊ РёРЅРґРµРєСЃ';
             } else {
                 index.style.display = 'block';
-                this.textContent = 'Скрыть индекс';
+                this.textContent = 'РЎРєСЂС‹С‚СЊ РёРЅРґРµРєСЃ';
             }
         });
         
-        // Обработчик кнопки перезапуска
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РїРµСЂРµР·Р°РїСѓСЃРєР°
         document.getElementById('restartGame').addEventListener('click', function() {
-            // Показываем экран настройки
+            // РџРѕРєР°Р·С‹РІР°РµРј СЌРєСЂР°РЅ РЅР°СЃС‚СЂРѕР№РєРё
             document.getElementById('setupScreen').style.display = 'flex';
             this.style.display = 'none';
             document.getElementById('gameOverlay').style.display = 'none';
         });
         
-        // Обработчик выбора сложности
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РІС‹Р±РѕСЂР° СЃР»РѕР¶РЅРѕСЃС‚Рё
         document.querySelectorAll('.difficulty-options .option-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.difficulty-options .option-btn').forEach(b => {
@@ -3449,7 +3449,7 @@ button:hover {
                 this.classList.add('selected');
                 difficulty = this.getAttribute('data-difficulty');
                 
-                // Устанавливаем жизни в зависимости от сложности
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р¶РёР·РЅРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё
                 if (difficulty === "extreme") {
                     lives = 1;
                 } else {
@@ -3459,7 +3459,7 @@ button:hover {
             });
         });
         
-        // Обработчик выбора карты
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РІС‹Р±РѕСЂР° РєР°СЂС‚С‹
         document.querySelectorAll('.map-options .option-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.map-options .option-btn').forEach(b => {
@@ -3470,12 +3470,12 @@ button:hover {
             });
         });
         
-        // Обработчик кнопки начала игры
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РЅР°С‡Р°Р»Р° РёРіСЂС‹
         document.getElementById('startGame').addEventListener('click', function() {
-            // Скрываем экран настройки
+            // РЎРєСЂС‹РІР°РµРј СЌРєСЂР°РЅ РЅР°СЃС‚СЂРѕР№РєРё
             document.getElementById('setupScreen').style.display = 'none';
             
-            // Сбрасываем игру
+            // РЎР±СЂР°СЃС‹РІР°РµРј РёРіСЂСѓ
             money = 200;
             lives = (difficulty === "extreme") ? 1 : 20;
             wave = 0;
@@ -3496,30 +3496,30 @@ button:hover {
             toxicCount = 0;
             turretCount = 0;
             emptyCount = 0;
-            waveRewardMultiplier = 1; // Сбрасываем множитель награды
+            waveRewardMultiplier = 1; // РЎР±СЂР°СЃС‹РІР°РµРј РјРЅРѕР¶РёС‚РµР»СЊ РЅР°РіСЂР°РґС‹
             
-            // Устанавливаем путь в зависимости от выбранной карты
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСѓС‚СЊ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІС‹Р±СЂР°РЅРЅРѕР№ РєР°СЂС‚С‹
             setPath();
             
-            // Сброс знаний о врагах
+            // РЎР±СЂРѕСЃ Р·РЅР°РЅРёР№ Рѕ РІСЂР°РіР°С…
             for (const type in enemyKnowledge) {
                 enemyKnowledge[type].discovered = false;
             }
             updateEnemyIndex();
             
-            // Удаляем индикатор радиуса
+            // РЈРґР°Р»СЏРµРј РёРЅРґРёРєР°С‚РѕСЂ СЂР°РґРёСѓСЃР°
             if (rangeIndicator) {
                 document.body.removeChild(rangeIndicator);
                 rangeIndicator = null;
             }
             
-            // Удаляем ауру босса, если есть
+            // РЈРґР°Р»СЏРµРј Р°СѓСЂСѓ Р±РѕСЃСЃР°, РµСЃР»Рё РµСЃС‚СЊ
             if (bossAura) {
                 document.body.removeChild(bossAura);
                 bossAura = null;
             }
             
-            // Снимаем выделение с кнопок
+            // РЎРЅРёРјР°РµРј РІС‹РґРµР»РµРЅРёРµ СЃ РєРЅРѕРїРѕРє
             document.querySelectorAll('.tower-item').forEach(item => {
                 item.classList.remove('selected');
             });
@@ -3528,17 +3528,17 @@ button:hover {
             gameLoop();
         });
         
-        // Обработчик кнопки открытия магазина
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РѕС‚РєСЂС‹С‚РёСЏ РјР°РіР°Р·РёРЅР°
         document.getElementById('diamondShopBtn').addEventListener('click', function() {
             document.getElementById('shopScreen').style.display = 'flex';
         });
         
-        // Обработчик кнопки закрытия магазина
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјР°РіР°Р·РёРЅР°
         document.getElementById('closeShop').addEventListener('click', function() {
             document.getElementById('shopScreen').style.display = 'none';
         });
         
-        // Обработчик выбора категорий в магазине
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РІС‹Р±РѕСЂР° РєР°С‚РµРіРѕСЂРёР№ РІ РјР°РіР°Р·РёРЅРµ
         document.querySelectorAll('.shop-category').forEach(category => {
             category.addEventListener('click', function() {
                 document.querySelectorAll('.shop-category').forEach(c => {
@@ -3557,7 +3557,7 @@ button:hover {
             });
         });
         
-        // Обработчик покупки сложности
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРєСѓРїРєРё СЃР»РѕР¶РЅРѕСЃС‚Рё
         document.getElementById('buyExtremeBtn').addEventListener('click', function() {
             const price = parseInt(this.getAttribute('data-price'));
             
@@ -3565,20 +3565,20 @@ button:hover {
                 totalDiamonds -= price;
                 document.getElementById('diamondTotal').textContent = totalDiamonds;
                 this.disabled = true;
-                this.textContent = 'Куплено';
+                this.textContent = 'РљСѓРїР»РµРЅРѕ';
                 
-                // Разблокируем сложность
+                // Р Р°Р·Р±Р»РѕРєРёСЂСѓРµРј СЃР»РѕР¶РЅРѕСЃС‚СЊ
                 document.getElementById('extremeDifficultyBtn').classList.remove('option-btn');
                 document.getElementById('extremeDifficultyBtn').classList.add('option-btn');
                 
                 saveGameData();
-                alert('Режим Экстрим разблокирован!');
+                alert('Р РµР¶РёРј Р­РєСЃС‚СЂРёРј СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅ!');
             } else {
-                alert('Недостаточно алмазов!');
+                alert('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р°Р»РјР°Р·РѕРІ!');
             }
         });
         
-        // Обработчик покупки карты
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРєСѓРїРєРё РєР°СЂС‚С‹
         document.getElementById('buyMountainsBtn').addEventListener('click', function() {
             const price = parseInt(this.getAttribute('data-price'));
             
@@ -3586,20 +3586,20 @@ button:hover {
                 totalDiamonds -= price;
                 document.getElementById('diamondTotal').textContent = totalDiamonds;
                 this.disabled = true;
-                this.textContent = 'Куплено';
+                this.textContent = 'РљСѓРїР»РµРЅРѕ';
                 
-                // Разблокируем карту
+                // Р Р°Р·Р±Р»РѕРєРёСЂСѓРµРј РєР°СЂС‚Сѓ
                 document.getElementById('mountainsMapBtn').classList.remove('option-btn');
                 document.getElementById('mountainsMapBtn').classList.add('option-btn');
                 
                 saveGameData();
-                alert('Карта Горки разблокирована!');
+                alert('РљР°СЂС‚Р° Р“РѕСЂРєРё СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅР°!');
             } else {
-                alert('Недостаточно алмазов!');
+                alert('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р°Р»РјР°Р·РѕРІ!');
             }
         });
         
-        // Обработчик кнопки информации о кейсе
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРµР№СЃРµ
         document.querySelectorAll('.case-info-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -3611,7 +3611,7 @@ button:hover {
             });
         });
         
-        // Функция открытия кейса
+        // Р¤СѓРЅРєС†РёСЏ РѕС‚РєСЂС‹С‚РёСЏ РєРµР№СЃР°
         function openCase(caseType, price) {
             if (totalDiamonds >= price) {
                 totalDiamonds -= price;
@@ -3621,7 +3621,7 @@ button:hover {
                 let towerType = '';
                 
                 if (caseType === 'normal') {
-                    // Обычный кейс
+                    // РћР±С‹С‡РЅС‹Р№ РєРµР№СЃ
                     if (random < 45) {
                         towerType = 'doublepistol';
                     } else if (random < 75) {
@@ -3636,7 +3636,7 @@ button:hover {
                         towerType = 'empty';
                     }
                 } else {
-                    // Премиум кейс
+                    // РџСЂРµРјРёСѓРј РєРµР№СЃ
                     if (random < 40) {
                         towerType = 'bomb';
                     } else if (random < 65) {
@@ -3650,43 +3650,43 @@ button:hover {
                     }
                 }
                 
-                // Проверяем, есть ли уже такая башня
+                // РџСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё СѓР¶Рµ С‚Р°РєР°СЏ Р±Р°С€РЅСЏ
                 if (ownedTowers.includes(towerType)) {
-                    // Если башня уже есть, даем 35 алмазов
+                    // Р•СЃР»Рё Р±Р°С€РЅСЏ СѓР¶Рµ РµСЃС‚СЊ, РґР°РµРј 35 Р°Р»РјР°Р·РѕРІ
                     totalDiamonds += 35;
                     document.getElementById('diamondTotal').textContent = totalDiamonds;
                     saveGameData();
-                    alert(`У вас уже есть ${getTowerName(towerType)}! Вы получаете 35 алмазов в качестве компенсации.`);
+                    alert(`РЈ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ ${getTowerName(towerType)}! Р’С‹ РїРѕР»СѓС‡Р°РµС‚Рµ 35 Р°Р»РјР°Р·РѕРІ РІ РєР°С‡РµСЃС‚РІРµ РєРѕРјРїРµРЅСЃР°С†РёРё.`);
                 } else {
-                    // Добавляем башню в список полученных
+                    // Р”РѕР±Р°РІР»СЏРµРј Р±Р°С€РЅСЋ РІ СЃРїРёСЃРѕРє РїРѕР»СѓС‡РµРЅРЅС‹С…
                     ownedTowers.push(towerType);
                     
-                    // Показываем башню в магазине
+                    // РџРѕРєР°Р·С‹РІР°РµРј Р±Р°С€РЅСЋ РІ РјР°РіР°Р·РёРЅРµ
                     document.getElementById(`${towerType}Tower`).style.display = 'flex';
                     
                     saveGameData();
-                    alert(`Поздравляем! Вы получили: ${getTowerName(towerType)}`);
+                    alert(`РџРѕР·РґСЂР°РІР»СЏРµРј! Р’С‹ РїРѕР»СѓС‡РёР»Рё: ${getTowerName(towerType)}`);
                 }
             } else {
-                alert('Недостаточно алмазов!');
+                alert('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р°Р»РјР°Р·РѕРІ!');
             }
         }
         
-        // Обработчик открытия обычного кейса
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РѕС‚РєСЂС‹С‚РёСЏ РѕР±С‹С‡РЅРѕРіРѕ РєРµР№СЃР°
         document.getElementById('openNormalCaseBtn').addEventListener('click', function() {
             const price = parseInt(this.getAttribute('data-price'));
             openCase('normal', price);
         });
         
-        // Обработчик открытия премиум кейса
+        // РћР±СЂР°Р±РѕС‚С‡РёРє РѕС‚РєСЂС‹С‚РёСЏ РїСЂРµРјРёСѓРј РєРµР№СЃР°
         document.getElementById('openPremiumCaseBtn').addEventListener('click', function() {
             const price = parseInt(this.getAttribute('data-price'));
             openCase('premium', price);
         });
         
-        // Инициализация при загрузке
-        setPath(); // Устанавливаем путь по умолчанию
-        loadGameData(); // Загружаем сохраненные данные
+        // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСЂРё Р·Р°РіСЂСѓР·РєРµ
+        setPath(); // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСѓС‚СЊ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        loadGameData(); // Р—Р°РіСЂСѓР¶Р°РµРј СЃРѕС…СЂР°РЅРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
         updateStats();
         updateEnemyIndex();
     </script>
